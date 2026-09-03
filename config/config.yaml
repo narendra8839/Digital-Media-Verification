@@ -1,0 +1,12 @@
+project:
+  name: digital-media-verification
+  supported_media: [image, video, text]
+models:
+  deepfake: efficientnet_b4
+  propaganda: roberta_base
+  hate_speech: bert_base_uncased
+inference:
+  device: auto
+  mc_dropout_passes: 20
+video:
+  sample_fps: 1

@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.env
+.venv/
+venv/
+data/raw/**
+data/processed/**
+data/datasets/**
+models/**/checkpoint/**
+!data/**/.gitkeep
+!models/**/checkpoint/.gitkeep
+*.pt
+*.pth
+*.ckpt
+*.log

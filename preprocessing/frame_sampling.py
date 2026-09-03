@@ -1,0 +1,1 @@
+"""Video frame sampling helpers."""

@@ -1,0 +1,1 @@
+"""FFmpeg audio extraction interface."""

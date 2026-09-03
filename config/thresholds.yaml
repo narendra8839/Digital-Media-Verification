@@ -1,0 +1,6 @@
+uncertainty:
+  deepfake_variance: 0.05
+  propaganda_variance: 0.05
+  hate_speech_variance: 0.05
+policy:
+  high_uncertainty_status: "INCONCLUSIVE - HUMAN REVIEW RECOMMENDED"
