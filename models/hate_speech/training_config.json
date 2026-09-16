@@ -1,0 +1,20 @@
+{
+  "model": "bert-base-uncased",
+  "num_classes": 3,
+  "classes": [
+    "normal",
+    "offensive",
+    "hatespeech"
+  ],
+  "label_mapping": {
+    "0": "normal",
+    "1": "offensive",
+    "2": "hatespeech"
+  },
+  "epochs": 2,
+  "batch_size": 16,
+  "learning_rate": 3e-05,
+  "random_seed": 42,
+  "device": "cpu",
+  "dataset_provenance": "HateXplain official benchmark splits (Mathew et al., AAAI 2021)"
+}

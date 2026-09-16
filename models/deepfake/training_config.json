@@ -1,0 +1,19 @@
+{
+  "model": "efficientnet_b4",
+  "num_classes": 2,
+  "label_mapping": {
+    "0": "real",
+    "1": "fake"
+  },
+  "epochs": 2,
+  "batch_size": 8,
+  "learning_rate": 0.0001,
+  "random_seed": 42,
+  "device": "cpu",
+  "frame_resolution": [
+    224,
+    224
+  ],
+  "frames_per_video_train": 4,
+  "dataset_provenance": "Kaggle development mirror (xdxd003/ff-c23). Strictly for MVP development; official TUM FF++ access pending."
+}

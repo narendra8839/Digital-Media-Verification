@@ -1,0 +1,56 @@
+{
+  "dataset_name": "SemEval-2020 Task 11 (Propaganda Techniques Corpus)",
+  "random_seed": 42,
+  "leakage_prevention": "Article-level disjoint partition (no article or span shared between train and validation)",
+  "articles_partitioned": {
+    "total_articles": 357,
+    "train_articles": 285,
+    "val_articles": 72
+  },
+  "samples_per_class_target": {
+    "train": 40,
+    "val": 10
+  },
+  "subset_totals": {
+    "train_samples": 560,
+    "val_samples": 140,
+    "total_samples": 700,
+    "num_classes": 14
+  },
+  "class_distribution_train": {
+    "Appeal_to_Authority": 40,
+    "Appeal_to_fear-prejudice": 40,
+    "Bandwagon,Reductio_ad_hitlerum": 40,
+    "Black-and-White_Fallacy": 40,
+    "Causal_Oversimplification": 40,
+    "Doubt": 40,
+    "Exaggeration,Minimisation": 40,
+    "Flag-Waving": 40,
+    "Loaded_Language": 40,
+    "Name_Calling,Labeling": 40,
+    "Repetition": 40,
+    "Slogans": 40,
+    "Thought-terminating_Cliches": 40,
+    "Whataboutism,Straw_Men,Red_Herring": 40
+  },
+  "class_distribution_val": {
+    "Appeal_to_Authority": 10,
+    "Appeal_to_fear-prejudice": 10,
+    "Bandwagon,Reductio_ad_hitlerum": 10,
+    "Black-and-White_Fallacy": 10,
+    "Causal_Oversimplification": 10,
+    "Doubt": 10,
+    "Exaggeration,Minimisation": 10,
+    "Flag-Waving": 10,
+    "Loaded_Language": 10,
+    "Name_Calling,Labeling": 10,
+    "Repetition": 10,
+    "Slogans": 10,
+    "Thought-terminating_Cliches": 10,
+    "Whataboutism,Straw_Men,Red_Herring": 10
+  },
+  "files": {
+    "train": "data/mvp/semeval2020_task11/train_subset.json",
+    "val": "data/mvp/semeval2020_task11/val_subset.json"
+  }
+}

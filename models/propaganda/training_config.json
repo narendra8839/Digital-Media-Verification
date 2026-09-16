@@ -1,0 +1,26 @@
+{
+  "model": "roberta-base",
+  "num_classes": 14,
+  "classes": [
+    "Appeal_to_Authority",
+    "Appeal_to_fear-prejudice",
+    "Bandwagon,Reductio_ad_hitlerum",
+    "Black-and-White_Fallacy",
+    "Causal_Oversimplification",
+    "Doubt",
+    "Exaggeration,Minimisation",
+    "Flag-Waving",
+    "Loaded_Language",
+    "Name_Calling,Labeling",
+    "Repetition",
+    "Slogans",
+    "Thought-terminating_Cliches",
+    "Whataboutism,Straw_Men,Red_Herring"
+  ],
+  "epochs": 2,
+  "batch_size": 16,
+  "learning_rate": 3e-05,
+  "random_seed": 42,
+  "device": "cpu",
+  "dataset_provenance": "SemEval-2020 Task 11 (Propaganda Techniques Corpus) article-level split"
+}

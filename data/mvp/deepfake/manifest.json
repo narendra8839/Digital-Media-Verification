@@ -1,0 +1,76 @@
+{
+  "dataset_name": "FaceForensics++ (C23)",
+  "source_provenance": "Kaggle development mirror (xdxd003/ff-c23), used strictly for MVP engineering & pipeline debugging. Official TUM academic access pending.",
+  "random_seed": 42,
+  "leakage_prevention": "Sequence-level disjoint splitting from official splits/train.json, val.json, test.json. 0 ID overlap between splits.",
+  "methods_used": [
+    "Deepfakes",
+    "Face2Face",
+    "FaceSwap",
+    "NeuralTextures"
+  ],
+  "excluded_methods": [
+    "FaceShifter",
+    "DeepFakeDetection"
+  ],
+  "validation_summary": {
+    "total_videos_found": 3000,
+    "total_videos_missing": 0,
+    "total_videos_mismatched": 0,
+    "total_videos_corrupt": 0,
+    "per_split": {
+      "train": {
+        "pairs": 360,
+        "original_videos_expected": 720,
+        "original_videos_found": 720,
+        "original_videos_missing": 0,
+        "fake_videos_expected": 1440,
+        "fake_videos_found": 1440,
+        "fake_videos_missing": 0
+      },
+      "val": {
+        "pairs": 70,
+        "original_videos_expected": 140,
+        "original_videos_found": 140,
+        "original_videos_missing": 0,
+        "fake_videos_expected": 280,
+        "fake_videos_found": 280,
+        "fake_videos_missing": 0
+      },
+      "test": {
+        "pairs": 70,
+        "original_videos_expected": 140,
+        "original_videos_found": 140,
+        "original_videos_missing": 0,
+        "fake_videos_expected": 280,
+        "fake_videos_found": 280,
+        "fake_videos_missing": 0
+      }
+    }
+  },
+  "subset_totals": {
+    "train_videos": 40,
+    "val_videos": 18,
+    "test_videos": 18,
+    "total_mvp_videos": 76
+  },
+  "subset_class_distribution": {
+    "train": {
+      "real": 20,
+      "fake": 20
+    },
+    "val": {
+      "real": 10,
+      "fake": 8
+    },
+    "test": {
+      "real": 10,
+      "fake": 8
+    }
+  },
+  "files": {
+    "train": "data/mvp/deepfake/train_subset.json",
+    "val": "data/mvp/deepfake/val_subset.json",
+    "test": "data/mvp/deepfake/test_subset.json"
+  }
+}
