@@ -5,8 +5,34 @@ models:
   deepfake: efficientnet_b4
   propaganda: roberta_base
   hate_speech: bert_base_uncased
+  whisper: "openai/whisper-base"
 inference:
   device: auto
   mc_dropout_passes: 20
 video:
   sample_fps: 1
+mvp_subsets:
+  random_seed: 42
+  semeval:
+    samples_per_class_train: 40
+    samples_per_class_val: 10
+  hatexplain:
+    samples_per_class_train: 200
+    samples_per_class_val: 50
+    samples_per_class_test: 50
+  deepfake:
+    train_real_videos: 20
+    train_fake_videos_per_method: 5
+    val_real_videos: 10
+    val_fake_videos_per_method: 2
+    test_real_videos: 10
+    test_fake_videos_per_method: 2
+
+uncertainty:
+  mc_dropout_samples: 20
+  variance_threshold: 0.02
+  entropy_threshold: 0.85
+  calibration_status: "Development/MVP threshold — not clinically, legally, or production calibrated."
+
+
+

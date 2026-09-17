@@ -1,0 +1,60 @@
+{
+  "dataset_name": "HateXplain",
+  "random_seed": 42,
+  "leakage_prevention": "Strict adherence to official benchmark train/val/test post divisions (zero cross-split contamination)",
+  "classes": [
+    "hatespeech",
+    "normal",
+    "offensive"
+  ],
+  "samples_per_class_target": {
+    "train": 200,
+    "val": 50,
+    "test": 50
+  },
+  "subset_totals": {
+    "train_samples": 600,
+    "val_samples": 150,
+    "test_samples": 150,
+    "total_samples": 900
+  },
+  "class_distribution": {
+    "train": {
+      "hatespeech": 200,
+      "normal": 200,
+      "offensive": 200
+    },
+    "val": {
+      "hatespeech": 50,
+      "normal": 50,
+      "offensive": 50
+    },
+    "test": {
+      "hatespeech": 50,
+      "normal": 50,
+      "offensive": 50
+    }
+  },
+  "rationale_availability": {
+    "train": {
+      "hatespeech": 200,
+      "normal": 0,
+      "offensive": 200
+    },
+    "val": {
+      "hatespeech": 50,
+      "normal": 0,
+      "offensive": 50
+    },
+    "test": {
+      "hatespeech": 50,
+      "normal": 0,
+      "offensive": 50
+    }
+  },
+  "files": {
+    "train": "data/mvp/hatexplain/train_subset.json",
+    "val": "data/mvp/hatexplain/val_subset.json",
+    "test": "data/mvp/hatexplain/test_subset.json"
+  }
+}

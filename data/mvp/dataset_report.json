@@ -1,0 +1,206 @@
+{
+  "report_title": "Digital Media Verification - Dataset Inspection & MVP Subset Report",
+  "course": "Ethical and Responsible AI",
+  "timestamp": "2026-09-09T22:15:00Z",
+  "summary": {
+    "datasets_inspected": 3,
+    "faceforensics_status": "Kaggle dev copy mapped and verified; 0 missing videos across official splits; official academic access pending",
+    "deepfake_mvp_train_videos": 40,
+    "semeval_mvp_samples": 700,
+    "hatexplain_mvp_samples": 900
+  },
+  "datasets": {
+    "faceforensics_plusplus": {
+      "dataset_name": "FaceForensics++ (C23)",
+      "source_provenance": "Kaggle development mirror (xdxd003/ff-c23), used strictly for MVP engineering & pipeline debugging. Official TUM academic access pending.",
+      "random_seed": 42,
+      "leakage_prevention": "Sequence-level disjoint splitting from official splits/train.json, val.json, test.json. 0 ID overlap between splits.",
+      "methods_used": [
+        "Deepfakes",
+        "Face2Face",
+        "FaceSwap",
+        "NeuralTextures"
+      ],
+      "excluded_methods": [
+        "FaceShifter",
+        "DeepFakeDetection"
+      ],
+      "validation_summary": {
+        "total_videos_found": 3000,
+        "total_videos_missing": 0,
+        "total_videos_mismatched": 0,
+        "total_videos_corrupt": 0,
+        "per_split": {
+          "train": {
+            "pairs": 360,
+            "original_videos_expected": 720,
+            "original_videos_found": 720,
+            "original_videos_missing": 0,
+            "fake_videos_expected": 1440,
+            "fake_videos_found": 1440,
+            "fake_videos_missing": 0
+          },
+          "val": {
+            "pairs": 70,
+            "original_videos_expected": 140,
+            "original_videos_found": 140,
+            "original_videos_missing": 0,
+            "fake_videos_expected": 280,
+            "fake_videos_found": 280,
+            "fake_videos_missing": 0
+          },
+          "test": {
+            "pairs": 70,
+            "original_videos_expected": 140,
+            "original_videos_found": 140,
+            "original_videos_missing": 0,
+            "fake_videos_expected": 280,
+            "fake_videos_found": 280,
+            "fake_videos_missing": 0
+          }
+        }
+      },
+      "subset_totals": {
+        "train_videos": 40,
+        "val_videos": 18,
+        "test_videos": 18,
+        "total_mvp_videos": 76
+      },
+      "subset_class_distribution": {
+        "train": {
+          "real": 20,
+          "fake": 20
+        },
+        "val": {
+          "real": 10,
+          "fake": 8
+        },
+        "test": {
+          "real": 10,
+          "fake": 8
+        }
+      },
+      "files": {
+        "train": "data/mvp/deepfake/train_subset.json",
+        "val": "data/mvp/deepfake/val_subset.json",
+        "test": "data/mvp/deepfake/test_subset.json"
+      }
+    },
+    "semeval2020_task11": {
+      "dataset_name": "SemEval-2020 Task 11 (Propaganda Techniques Corpus)",
+      "random_seed": 42,
+      "leakage_prevention": "Article-level disjoint partition (no article or span shared between train and validation)",
+      "articles_partitioned": {
+        "total_articles": 357,
+        "train_articles": 285,
+        "val_articles": 72
+      },
+      "samples_per_class_target": {
+        "train": 40,
+        "val": 10
+      },
+      "subset_totals": {
+        "train_samples": 560,
+        "val_samples": 140,
+        "total_samples": 700,
+        "num_classes": 14
+      },
+      "class_distribution_train": {
+        "Appeal_to_Authority": 40,
+        "Appeal_to_fear-prejudice": 40,
+        "Bandwagon,Reductio_ad_hitlerum": 40,
+        "Black-and-White_Fallacy": 40,
+        "Causal_Oversimplification": 40,
+        "Doubt": 40,
+        "Exaggeration,Minimisation": 40,
+        "Flag-Waving": 40,
+        "Loaded_Language": 40,
+        "Name_Calling,Labeling": 40,
+        "Repetition": 40,
+        "Slogans": 40,
+        "Thought-terminating_Cliches": 40,
+        "Whataboutism,Straw_Men,Red_Herring": 40
+      },
+      "class_distribution_val": {
+        "Appeal_to_Authority": 10,
+        "Appeal_to_fear-prejudice": 10,
+        "Bandwagon,Reductio_ad_hitlerum": 10,
+        "Black-and-White_Fallacy": 10,
+        "Causal_Oversimplification": 10,
+        "Doubt": 10,
+        "Exaggeration,Minimisation": 10,
+        "Flag-Waving": 10,
+        "Loaded_Language": 10,
+        "Name_Calling,Labeling": 10,
+        "Repetition": 10,
+        "Slogans": 10,
+        "Thought-terminating_Cliches": 10,
+        "Whataboutism,Straw_Men,Red_Herring": 10
+      },
+      "files": {
+        "train": "data/mvp/semeval2020_task11/train_subset.json",
+        "val": "data/mvp/semeval2020_task11/val_subset.json"
+      }
+    },
+    "hatexplain": {
+      "dataset_name": "HateXplain",
+      "random_seed": 42,
+      "leakage_prevention": "Strict adherence to official benchmark train/val/test post divisions (zero cross-split contamination)",
+      "classes": [
+        "hatespeech",
+        "normal",
+        "offensive"
+      ],
+      "samples_per_class_target": {
+        "train": 200,
+        "val": 50,
+        "test": 50
+      },
+      "subset_totals": {
+        "train_samples": 600,
+        "val_samples": 150,
+        "test_samples": 150,
+        "total_samples": 900
+      },
+      "class_distribution": {
+        "train": {
+          "hatespeech": 200,
+          "normal": 200,
+          "offensive": 200
+        },
+        "val": {
+          "hatespeech": 50,
+          "normal": 50,
+          "offensive": 50
+        },
+        "test": {
+          "hatespeech": 50,
+          "normal": 50,
+          "offensive": 50
+        }
+      },
+      "rationale_availability": {
+        "train": {
+          "hatespeech": 200,
+          "normal": 0,
+          "offensive": 200
+        },
+        "val": {
+          "hatespeech": 50,
+          "normal": 0,
+          "offensive": 50
+        },
+        "test": {
+          "hatespeech": 50,
+          "normal": 0,
+          "offensive": 50
+        }
+      },
+      "files": {
+        "train": "data/mvp/hatexplain/train_subset.json",
+        "val": "data/mvp/hatexplain/val_subset.json",
+        "test": "data/mvp/hatexplain/test_subset.json"
+      }
+    }
+  }
+}
