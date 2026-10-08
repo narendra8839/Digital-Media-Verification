@@ -4,18 +4,21 @@ import logging
 from typing import Optional
 from pipeline.multimodal_pipeline import MultimodalPipeline
 
+from api.utils.device import get_optimal_device
+
 logger = logging.getLogger("dmv_api.dependencies")
 
 _pipeline_instance: Optional[MultimodalPipeline] = None
 
 
-def init_pipeline(device: str = "cpu") -> MultimodalPipeline:
+def init_pipeline(device: Optional[str] = None) -> MultimodalPipeline:
     """Initialize the shared MultimodalPipeline singleton once at application startup."""
     global _pipeline_instance
     if _pipeline_instance is None:
-        logger.info("Initializing shared MultimodalPipeline singleton...")
-        _pipeline_instance = MultimodalPipeline(device=device)
-        logger.info("MultimodalPipeline singleton successfully initialized.")
+        target_device = device if device is not None else get_optimal_device()
+        logger.info(f"Initializing shared MultimodalPipeline singleton on device '{target_device}'...")
+        _pipeline_instance = MultimodalPipeline(device=target_device)
+        logger.info(f"MultimodalPipeline singleton successfully initialized on device '{target_device}'.")
     return _pipeline_instance
 
 
@@ -23,7 +26,7 @@ def get_pipeline() -> MultimodalPipeline:
     """FastAPI dependency provider returning the pre-warmed MultimodalPipeline singleton."""
     global _pipeline_instance
     if _pipeline_instance is None:
-        _pipeline_instance = init_pipeline(device="cpu")
+        _pipeline_instance = init_pipeline()
     return _pipeline_instance
 
 

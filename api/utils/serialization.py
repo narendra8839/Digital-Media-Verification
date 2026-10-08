@@ -34,7 +34,12 @@ def sanitize_for_json(obj: Any) -> Any:
 
     # Dictionaries
     if isinstance(obj, dict):
-        return {str(k): sanitize_for_json(v) for k, v in obj.items()}
+        res = {}
+        for k, v in obj.items():
+            if str(k) == "overlay_array":
+                continue  # Omit large raw pixel buffer from network JSON payload
+            res[str(k)] = sanitize_for_json(v)
+        return res
 
     # Lists, tuples, sets
     if isinstance(obj, (list, tuple, set)):

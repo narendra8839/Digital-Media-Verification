@@ -161,6 +161,22 @@ class GradCAM:
             Image.fromarray(overlay_rgb).save(output_path)
             saved_path = output_path
 
+        # Generate browser-accessible base64 data URI
+        import io
+        import base64
+        buffered = io.BytesIO()
+        Image.fromarray(overlay_rgb).save(buffered, format="PNG")
+        b64_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
+        data_uri = f"data:image/png;base64,{b64_str}"
+
+        # Determine relative web URL if saved inside an artifacts/static directory
+        overlay_url = data_uri
+        if saved_path:
+            norm_p = saved_path.replace("\\", "/")
+            if "artifacts/" in norm_p:
+                idx = norm_p.find("artifacts/")
+                overlay_url = "/" + norm_p[idx:]
+
         pred_label = label_mapping.get(str(pred_idx), f"class_{pred_idx}")
         prob_dict = {label_mapping.get(str(i), f"class_{i}"): round(p, 4) for i, p in enumerate(probs)}
 
@@ -172,6 +188,8 @@ class GradCAM:
             "heatmap": heatmap.tolist(),
             "heatmap_shape": list(heatmap.shape),
             "overlay_path": saved_path,
-            "overlay_array": overlay_rgb,
+            "saved_path": data_uri,
+            "overlay_url": overlay_url,
+            "overlay_base64": data_uri,
             "disclaimer": "Grad-CAM is a post-hoc feature attribution method and should not be interpreted as causal proof."
         }

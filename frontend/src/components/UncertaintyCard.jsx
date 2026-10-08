@@ -110,7 +110,7 @@ export function UncertaintyCard({
       <div className="gradcam-disclaimer-note">
         <Info size={13} className="text-muted flex-shrink-0" />
         <span>
-          Evaluated via Monte Carlo Dropout inference passes (T = {mc_samples}). Avoid over-interpreting uncalibrated probabilities; these metrics represent model epistemic uncertainty.
+          Heuristic development threshold — calibration not quantitatively established. MC Dropout predictive uncertainty represents model epistemic uncertainty (T = {mc_samples} passes), not error probability.
         </span>
       </div>
     </div>

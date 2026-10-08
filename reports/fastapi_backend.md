@@ -241,7 +241,7 @@ Executed via `python -m pytest tests/test_api.py -v`:
 ```
 ============================= test session starts =============================
 platform win32 -- Python 3.14.2, pytest-9.1.1, pluggy-1.6.0
-rootdir: C:\Users\Swaraj Shedge\Desktop\College\TY\ERA\Digital Media Verification\Digital-Media-Verification
+rootdir: ./Digital-Media-Verification
 collected 19 items
 
 tests/test_api.py::TestHealthAndReadiness::test_health_endpoint PASSED   [  5%]

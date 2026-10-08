@@ -15,7 +15,7 @@ from uncertainty.uncertainty_engine import UncertaintyEngine
 class DeepfakeDetector:
     """Orchestrates face detection, deepfake classification, Grad-CAM explainability, and uncertainty estimation."""
 
-    def __init__(self, checkpoint_path: str = "models/deepfake/checkpoint/best_model.pt",
+    def __init__(self, checkpoint_path: str = "models/deepfake/checkpoint_full/best_model.pt",
                  device: Optional[str] = None,
                  variance_threshold: float = 0.02,
                  entropy_threshold: float = 0.85):
@@ -79,18 +79,27 @@ class DeepfakeDetector:
             label_mapping=self.label_mapping
         )
 
-        # 3. Grad-CAM explanation
+        # 3. Grad-CAM explanation (graceful fallback if Grad-CAM fails)
         explanation = None
         if generate_gradcam:
-            save_path = None
-            if output_dir:
-                os.makedirs(output_dir, exist_ok=True)
-                save_path = os.path.join(output_dir, "gradcam_overlay.png")
-            explanation = self.gradcam.explain(
-                image_crop=crop,
-                output_path=save_path,
-                label_mapping=self.label_mapping
-            )
+            try:
+                save_path = None
+                if output_dir:
+                    os.makedirs(output_dir, exist_ok=True)
+                    import uuid
+                    save_path = os.path.join(output_dir, f"gradcam_{uuid.uuid4().hex[:8]}.png")
+                explanation = self.gradcam.explain(
+                    image_crop=crop,
+                    output_path=save_path,
+                    label_mapping=self.label_mapping
+                )
+            except Exception as e:
+                import logging
+                logging.getLogger("dmv.deepfake").warning(f"Grad-CAM generation failed: {e}")
+                explanation = {
+                    "error": f"Grad-CAM generation failed: {str(e)}",
+                    "disclaimer": "Grad-CAM explanation could not be generated for this input."
+                }
 
         return {
             "status": "SUCCESS",

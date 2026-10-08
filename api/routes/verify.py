@@ -48,7 +48,8 @@ def _run_video_background(job_id: str,
             media_input=temp_path,
             caption=caption,
             sample_fps=sample_fps,
-            max_frames=max_frames
+            max_frames=max_frames,
+            output_dir="artifacts"
         )
         sanitized = sanitize_for_json(raw_result)
         if job_id in job_store:
@@ -104,7 +105,7 @@ async def verify_image(
     )
 
     try:
-        raw_result = pipeline.verify(temp_path, caption=caption)
+        raw_result = pipeline.verify(temp_path, caption=caption, output_dir="artifacts")
         return sanitize_for_json(raw_result)
     except Exception as exc:
         logger.error(f"Error during image verification: {str(exc)}", exc_info=True)
@@ -166,7 +167,8 @@ async def verify_video(
                 temp_path,
                 caption=caption,
                 sample_fps=sample_fps,
-                max_frames=max_frames
+                max_frames=max_frames,
+                output_dir="artifacts"
             )
             return sanitize_for_json(raw_result)
         except Exception as exc:
@@ -241,7 +243,7 @@ async def verify_multimodal(
     )
 
     try:
-        raw_result = pipeline.verify(temp_path, caption=clean_text)
+        raw_result = pipeline.verify(temp_path, caption=clean_text, output_dir="artifacts")
         return sanitize_for_json(raw_result)
     except Exception as exc:
         logger.error(f"Error during multimodal verification: {str(exc)}", exc_info=True)

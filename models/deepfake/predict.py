@@ -11,11 +11,18 @@ import numpy as np
 from models.deepfake.efficientnet_b4 import EfficientNetB4Deepfake
 
 
-def load_deepfake_model(checkpoint_path: str = "models/deepfake/checkpoint/best_model.pt", device: str = None):
+def load_deepfake_model(checkpoint_path: str = "models/deepfake/checkpoint_full/best_model.pt", device: str = None):
     if device is None:
-        device = "cuda" if torch.cuda.is_available() else "cpu"
+        try:
+            from api.utils.device import get_optimal_device
+            device = get_optimal_device()
+        except ImportError:
+            device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
     model = EfficientNetB4Deepfake(dropout_rate=0.4, pretrained=False)
+    if not os.path.exists(checkpoint_path) and os.path.exists("models/deepfake/checkpoint/best_model.pt"):
+        checkpoint_path = "models/deepfake/checkpoint/best_model.pt"
+
     if os.path.exists(checkpoint_path):
         state_dict = torch.load(checkpoint_path, map_location=device)
         model.load_state_dict(state_dict)

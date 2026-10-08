@@ -7,6 +7,7 @@ import { GovernancePanel } from '../components/GovernancePanel';
 import { VisualResultView } from '../components/VisualResultView';
 import { TokenAttributionView } from '../components/TokenAttributionView';
 import { UncertaintyCard } from '../components/UncertaintyCard';
+import { ResultDashboard } from '../components/ResultDashboard';
 
 const mockVerificationResult = {
   status: 'SUCCESS',
@@ -390,4 +391,77 @@ describe('Digital Media Verification Frontend Test Suite', () => {
 
     vi.useRealTimers();
   });
+
+  // 11. Multimodal verification with component-specific review trigger
+  it('11. Multimodal verification renders distinct visual and textual components with specific review trigger', () => {
+    const multimodalResult = {
+      ...mockVerificationResult,
+      input: { type: 'MULTIMODAL', filename: 'multimodal_test.jpg' },
+      governance: {
+        decision_status: 'REVIEW_RECOMMENDED',
+        review_required: true,
+        review_trigger_component: 'Propaganda Model (MC Dropout Elevated Uncertainty)',
+        review_justification: 'Predictive variance 0.025 exceeds threshold 0.020',
+        disclaimer: 'Human oversight recommended before any punitive action.'
+      }
+    };
+
+    render(<ResultDashboard result={multimodalResult} inputMeta={{ input_type: 'MULTIMODAL' }} />);
+
+    // Governance trigger must be clearly identified
+    expect(screen.getByText('Propaganda Model (MC Dropout Elevated Uncertainty)')).toBeInTheDocument();
+    expect(screen.getByText('Human Review Recommended')).toBeInTheDocument();
+
+    // Visual component is visible
+    expect(screen.getByText(/Visual Deepfake Detection/i)).toBeInTheDocument();
+
+    // Text component is visible
+    expect(screen.getByText(/Loaded Language/i)).toBeInTheDocument();
+  });
+
+  // 12. Faceless media rendering
+  it('12. Faceless image verification renders NO_FACE_DETECTED and ANALYSIS_INCOMPLETE without fabricating predictions', () => {
+    const noFaceResult = {
+      status: 'SUCCESS',
+      input: { type: 'IMAGE', filename: 'landscape.jpg' },
+      visual: {
+        status: 'NO_FACE_DETECTED',
+        face_detected: false,
+        prediction: null,
+        confidence: null,
+        explanation: null,
+        uncertainty: null
+      },
+      text: null,
+      propaganda: null,
+      hate_speech: null,
+      governance: {
+        decision_status: 'ANALYSIS_INCOMPLETE',
+        review_required: false,
+        review_trigger_component: null,
+        disclaimer: 'No detectable face was available for grounded facial analysis.'
+      },
+      audit: {
+        timestamp: '2026-09-10T12:00:00Z',
+        input_type: 'IMAGE',
+        execution_time_seconds: 0.12
+      }
+    };
+
+    render(<ResultDashboard result={noFaceResult} inputMeta={{ input_type: 'IMAGE', filename: 'landscape.jpg' }} />);
+
+    // Confirms NO_FACE_DETECTED badge and message
+    expect(screen.getByText('NO_FACE_DETECTED')).toBeInTheDocument();
+    expect(screen.getByText(/No human face was detected in the input media/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/The system strictly refrains from guessing/i).length).toBeGreaterThan(0);
+
+    // Confirms ANALYSIS_INCOMPLETE governance badge
+    expect(screen.getAllByText('ANALYSIS_INCOMPLETE').length).toBeGreaterThan(0);
+    expect(screen.getByText('Analysis Incomplete (Safe Bypass)')).toBeInTheDocument();
+
+    // Must NOT fabricate fake or real predictions
+    expect(screen.queryByText('Manipulated / Deepfake')).not.toBeInTheDocument();
+    expect(screen.queryByText('Authentic / Real')).not.toBeInTheDocument();
+  });
 });
+

@@ -30,9 +30,9 @@ async def readiness_check() -> ReadyResponse:
     status_str = "ready" if ready else "initializing"
 
     models_info = {
-        "deepfake": "EfficientNet-B4 (models/deepfake/checkpoint/best_model.pt)",
-        "propaganda": "RoBERTa-base (models/propaganda/checkpoint)",
-        "hate_speech": "BERT-base-uncased (models/hate_speech/checkpoint)",
+        "deepfake": "EfficientNet-B4 (models/deepfake/checkpoint_full/best_model.pt)",
+        "propaganda": "RoBERTa-base (models/propaganda/optimization/exp1_sqrt_weighted_scheduled)",
+        "hate_speech": "BERT-base-uncased (models/hate_speech/checkpoint_full)",
         "asr": "Whisper-base (openai/whisper-base)",
         "ocr": "EasyOCR (English CRAFT detector)"
     }

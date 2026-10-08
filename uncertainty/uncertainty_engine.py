@@ -73,7 +73,7 @@ class UncertaintyEngine:
                 "variance_threshold": var_thresh,
                 "entropy_threshold": ent_thresh
             },
-            "threshold_disclaimer": "Development/MVP threshold — not clinically, legally, or production calibrated."
+            "threshold_disclaimer": "Heuristic development threshold — calibration not quantitatively established."
         }
 
     def process_and_evaluate(self, model, input_data, modality: str,
@@ -118,7 +118,8 @@ class UncertaintyEngine:
                 "max_variance": uq["max_variance"],
                 "mean_variance": uq["mean_variance"],
                 "mc_samples": uq["mc_samples"],
-                "is_stochastic": uq["is_stochastic"]
+                "is_stochastic": uq["is_stochastic"],
+                "disclaimer": uq["disclaimer"]
             },
             "review_required": policy["review_required"],
             "review_status": policy["decision_status"],

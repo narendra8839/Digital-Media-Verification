@@ -15,7 +15,11 @@ class TextPipeline:
     def __init__(self, propaganda_detector: Optional[PropagandaDetector] = None,
                  hate_speech_detector: Optional[HateSpeechDetector] = None,
                  device: Optional[str] = None):
-        self.device = device or "cpu"
+        if device is None:
+            from api.utils.device import get_optimal_device
+            self.device = get_optimal_device()
+        else:
+            self.device = device
         self.propaganda_detector = propaganda_detector or PropagandaDetector(device=self.device)
         self.hate_speech_detector = hate_speech_detector or HateSpeechDetector(device=self.device)
 

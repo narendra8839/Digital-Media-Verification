@@ -9,8 +9,8 @@ from uncertainty.uncertainty_engine import UncertaintyEngine
 class HateSpeechDetector:
     """Orchestrates 3-class hate speech classification, token attribution, and uncertainty estimation."""
 
-    def __init__(self, checkpoint_dir: str = "models/hate_speech/checkpoint",
-                 tokenizer_dir: str = "models/hate_speech/tokenizer",
+    def __init__(self, checkpoint_dir: str = "models/hate_speech/checkpoint_full",
+                 tokenizer_dir: Optional[str] = None,
                  device: Optional[str] = None,
                  variance_threshold: float = 0.02,
                  entropy_threshold: float = 0.85):

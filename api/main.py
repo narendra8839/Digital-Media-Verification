@@ -1,5 +1,6 @@
 """FastAPI service layer for Digital Media Verification system."""
 
+import os
 import logging
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
@@ -8,6 +9,7 @@ from fastapi import FastAPI, Request, status, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from api.routes.health import router as health_router
 from api.routes.verify import router as verify_router
@@ -25,8 +27,8 @@ logger = logging.getLogger("dmv_api")
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     """Lifespan manager pre-warming AI models at server startup to eliminate per-request cold starts."""
     logger.info("Application startup: Pre-warming MultimodalPipeline...")
-    init_pipeline(device="cpu")
-    logger.info("Application startup: MultimodalPipeline ready.")
+    pipeline = init_pipeline()
+    logger.info(f"Application startup: MultimodalPipeline ready on device '{pipeline.device}'.")
     yield
     logger.info("Application shutdown: Cleaning up resources.")
 
@@ -108,6 +110,10 @@ async def generic_exception_handler(request: Request, exc: Exception) -> JSONRes
 # Mount application routers
 app.include_router(health_router)
 app.include_router(verify_router)
+
+# Mount static artifacts directory for browser-accessible visual explanations (Grad-CAM)
+os.makedirs("artifacts", exist_ok=True)
+app.mount("/artifacts", StaticFiles(directory="artifacts"), name="artifacts")
 
 
 if __name__ == "__main__":
