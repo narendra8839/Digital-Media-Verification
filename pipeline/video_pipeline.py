@@ -26,7 +26,11 @@ class VideoPipeline:
                  ocr_reader: Optional[EasyOCRReader] = None,
                  whisper_asr: Optional[WhisperASR] = None,
                  device: Optional[str] = None):
-        self.device = device or "cpu"
+        if device is None:
+            from api.utils.device import get_optimal_device
+            self.device = get_optimal_device()
+        else:
+            self.device = device
         self.deepfake_detector = deepfake_detector or DeepfakeDetector(device=self.device)
         self.propaganda_detector = propaganda_detector or PropagandaDetector(device=self.device)
         self.hate_speech_detector = hate_speech_detector or HateSpeechDetector(device=self.device)
@@ -38,7 +42,7 @@ class VideoPipeline:
                       caption: Optional[str] = None,
                       sample_fps: float = 1.0,
                       max_frames: int = 16,
-                      output_dir: Optional[str] = None) -> Dict[str, Any]:
+                      output_dir: Optional[str] = "artifacts") -> Dict[str, Any]:
         """Execute video verification pipeline.
 
         Args:
@@ -210,7 +214,18 @@ class VideoPipeline:
             if visual_result.get("review_required"):
                 review_triggers.append(visual_result.get("review_trigger_component") or "deepfake")
 
+        # Check if text is sufficient for NLP discourse analysis.
+        # An isolated watermark/logo without user caption or speech audio does not constitute discourse.
+        has_sufficient_text = False
         if text_summary.get("text_status") == "AVAILABLE":
+            combined_txt = text_summary["combined_text"].strip()
+            has_asr = any(s.get("source") == "ASR" and s.get("text", "").strip() for s in text_summary.get("segments", []))
+            if (caption and caption.strip()) or has_asr:
+                has_sufficient_text = True
+            elif len(combined_txt.split()) >= 2 or len(combined_txt) >= 10:
+                has_sufficient_text = True
+
+        if has_sufficient_text:
             combined_txt = text_summary["combined_text"]
             propaganda_result = self.propaganda_detector.detect_text(combined_txt)
             hate_speech_result = self.hate_speech_detector.detect_text(combined_txt)
@@ -254,7 +269,7 @@ class VideoPipeline:
 
         # 9. Audit Metadata
         audit_info = {
-            "models_executed": ["EfficientNet-B4"] + (["RoBERTa", "BERT"] if text_summary.get("text_status") == "AVAILABLE" else []),
+            "models_executed": ["EfficientNet-B4"] + (["RoBERTa", "BERT"] if has_sufficient_text else []),
             "frames_sampled": total_sampled,
             "faces_analyzed": len(valid_crops),
             "ocr_executed": True,

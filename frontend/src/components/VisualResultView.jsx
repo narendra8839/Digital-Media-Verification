@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Eye, UserX, Sliders, Info, Shield } from 'lucide-react';
 import { UncertaintyCard } from './UncertaintyCard';
 import { VISUAL_STATUS, formatConfidence } from '../types/schemas';
+import { API_BASE_URL } from '../services/api';
 
 export function VisualResultView({ visual, originalImageUrl = null }) {
   const [viewMode, setViewMode] = useState('overlay'); // 'overlay' | 'side-by-side'
@@ -34,7 +35,10 @@ export function VisualResultView({ visual, originalImageUrl = null }) {
   const isFake = visual.prediction === 'fake';
   const confidence = visual.confidence;
   const explanation = visual.explanation || visual.representative_frame?.explanation;
-  const overlayUrl = explanation?.saved_path || explanation?.overlay_url;
+  const rawOverlay = explanation?.saved_path || explanation?.overlay_url;
+  const overlayUrl = rawOverlay
+    ? (rawOverlay.startsWith('data:') || rawOverlay.startsWith('http') ? rawOverlay : `${API_BASE_URL}${rawOverlay}`)
+    : null;
   const disclaimer = explanation?.disclaimer || "Grad-CAM is a post-hoc explanatory signal and should not be interpreted as causal proof.";
 
   return (

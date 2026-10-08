@@ -9,8 +9,8 @@ from uncertainty.uncertainty_engine import UncertaintyEngine
 class PropagandaDetector:
     """Orchestrates 14-class propaganda classification, token attribution, and uncertainty estimation."""
 
-    def __init__(self, checkpoint_dir: str = "models/propaganda/checkpoint",
-                 tokenizer_dir: str = "models/propaganda/tokenizer",
+    def __init__(self, checkpoint_dir: str = "models/propaganda/optimization/exp1_sqrt_weighted_scheduled",
+                 tokenizer_dir: Optional[str] = None,
                  device: Optional[str] = None,
                  variance_threshold: float = 0.02,
                  entropy_threshold: float = 0.85):

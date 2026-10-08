@@ -40,7 +40,11 @@ class MultimodalPipeline:
                  whisper_asr: Optional[WhisperASR] = None,
                  device: Optional[str] = None):
         """Initialize pipeline with shared detector instances."""
-        self.device = device or "cpu"
+        if device is None:
+            from api.utils.device import get_optimal_device
+            self.device = get_optimal_device()
+        else:
+            self.device = device
 
         # Shared component singletons
         self.deepfake_detector = deepfake_detector or DeepfakeDetector(device=self.device)
@@ -158,9 +162,9 @@ class MultimodalPipeline:
             "input_type": input_type,
             "filename": inspection.get("filename", "unknown"),
             "checkpoint_versions": {
-                "deepfake": "EfficientNet-B4 (models/deepfake/checkpoint/best_model.pt)",
-                "propaganda": "RoBERTa-base (models/propaganda/checkpoint)",
-                "hate_speech": "BERT-base-uncased (models/hate_speech/checkpoint)",
+                "deepfake": "EfficientNet-B4 (models/deepfake/checkpoint_full/best_model.pt)",
+                "propaganda": "RoBERTa-base (models/propaganda/optimization/exp1_sqrt_weighted_scheduled)",
+                "hate_speech": "BERT-base-uncased (models/hate_speech/checkpoint_full)",
                 "asr": f"Whisper-base ({self.whisper_asr.model_id})"
             },
             "errors": errors

@@ -2,14 +2,16 @@ import React from 'react';
 import { Sparkles, Info, Award } from 'lucide-react';
 
 /**
- * Returns an HSL / RGBA style based on token attribution score [0, 1].
+ * Returns a subtle highlight based on token attribution score [0, 1].
+ * Uses a soft red tint proportional to saliency for an academic visualization.
  */
 function getScoreStyle(score) {
   const s = Math.max(0, Math.min(1, Number(score) || 0));
-  const alpha = 0.12 + s * 0.55;
+  if (s < 0.05) return {};
+  const alpha = 0.08 + s * 0.45;
   return {
-    backgroundColor: `rgba(239, 68, 68, ${alpha})`,
-    borderBottom: s > 0.35 ? `2px solid rgba(220, 38, 38, ${0.4 + s * 0.6})` : '1px solid transparent',
+    backgroundColor: `rgba(220, 38, 38, ${alpha})`,
+    borderBottom: s > 0.3 ? `2px solid rgba(185, 28, 28, ${0.4 + s * 0.5})` : '1px solid transparent',
   };
 }
 
@@ -43,8 +45,9 @@ export function TokenAttributionView({
         <span className="source-pill">Grad × Input Gradient Attribution</span>
       </div>
 
+      {/* Attributed Sequence as clean inline text stream */}
       <div className="token-stream-box">
-        <p className="meta-label">Attributed Sequence (Token Saliency Highlights):</p>
+        <p className="meta-label">Attributed Token Sequence:</p>
         <div className="tokens-canvas-card">
           {tokensToRender.map((t, idx) => {
             const tokenText = t.clean_token || t.token || (typeof t === 'string' ? t : '');
@@ -55,10 +58,10 @@ export function TokenAttributionView({
                 key={idx}
                 className="token-pill"
                 style={getScoreStyle(score)}
-                title={`Token: "${tokenText}" | Attribution Score: ${(score * 100).toFixed(1)}%`}
+                title={`Token: "${tokenText}" | Score: ${(score * 100).toFixed(1)}%`}
               >
                 <span className="token-text">{tokenText}</span>
-                {score > 0.2 && (
+                {score > 0.25 && (
                   <span className="token-score font-mono">{score.toFixed(2)}</span>
                 )}
               </span>
@@ -67,9 +70,10 @@ export function TokenAttributionView({
         </div>
       </div>
 
+      {/* Top Influential Tokens as a compact list */}
       {top_tokens && top_tokens.length > 0 && (
         <div className="top-probabilities-box">
-          <span className="meta-label">Top Influential Tokens Driving Prediction:</span>
+          <span className="meta-label">Top Influential Tokens:</span>
           <div className="prob-pill-grid">
             {top_tokens.slice(0, 5).map((tok, i) => (
               <div key={i} className="prob-pill">
@@ -81,6 +85,7 @@ export function TokenAttributionView({
         </div>
       )}
 
+      {/* HateXplain Rationale Alignment */}
       {rationaleAlignment && (
         <div className="alignment-box">
           <div className="alignment-title">

@@ -1,0 +1,106 @@
+{
+  "faceforensics": {
+    "train": {
+      "total_videos": 3600,
+      "real_videos": 720,
+      "fake_videos": 2880,
+      "unique_sequence_ids": 720,
+      "output_file": "data/full_splits\\deepfake_train.json"
+    },
+    "val": {
+      "total_videos": 700,
+      "real_videos": 140,
+      "fake_videos": 560,
+      "unique_sequence_ids": 140,
+      "output_file": "data/full_splits\\deepfake_val.json"
+    },
+    "test": {
+      "total_videos": 700,
+      "real_videos": 140,
+      "fake_videos": 560,
+      "unique_sequence_ids": 140,
+      "output_file": "data/full_splits\\deepfake_test.json"
+    },
+    "leakage_check": "PASSED (Zero sequence overlap)"
+  },
+  "hatexplain": {
+    "train": {
+      "total_samples": 15383,
+      "class_distribution": {
+        "offensive": 4384,
+        "normal": 6251,
+        "hatespeech": 4748
+      },
+      "has_rationales_count": 9130,
+      "output_file": "data/full_splits\\hatexplain_train.json"
+    },
+    "val": {
+      "total_samples": 1922,
+      "class_distribution": {
+        "normal": 781,
+        "hatespeech": 593,
+        "offensive": 548
+      },
+      "has_rationales_count": 1141,
+      "output_file": "data/full_splits\\hatexplain_val.json"
+    },
+    "test": {
+      "total_samples": 1924,
+      "class_distribution": {
+        "normal": 782,
+        "offensive": 548,
+        "hatespeech": 594
+      },
+      "has_rationales_count": 1142,
+      "output_file": "data/full_splits\\hatexplain_test.json"
+    },
+    "leakage_check": "PASSED (Zero post_id overlap)"
+  },
+  "semeval2020_task11": {
+    "total_annotations": 6129,
+    "total_annotated_articles": 357,
+    "train": {
+      "num_articles": 286,
+      "num_spans": 4681,
+      "class_distribution": {
+        "Appeal_to_Authority": 95,
+        "Doubt": 375,
+        "Repetition": 478,
+        "Appeal_to_fear-prejudice": 212,
+        "Slogans": 106,
+        "Black-and-White_Fallacy": 75,
+        "Loaded_Language": 1646,
+        "Flag-Waving": 183,
+        "Name_Calling,Labeling": 832,
+        "Whataboutism,Straw_Men,Red_Herring": 85,
+        "Causal_Oversimplification": 153,
+        "Exaggeration,Minimisation": 329,
+        "Bandwagon,Reductio_ad_hitlerum": 53,
+        "Thought-terminating_Cliches": 59
+      },
+      "output_file": "data/full_splits\\propaganda_train.json"
+    },
+    "val": {
+      "num_articles": 71,
+      "num_spans": 1448,
+      "class_distribution": {
+        "Loaded_Language": 477,
+        "Name_Calling,Labeling": 226,
+        "Black-and-White_Fallacy": 32,
+        "Appeal_to_fear-prejudice": 82,
+        "Whataboutism,Straw_Men,Red_Herring": 23,
+        "Slogans": 23,
+        "Doubt": 118,
+        "Appeal_to_Authority": 49,
+        "Flag-Waving": 46,
+        "Repetition": 143,
+        "Thought-terminating_Cliches": 17,
+        "Bandwagon,Reductio_ad_hitlerum": 19,
+        "Causal_Oversimplification": 56,
+        "Exaggeration,Minimisation": 137
+      },
+      "output_file": "data/full_splits\\propaganda_val.json"
+    },
+    "leakage_check": "PASSED (Zero article overlap)"
+  }
+}

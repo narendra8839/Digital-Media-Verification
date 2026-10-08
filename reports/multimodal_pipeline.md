@@ -326,7 +326,7 @@ The complete test suite in `tests/test_multimodal_pipeline.py` was executed usin
 ```
 ============================= test session starts =============================
 platform win32 -- Python 3.14.2, pytest-9.1.1, pluggy-1.6.0
-rootdir: C:\Users\Swaraj Shedge\Desktop\College\TY\ERA\Digital Media Verification\Digital-Media-Verification
+rootdir: ./Digital-Media-Verification
 collected 11 items
 
 tests/test_multimodal_pipeline.py::TestMultimodalPipelineEndToEnd::test_01_text_only_input PASSED [  9%]

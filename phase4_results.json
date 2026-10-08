@@ -1,0 +1,50 @@
+{
+    "deepfake": {
+        "evaluated_count": 700,
+        "class_distribution": {
+            "real": 140,
+            "fake": 560
+        },
+        "accuracy": 0.88,
+        "macro_precision": 0.8067863269319275,
+        "macro_recall": 0.8741071428571429,
+        "macro_f1": 0.8320594989203824,
+        "weighted_precision": 0.9005355424459229,
+        "weighted_recall": 0.88,
+        "weighted_f1": 0.885896425266477,
+        "per_class": {
+            "real": {
+                "precision": 0.6505376344086021,
+                "recall": 0.8642857142857143,
+                "f1": 0.7423312883435583,
+                "support": 140
+            },
+            "fake": {
+                "precision": 0.9630350194552529,
+                "recall": 0.8839285714285714,
+                "f1": 0.9217877094972067,
+                "support": 560
+            }
+        },
+        "confusion_matrix_labels": [
+            "fake",
+            "real"
+        ],
+        "confusion_matrix": [
+            [
+                495,
+                65
+            ],
+            [
+                19,
+                121
+            ]
+        ],
+        "sampling_policy": {
+            "target_fps": 1.0,
+            "max_frames_per_video": 4,
+            "frame_sampling_method": "deterministic_uniform_sequential"
+        },
+        "elapsed_seconds": 440.78
+    }
+}

@@ -1,24 +1,33 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*$py.class
+
+# Caches and test runners
+.pytest_cache/
+.coverage
+htmlcov/
+.oxlintcache/
+
+# Environments and credentials
 .env
+.env.local
+.env.*.local
 .venv/
 venv/
-data/raw/**
-data/processed/**
-data/datasets/**
-data/faceforensics/**
-data/semeval2020_task11/**
-data/hatexplain/**
-data/mvp/**/*_subset.json
-!data/README.md
-!data/mvp/README.md
-!data/mvp/dataset_report.json
-!data/mvp/**/manifest.json
-!data/**/.gitkeep
-models/**/checkpoint/**
-!models/**/checkpoint/.gitkeep
-models/**/tokenizer/**
-!models/**/tokenizer/.gitkeep
+env/
+ENV/
+
+# Editor and OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Large Model Binary Weights and Tokenizers (Distributed via GitHub Releases)
 *.pt
 *.pth
 *.ckpt
@@ -26,7 +35,41 @@ models/**/tokenizer/**
 *.safetensors
 *.onnx
 *.h5
+models/**/checkpoint_full/
+models/**/optimization/**
+models/**/checkpoint/**
+!models/**/checkpoint/.gitkeep
+models/**/tokenizer/**
+!models/**/tokenizer/.gitkeep
+!models/README.md
+
+# Raw Datasets and Large Split Files
+data/raw/**
+data/processed/**
+data/datasets/**
+data/faceforensics/**
+data/semeval2020_task11/**
+data/hatexplain/**
+data/cache_deepfake_frames/**
+data/full_splits/*.json
+!data/full_splits/manifest_summary.json
+data/mvp/**/*_subset.json
+
+# Whitelist Lightweight Manifests and Docs
+!data/README.md
+!data/mvp/README.md
+!data/mvp/dataset_report.json
+!data/mvp/**/manifest.json
+!data/**/.gitkeep
+
+# Runtime Uploads, Logs, and Generated Artifacts
+artifacts/*
+!artifacts/.gitkeep
 *.log
+temp_degrade.jpg
+smoke_test_results.json
+
+# Multimedia and Archives (Excluding Test Fixtures)
 *.mp4
 *.avi
 *.mov
@@ -36,8 +79,11 @@ models/**/tokenizer/**
 *.tar
 *.gz
 *.bz2
+!tests/assets/audio_video.mp4
+!tests/assets/silent_video.mp4
 
-# Frontend dependencies and artifacts
+# Frontend Dependencies and Production Builds
 frontend/node_modules/
 frontend/dist/
 frontend/.env
+frontend/.oxlintcache/

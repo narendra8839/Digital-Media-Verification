@@ -87,7 +87,7 @@ class MCDropoutEstimator:
             "mean_variance": uncertainty["mean_variance"],
             "mc_samples": self.mc_samples,
             "is_stochastic": is_stochastic,
-            "disclaimer": "MC Dropout uncertainty is a model uncertainty signal and has not been formally calibrated for deployment."
+            "disclaimer": "MC Dropout uncertainty is a model uncertainty signal; calibration not quantitatively established."
         }
 
     def estimate_deepfake_crop(self, model: nn.Module, image_crop: Union[Image.Image, np.ndarray],
