@@ -19,16 +19,24 @@ def load_deepfake_model(checkpoint_path: str = "models/deepfake/checkpoint_full/
         except ImportError:
             device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
-    model = EfficientNetB4Deepfake(dropout_rate=0.4, pretrained=False)
     if not os.path.exists(checkpoint_path) and os.path.exists("models/deepfake/checkpoint/best_model.pt"):
         checkpoint_path = "models/deepfake/checkpoint/best_model.pt"
 
-    if os.path.exists(checkpoint_path):
-        state_dict = torch.load(checkpoint_path, map_location=device)
-        model.load_state_dict(state_dict)
+    if not os.path.exists(checkpoint_path):
+        raise FileNotFoundError(
+            f"Deepfake detector checkpoint not found at '{checkpoint_path}'. "
+            "Trained model weights are required for inference to prevent uninitialized predictions. "
+            "Please download the release archive 'deepfake_efficientnet_b4_checkpoint.tar.gz' "
+            "and extract it into 'models/deepfake/' (see docs/SETUP.md)."
+        )
+
+    model = EfficientNetB4Deepfake(dropout_rate=0.4, pretrained=False)
+    state_dict = torch.load(checkpoint_path, map_location=device)
+    model.load_state_dict(state_dict)
     model.to(device)
     model.eval()
     return model, device
+
 
 
 def predict_deepfake_crop(model, image_crop: Union[Image.Image, np.ndarray], device: str) -> Dict[str, Any]:

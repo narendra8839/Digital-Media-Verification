@@ -18,11 +18,18 @@ class DeepfakeDetector:
     def __init__(self, checkpoint_path: str = "models/deepfake/checkpoint_full/best_model.pt",
                  device: Optional[str] = None,
                  variance_threshold: float = 0.02,
-                 entropy_threshold: float = 0.85):
-        self.model, self.device = load_deepfake_model(checkpoint_path=checkpoint_path, device=device)
+                 entropy_threshold: float = 0.85,
+                 model: Optional[Any] = None,
+                 gradcam: Optional[Any] = None,
+                 uncertainty_engine: Optional[Any] = None):
+        if model is not None:
+            self.model = model
+            self.device = device or ("cuda:0" if torch.cuda.is_available() else "cpu")
+        else:
+            self.model, self.device = load_deepfake_model(checkpoint_path=checkpoint_path, device=device)
         self.face_detector = FaceDetector(device=self.device)
-        self.gradcam = GradCAM(model=self.model, device=self.device)
-        self.uncertainty_engine = UncertaintyEngine(
+        self.gradcam = gradcam if gradcam is not None else GradCAM(model=self.model, device=self.device)
+        self.uncertainty_engine = uncertainty_engine if uncertainty_engine is not None else UncertaintyEngine(
             mc_samples=20,
             variance_threshold=variance_threshold,
             entropy_threshold=entropy_threshold,

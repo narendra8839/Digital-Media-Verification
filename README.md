@@ -206,16 +206,21 @@ Digital-Media-Verification/
 ```bash
 # Create and activate virtual environment
 python3 -m venv venv
-source venv/bin/activate  # On Windows: .\venv\Scripts\Activate.ps1
+source venv/bin/activate  # On Windows (PowerShell): .\venv\Scripts\Activate.ps1
 
-# Install dependencies
+# Install core runtime dependencies
 pip install -r requirements.txt
+
+# Install testing and development dependencies (optional)
+pip install -r requirements-dev.txt
 ```
 
 ### 2. Model Checkpoints
-Large model binaries are distributed separately via project GitHub Releases. Refer to [`models/README.md`](models/README.md) for expected directory paths and placement instructions.
+Large model binaries are distributed separately via project GitHub Releases ([`v1.0.0`](https://github.com/narendra8839/Digital-Media-Verification/releases/tag/v1.0.0), active once published). Refer to [`models/README.md`](models/README.md) for expected directory paths, SHA-256 checksums, and extraction instructions.
 
 ### 3. Frontend Setup
+> **Prerequisite:** **Node.js 22 LTS (version 22.12 or newer)** is recommended for compatibility with Vite 8 (Node.js 18 is not supported).
+
 ```bash
 cd frontend
 npm install
@@ -233,7 +238,8 @@ uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 - API Base URL: `http://localhost:8000`
 - Swagger Documentation: `http://localhost:8000/docs`
-- Health Endpoint: `http://localhost:8000/health`
+- Health Liveness Endpoint: `http://localhost:8000/health`
+- Readiness Endpoint (Model Pre-warm): `http://localhost:8000/ready`
 
 ### 2. Start React Frontend
 ```bash
@@ -247,11 +253,14 @@ npm run dev
 ## Running the Test Suite
 
 ```bash
-# Run backend test suite (52 tests)
+# Run backend test suite (59 tests)
 pytest tests/ -v
 
 # Run frontend unit tests (12 tests)
 cd frontend && npm test
+
+# Verify production build bundle
+cd frontend && npm run build
 ```
 
 ---

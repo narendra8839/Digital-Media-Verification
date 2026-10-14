@@ -6,6 +6,8 @@ from explainability.text_attention import TokenAttribution
 from uncertainty.uncertainty_engine import UncertaintyEngine
 
 
+import torch
+
 class PropagandaDetector:
     """Orchestrates 14-class propaganda classification, token attribution, and uncertainty estimation."""
 
@@ -13,14 +15,25 @@ class PropagandaDetector:
                  tokenizer_dir: Optional[str] = None,
                  device: Optional[str] = None,
                  variance_threshold: float = 0.02,
-                 entropy_threshold: float = 0.85):
-        self.model, self.tokenizer, self.label_mapping, self.device = load_propaganda_model(
-            checkpoint_dir=checkpoint_dir,
-            tokenizer_dir=tokenizer_dir,
-            device=device
-        )
-        self.explainer = TokenAttribution(model=self.model, tokenizer=self.tokenizer, device=self.device)
-        self.uncertainty_engine = UncertaintyEngine(
+                 entropy_threshold: float = 0.85,
+                 model: Optional[Any] = None,
+                 tokenizer: Optional[Any] = None,
+                 label_mapping: Optional[Dict[str, str]] = None,
+                 explainer: Optional[Any] = None,
+                 uncertainty_engine: Optional[Any] = None):
+        if model is not None:
+            self.model = model
+            self.tokenizer = tokenizer
+            self.label_mapping = label_mapping or {str(i): f"technique_{i}" for i in range(14)}
+            self.device = device or ("cuda:0" if torch.cuda.is_available() else "cpu")
+        else:
+            self.model, self.tokenizer, self.label_mapping, self.device = load_propaganda_model(
+                checkpoint_dir=checkpoint_dir,
+                tokenizer_dir=tokenizer_dir,
+                device=device
+            )
+        self.explainer = explainer if explainer is not None else TokenAttribution(model=self.model, tokenizer=self.tokenizer, device=self.device)
+        self.uncertainty_engine = uncertainty_engine if uncertainty_engine is not None else UncertaintyEngine(
             mc_samples=20,
             variance_threshold=variance_threshold,
             entropy_threshold=entropy_threshold,
