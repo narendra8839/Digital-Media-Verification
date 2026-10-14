@@ -24,6 +24,16 @@ def load_propaganda_model(checkpoint_dir: str = "models/propaganda/optimization/
         elif os.path.exists("models/propaganda/checkpoint"):
             checkpoint_dir = "models/propaganda/checkpoint"
 
+    safetensors_path = os.path.join(checkpoint_dir, "model.safetensors")
+    bin_path = os.path.join(checkpoint_dir, "pytorch_model.bin")
+    if not os.path.exists(checkpoint_dir) or not (os.path.exists(safetensors_path) or os.path.exists(bin_path)):
+        raise FileNotFoundError(
+            f"Propaganda model weights not found in '{checkpoint_dir}'. "
+            "Expected 'model.safetensors' or 'pytorch_model.bin'. "
+            "Please download the release archive 'propaganda_roberta_exp1_checkpoint.tar.gz' "
+            "and extract it into 'models/propaganda/optimization/' (see docs/SETUP.md)."
+        )
+
     model = AutoModelForSequenceClassification.from_pretrained(checkpoint_dir).to(device)
 
     # Resolve tokenizer directory

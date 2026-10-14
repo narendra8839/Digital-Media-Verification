@@ -21,6 +21,16 @@ def load_hate_speech_model(checkpoint_dir: str = "models/hate_speech/checkpoint_
     if not os.path.exists(checkpoint_dir) and os.path.exists("models/hate_speech/checkpoint"):
         checkpoint_dir = "models/hate_speech/checkpoint"
 
+    safetensors_path = os.path.join(checkpoint_dir, "model.safetensors")
+    bin_path = os.path.join(checkpoint_dir, "pytorch_model.bin")
+    if not os.path.exists(checkpoint_dir) or not (os.path.exists(safetensors_path) or os.path.exists(bin_path)):
+        raise FileNotFoundError(
+            f"Hate speech model weights not found in '{checkpoint_dir}'. "
+            "Expected 'model.safetensors' or 'pytorch_model.bin'. "
+            "Please download the release archive 'hate_speech_bert_checkpoint.tar.gz' "
+            "and extract it into 'models/hate_speech/' (see docs/SETUP.md)."
+        )
+
     model = AutoModelForSequenceClassification.from_pretrained(checkpoint_dir).to(device)
 
     # Resolve tokenizer directory
