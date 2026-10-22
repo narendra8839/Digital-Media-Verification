@@ -1,5 +1,5 @@
 import React from 'react';
-import { RotateCcw } from 'lucide-react';
+import { RotateCcw, AlertOctagon, Info } from 'lucide-react';
 import { GovernancePanel } from './GovernancePanel';
 import { VisualResultView } from './VisualResultView';
 import { TextExtractionView } from './TextExtractionView';
@@ -48,11 +48,11 @@ export function ResultDashboard({ result, inputMeta = {}, onReset }) {
 
   return (
     <div className="result-dashboard" data-testid="result-dashboard">
-      {/* Top Action Bar */}
+      {/* 1. Analyzed Input & Top Navigation Bar */}
       <div className="dashboard-action-bar">
         <div className="dashboard-meta-summary">
           <span className="dashboard-pill">
-            Modality: <strong>{audit?.input_type || inputMeta.input_type || 'Media'}</strong>
+            Modality: <strong className="font-mono">{audit?.input_type || inputMeta.input_type || 'Media'}</strong>
           </span>
           {inputMeta.filename && (
             <span className="dashboard-pill">
@@ -61,7 +61,7 @@ export function ResultDashboard({ result, inputMeta = {}, onReset }) {
           )}
           {audit?.execution_time_seconds !== undefined && (
             <span className="dashboard-pill">
-              Latency: <strong>{audit.execution_time_seconds}s</strong>
+              Latency: <strong className="font-mono">{audit.execution_time_seconds}s</strong>
             </span>
           )}
         </div>
@@ -78,29 +78,35 @@ export function ResultDashboard({ result, inputMeta = {}, onReset }) {
         )}
       </div>
 
-      {/* 1. Result Summary: Prediction | Confidence | Review Status */}
+      {/* 2. Primary Assessment Banner */}
       <div className="result-summary-card">
         <div className="result-summary-item">
-          <span className="summary-label">Primary Prediction</span>
+          <span className="summary-label">Primary Assessment</span>
           <span className={`summary-value font-bold ${isHarmful ? 'text-danger' : 'text-main'}`}>
             {primaryLabel}
           </span>
         </div>
         <div className="result-summary-divider" />
         <div className="result-summary-item">
-          <span className="summary-label">Confidence</span>
+          <span className="summary-label">Aggregate Confidence</span>
           <span className="summary-value font-mono">{primaryConfidence}</span>
         </div>
         <div className="result-summary-divider" />
         <div className="result-summary-item">
-          <span className="summary-label">Review Status</span>
+          <span className="summary-label">Human Review Status</span>
           <span className={`status-pill ${isReviewRequired ? 'pill-warning' : isIncomplete ? 'pill-info' : 'pill-success'}`}>
             {governance?.decision_status || (isReviewRequired ? 'REVIEW_RECOMMENDED' : 'CONFIDENT_PREDICTION')}
           </span>
         </div>
       </div>
 
-      {/* 2. Visual Deepfake & Grad-CAM Analysis */}
+      {/* 3. Responsible AI Oversight & Human Review Recommendation */}
+      <GovernancePanel governance={governance} />
+
+      {/* 4. Extracted Supporting Evidence (OCR & Whisper ASR Provenance) */}
+      {text && <TextExtractionView textSummary={text} />}
+
+      {/* 5. Modality Forensic Saliency & Uncertainty Analysis */}
       {visual && (
         <VisualResultView
           visual={visual}
@@ -108,10 +114,6 @@ export function ResultDashboard({ result, inputMeta = {}, onReset }) {
         />
       )}
 
-      {/* 3. Text Extraction Provenance (OCR & ASR) */}
-      {text && <TextExtractionView textSummary={text} />}
-
-      {/* 4. Natural Language Processing (Propaganda & Hate Speech) */}
       {(propaganda || hate_speech) && (
         <NLPResultView
           propaganda={propaganda}
@@ -120,11 +122,47 @@ export function ResultDashboard({ result, inputMeta = {}, onReset }) {
         />
       )}
 
-      {/* 5. Responsible AI / Human Oversight Governance Panel */}
-      <GovernancePanel governance={governance} />
+      {/* 6. Forensic Limitations & Methodological Constraints Callout */}
+      <section className="system-limitations-card">
+        <div className="limitations-header">
+          <div className="flex-center gap-2">
+            <Info size={16} className="text-secondary" />
+            <h4 className="limitations-title">Forensic Limitations & Methodological Bounds</h4>
+          </div>
+          <span className="limitations-scope-tag font-mono">Decision-Support Protocol</span>
+        </div>
+        <div className="limitations-grid">
+          <div className="limitation-item">
+            <span className="limitation-label">Uncalibrated Epistemic Uncertainty</span>
+            <p className="limitation-text">
+              MC Dropout variance reflects stochastic model dispersion (T = {audit?.mc_samples || 20} passes), not calibrated statistical error probability.
+            </p>
+          </div>
+          <div className="limitation-item">
+            <span className="limitation-label">Post-Hoc Saliency Explanations</span>
+            <p className="limitation-text">
+              Grad-CAM and token attributions are post-hoc explanatory signals highlighting internal feature activation, not causal proof of manual tampering.
+            </p>
+          </div>
+          <div className="limitation-item">
+            <span className="limitation-label">Sparse Temporal Sampling Protocol</span>
+            <p className="limitation-text">
+              Videos are uniformly sampled at 1.0 FPS (up to 4 frames). Frame-to-frame temporal inconsistency or intra-second audio-visual desync is not evaluated.
+            </p>
+          </div>
+          <div className="limitation-item">
+            <span className="limitation-label">Cascaded Provenance Dependency</span>
+            <p className="limitation-text">
+              Downstream NLP classification accuracy is conditioned on EasyOCR and Whisper-base transcription fidelity under real-world noise.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      {/* 6. Reproducibility & Audit Trail */}
+      {/* 7. Reproducibility & Audit Trail */}
       {audit && <AuditDetails audit={audit} inputMeta={inputMeta} />}
     </div>
   );
 }
+
+export default ResultDashboard;
