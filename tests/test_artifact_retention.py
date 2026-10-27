@@ -186,6 +186,29 @@ class TestRetentionAndCleanupBehavior:
         assert not os.path.exists(in_flight_file)
         assert summary2.deleted == 1
 
+    def test_video_representative_frame_artifact_protected_during_generation(self, tmp_path):
+        """Representative-frame Grad-CAM generated during video pipeline is shielded by protect_active_artifact."""
+        artifact_dir = str(tmp_path / "artifacts")
+        os.makedirs(artifact_dir, exist_ok=True)
+
+        now = 500000.0
+        rep_frame_artifact = os.path.join(artifact_dir, "my_video.mp4_frame3_gradcam.png")
+        with open(rep_frame_artifact, "wb") as f:
+            f.write(b"video_gradcam_bytes")
+        # Set artificial old mtime to ensure it would expire without protection
+        os.utime(rep_frame_artifact, (now - 300000.0, now - 300000.0))
+
+        with protect_active_artifact(rep_frame_artifact):
+            summary = cleanup_expired_artifacts(artifact_dir=artifact_dir, ttl_hours=1.0, now=now)
+            assert os.path.exists(rep_frame_artifact)
+            assert summary.preserved_active == 1
+            assert summary.deleted == 0
+
+        # After releasing protection, expired cleanup evicts it
+        summary_after = cleanup_expired_artifacts(artifact_dir=artifact_dir, ttl_hours=1.0, now=now)
+        assert not os.path.exists(rep_frame_artifact)
+        assert summary_after.deleted == 1
+
     def test_dry_run_simulation(self, tmp_path):
         """Dry run identifies expired files without deleting them."""
         artifact_dir = str(tmp_path / "artifacts")
