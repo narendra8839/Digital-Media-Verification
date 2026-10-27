@@ -11,6 +11,7 @@ from detection.deepfake_detector import DeepfakeDetector
 from detection.propaganda_detector import PropagandaDetector
 from detection.hate_speech_detector import HateSpeechDetector
 from extraction.audio_extraction import has_audio_stream, extract_audio_to_wav
+from api.utils.artifact_manager import protect_active_artifact
 from extraction.asr import WhisperASR
 from extraction.ocr import EasyOCRReader
 from extraction.text_aggregator import TextAggregator

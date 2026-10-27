@@ -6,10 +6,13 @@ sharing model instances to avoid redundant memory allocations and initialization
 
 import os
 import time
+import logging
 from datetime import datetime, timezone
 from typing import Dict, Any, Optional, Union
 from PIL import Image
 import numpy as np
+
+logger = logging.getLogger("dmv.pipeline.multimodal")
 
 from detection.deepfake_detector import DeepfakeDetector
 from detection.propaganda_detector import PropagandaDetector
@@ -142,6 +145,7 @@ class MultimodalPipeline:
                     text=media_input
                 )
         except Exception as exc:
+            logger.error(f"Pipeline error during {input_type} processing: {str(exc)}", exc_info=True)
             errors.append(f"Pipeline error during {input_type} processing: {str(exc)}")
             # Fallback error container
             result = build_multimodal_verification_result(
