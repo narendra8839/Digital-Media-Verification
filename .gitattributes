@@ -1,0 +1,11 @@
+# Auto-detect text files and normalize line endings
+* text=auto
+
+# Vector and image formats - treat without whitespace warnings
+*.svg text -whitespace
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.mp4 binary
+*.tar.gz binary
+*.zip binary

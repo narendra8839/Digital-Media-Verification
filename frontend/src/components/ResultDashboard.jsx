@@ -1,16 +1,67 @@
-import React from 'react';
-import { RotateCcw, AlertOctagon, Info } from 'lucide-react';
+import React, { useState } from 'react';
+import { RotateCcw, AlertOctagon, Info, FileDown, Loader2, AlertCircle, X } from 'lucide-react';
 import { GovernancePanel } from './GovernancePanel';
 import { VisualResultView } from './VisualResultView';
 import { TextExtractionView } from './TextExtractionView';
 import { NLPResultView } from './NLPResultView';
 import { AuditDetails } from './AuditDetails';
 import { formatConfidence } from '../types/schemas';
+import { downloadImageReport, triggerBlobDownload } from '../services/api';
+
+async function resolveImagePreviewData(originalImageUrl) {
+  if (!originalImageUrl) return null;
+  if (originalImageUrl.startsWith('data:')) return originalImageUrl;
+  if (originalImageUrl.startsWith('blob:')) {
+    try {
+      const resp = await fetch(originalImageUrl);
+      const blob = await resp.blob();
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = () => resolve(null);
+        reader.readAsDataURL(blob);
+      });
+    } catch {
+      return null;
+    }
+  }
+  return null;
+}
 
 export function ResultDashboard({ result, inputMeta = {}, onReset }) {
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState(null);
+
   if (!result) return null;
 
   const { visual, text, propaganda, hate_speech, governance, audit } = result;
+
+  const isImageAnalysis =
+    audit?.input_type?.toLowerCase() === 'image' ||
+    inputMeta?.input_type?.toLowerCase() === 'image' ||
+    (Boolean(visual) && !audit?.input_type?.toLowerCase()?.includes('video'));
+
+  const handleDownloadReport = async () => {
+    if (isDownloading) return;
+    setIsDownloading(true);
+    setDownloadError(null);
+    try {
+      const previewData = await resolveImagePreviewData(inputMeta?.originalImageUrl);
+      const activeFilename = inputMeta?.filename || audit?.filename || 'analyzed_image.png';
+      const { blob, filename: suggestedFilename } = await downloadImageReport(
+        result,
+        activeFilename,
+        previewData
+      );
+      const fallbackDate = new Date().toISOString().slice(0, 10);
+      const finalFilename = suggestedFilename || `dmv-image-report-${fallbackDate}.pdf`;
+      triggerBlobDownload(blob, finalFilename);
+    } catch (err) {
+      setDownloadError(err.message || 'Failed to download report.');
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   // Determine primary prediction and confidence for the summary bar
   let primaryLabel = 'Verification Complete';
@@ -66,17 +117,60 @@ export function ResultDashboard({ result, inputMeta = {}, onReset }) {
           )}
         </div>
 
-        {onReset && (
+        <div className="dashboard-actions-group">
+          {isImageAnalysis && (
+            <button
+              type="button"
+              className="btn btn-primary btn-sm download-report-btn"
+              onClick={handleDownloadReport}
+              disabled={isDownloading}
+              data-testid="download-report-btn"
+              title="Download comprehensive PDF report for this image analysis"
+            >
+              {isDownloading ? (
+                <>
+                  <Loader2 size={14} className="spin" />
+                  <span>Preparing Report...</span>
+                </>
+              ) : (
+                <>
+                  <FileDown size={14} />
+                  <span>Download Report</span>
+                </>
+              )}
+            </button>
+          )}
+
+          {onReset && (
+            <button
+              type="button"
+              className="btn btn-secondary btn-sm reset-btn"
+              onClick={onReset}
+            >
+              <RotateCcw size={14} />
+              <span>Verify Another Media</span>
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Download Error Alert Banner */}
+      {downloadError && (
+        <div className="report-error-banner" role="alert" data-testid="report-download-error">
+          <div className="report-error-content">
+            <AlertCircle size={16} className="text-danger flex-shrink-0" />
+            <span><strong>Report Download Failed:</strong> {downloadError}</span>
+          </div>
           <button
             type="button"
-            className="btn btn-secondary btn-sm reset-btn"
-            onClick={onReset}
+            className="btn-ghost"
+            onClick={() => setDownloadError(null)}
+            aria-label="Dismiss error"
           >
-            <RotateCcw size={14} />
-            <span>Verify Another Media</span>
+            <X size={14} />
           </button>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* 2. Primary Assessment Banner */}
       <div className="result-summary-card">
@@ -111,8 +205,14 @@ export function ResultDashboard({ result, inputMeta = {}, onReset }) {
         <VisualResultView
           visual={visual}
           originalImageUrl={inputMeta.originalImageUrl || null}
+          onDownloadReport={handleDownloadReport}
+          isDownloading={isDownloading}
+          downloadError={downloadError}
+          result={result}
+          filename={inputMeta.filename || audit?.filename}
         />
       )}
+
 
       {(propaganda || hate_speech) && (
         <NLPResultView

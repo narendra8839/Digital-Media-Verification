@@ -1,0 +1,4721 @@
+{
+  "metadata": {
+    "evaluation_timestamp": "2026-10-25T12:33:04.523305",
+    "checkpoint_path": "models/deepfake/checkpoint_robust_v2a/best_model.pt",
+    "checkpoint_sha256": "96e178f3d755790eb66a15199d9cc3cfcae7ec1d925f9adfcd990f14e195b0f6",
+    "test_manifest": "data/full_splits/deepfake_test.json",
+    "total_videos_evaluated": 100,
+    "class_distribution": {
+      "real": 50,
+      "fake": 50
+    },
+    "frames_per_video": 4,
+    "conditions_evaluated": [
+      "original",
+      "jpeg",
+      "blur",
+      "resize",
+      "noise"
+    ],
+    "device": "cuda"
+  },
+  "conditions": {
+    "original": {
+      "sample_count": 100,
+      "class_distribution": {
+        "real": 50,
+        "fake": 50
+      },
+      "accuracy": 0.86,
+      "balanced_accuracy": 0.86,
+      "macro_precision": 0.8694581280788177,
+      "macro_recall": 0.86,
+      "macro_f1": 0.8590982286634461,
+      "drop_from_original_acc": 0.0,
+      "drop_from_original_macro_f1": 0.0,
+      "per_class": {
+        "real": {
+          "precision": 0.8103448275862069,
+          "recall": 0.94,
+          "f1": 0.8703703703703703
+        },
+        "fake": {
+          "precision": 0.9285714285714286,
+          "recall": 0.78,
+          "f1": 0.8478260869565217
+        }
+      },
+      "confusion_matrix": [
+        [
+          39,
+          11
+        ],
+        [
+          3,
+          47
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "jpeg": {
+      "sample_count": 100,
+      "class_distribution": {
+        "real": 50,
+        "fake": 50
+      },
+      "accuracy": 0.7,
+      "balanced_accuracy": 0.7,
+      "macro_precision": 0.7913752913752914,
+      "macro_recall": 0.7,
+      "macro_f1": 0.6744791666666667,
+      "drop_from_original_acc": 0.16000000000000003,
+      "drop_from_original_macro_f1": 0.18461906199677935,
+      "per_class": {
+        "real": {
+          "precision": 0.6282051282051282,
+          "recall": 0.98,
+          "f1": 0.765625
+        },
+        "fake": {
+          "precision": 0.9545454545454546,
+          "recall": 0.42,
+          "f1": 0.5833333333333334
+        }
+      },
+      "confusion_matrix": [
+        [
+          21,
+          29
+        ],
+        [
+          1,
+          49
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "blur": {
+      "sample_count": 100,
+      "class_distribution": {
+        "real": 50,
+        "fake": 50
+      },
+      "accuracy": 0.6,
+      "balanced_accuracy": 0.6,
+      "macro_precision": 0.7367424242424242,
+      "macro_recall": 0.6,
+      "macro_f1": 0.5324918186068257,
+      "drop_from_original_acc": 0.26,
+      "drop_from_original_macro_f1": 0.3266064100566204,
+      "per_class": {
+        "real": {
+          "precision": 0.9166666666666666,
+          "recall": 0.22,
+          "f1": 0.3548387096774194
+        },
+        "fake": {
+          "precision": 0.5568181818181818,
+          "recall": 0.98,
+          "f1": 0.7101449275362319
+        }
+      },
+      "confusion_matrix": [
+        [
+          49,
+          1
+        ],
+        [
+          39,
+          11
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "resize": {
+      "sample_count": 100,
+      "class_distribution": {
+        "real": 50,
+        "fake": 50
+      },
+      "accuracy": 0.62,
+      "balanced_accuracy": 0.62,
+      "macro_precision": 0.6875,
+      "macro_recall": 0.62,
+      "macro_f1": 0.5824175824175825,
+      "drop_from_original_acc": 0.24,
+      "drop_from_original_macro_f1": 0.27668064624586364,
+      "per_class": {
+        "real": {
+          "precision": 0.8,
+          "recall": 0.32,
+          "f1": 0.45714285714285713
+        },
+        "fake": {
+          "precision": 0.575,
+          "recall": 0.92,
+          "f1": 0.7076923076923077
+        }
+      },
+      "confusion_matrix": [
+        [
+          46,
+          4
+        ],
+        [
+          34,
+          16
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "noise": {
+      "sample_count": 100,
+      "class_distribution": {
+        "real": 50,
+        "fake": 50
+      },
+      "accuracy": 0.52,
+      "balanced_accuracy": 0.52,
+      "macro_precision": 0.7551020408163265,
+      "macro_recall": 0.52,
+      "macro_f1": 0.37629937629937626,
+      "drop_from_original_acc": 0.33999999999999997,
+      "drop_from_original_macro_f1": 0.48279885236406983,
+      "per_class": {
+        "real": {
+          "precision": 1.0,
+          "recall": 0.04,
+          "f1": 0.07692307692307693
+        },
+        "fake": {
+          "precision": 0.5102040816326531,
+          "recall": 1.0,
+          "f1": 0.6756756756756757
+        }
+      },
+      "confusion_matrix": [
+        [
+          50,
+          0
+        ],
+        [
+          48,
+          2
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    }
+  },
+  "per_video_records": {
+    "original": [
+      {
+        "video_id": "youtube_000",
+        "relative_path": "original_sequences/youtube/c23/videos/000.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7384499999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_003",
+        "relative_path": "original_sequences/youtube/c23/videos/003.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.134675,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_012",
+        "relative_path": "original_sequences/youtube/c23/videos/012.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.190125,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_015",
+        "relative_path": "original_sequences/youtube/c23/videos/015.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.31645,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_024",
+        "relative_path": "original_sequences/youtube/c23/videos/024.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.233875,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_026",
+        "relative_path": "original_sequences/youtube/c23/videos/026.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.47447500000000004,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_029",
+        "relative_path": "original_sequences/youtube/c23/videos/029.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.414675,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_035",
+        "relative_path": "original_sequences/youtube/c23/videos/035.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.48225000000000007,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_036",
+        "relative_path": "original_sequences/youtube/c23/videos/036.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.1856,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_044",
+        "relative_path": "original_sequences/youtube/c23/videos/044.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.13715,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_047",
+        "relative_path": "original_sequences/youtube/c23/videos/047.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.39505,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_048",
+        "relative_path": "original_sequences/youtube/c23/videos/048.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.16617500000000002,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_073",
+        "relative_path": "original_sequences/youtube/c23/videos/073.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.04985,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_078",
+        "relative_path": "original_sequences/youtube/c23/videos/078.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.0346,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_102",
+        "relative_path": "original_sequences/youtube/c23/videos/102.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.432125,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_114",
+        "relative_path": "original_sequences/youtube/c23/videos/114.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.131675,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_128",
+        "relative_path": "original_sequences/youtube/c23/videos/128.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.28609999999999997,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_135",
+        "relative_path": "original_sequences/youtube/c23/videos/135.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.28285,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_138",
+        "relative_path": "original_sequences/youtube/c23/videos/138.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.044975,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_141",
+        "relative_path": "original_sequences/youtube/c23/videos/141.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.406825,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_142",
+        "relative_path": "original_sequences/youtube/c23/videos/142.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.022775,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_154",
+        "relative_path": "original_sequences/youtube/c23/videos/154.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.03405,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_158",
+        "relative_path": "original_sequences/youtube/c23/videos/158.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.19944999999999996,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_161",
+        "relative_path": "original_sequences/youtube/c23/videos/161.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.03665,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_169",
+        "relative_path": "original_sequences/youtube/c23/videos/169.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.10125,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_170",
+        "relative_path": "original_sequences/youtube/c23/videos/170.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.0382,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_176",
+        "relative_path": "original_sequences/youtube/c23/videos/176.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.042275,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_186",
+        "relative_path": "original_sequences/youtube/c23/videos/186.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.29745,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_190",
+        "relative_path": "original_sequences/youtube/c23/videos/190.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.37072499999999997,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_214",
+        "relative_path": "original_sequences/youtube/c23/videos/214.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.34235,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_219",
+        "relative_path": "original_sequences/youtube/c23/videos/219.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.224875,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_220",
+        "relative_path": "original_sequences/youtube/c23/videos/220.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.372275,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_227",
+        "relative_path": "original_sequences/youtube/c23/videos/227.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.346225,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_233",
+        "relative_path": "original_sequences/youtube/c23/videos/233.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.302875,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_249",
+        "relative_path": "original_sequences/youtube/c23/videos/249.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.012725,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_255",
+        "relative_path": "original_sequences/youtube/c23/videos/255.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.11995,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_257",
+        "relative_path": "original_sequences/youtube/c23/videos/257.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.32947499999999996,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_278",
+        "relative_path": "original_sequences/youtube/c23/videos/278.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.3497,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_280",
+        "relative_path": "original_sequences/youtube/c23/videos/280.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.367125,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_288",
+        "relative_path": "original_sequences/youtube/c23/videos/288.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.06799999999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_306",
+        "relative_path": "original_sequences/youtube/c23/videos/306.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.544925,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_308",
+        "relative_path": "original_sequences/youtube/c23/videos/308.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.143375,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_314",
+        "relative_path": "original_sequences/youtube/c23/videos/314.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5023249999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_319",
+        "relative_path": "original_sequences/youtube/c23/videos/319.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.0977,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_321",
+        "relative_path": "original_sequences/youtube/c23/videos/321.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.39902499999999996,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_347",
+        "relative_path": "original_sequences/youtube/c23/videos/347.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.22947500000000004,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_352",
+        "relative_path": "original_sequences/youtube/c23/videos/352.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.289725,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_358",
+        "relative_path": "original_sequences/youtube/c23/videos/358.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.04155,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_367",
+        "relative_path": "original_sequences/youtube/c23/videos/367.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.17912500000000003,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_371",
+        "relative_path": "original_sequences/youtube/c23/videos/371.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.25202499999999994,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_953_974",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7822,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_974_953",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.962225,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_953_974",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.9623499999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_974_953",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.791075,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_953_974",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.85625,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_974_953",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.80525,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_953_974",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5455,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_974_953",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.288075,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_012_026",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.26685000000000003,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_026_012",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.91425,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_012_026",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.888125,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_026_012",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8391,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_012_026",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.967125,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_026_012",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.967975,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_012_026",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.625425,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_026_012",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.63105,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_078_955",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.95325,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_955_078",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.395825,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_078_955",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.492575,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_955_078",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8082500000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_078_955",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.9137500000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_955_078",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8586,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_078_955",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.1987,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_955_078",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.888075,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_623_630",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.87615,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_630_623",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.38584999999999997,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_623_630",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6359750000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_630_623",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8439000000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_623_630",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.91805,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_630_623",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.94475,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_623_630",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.3211,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_630_623",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.61065,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_919_015",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.792675,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_015_919",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8423499999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_919_015",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.766725,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_015_919",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.821175,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_919_015",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.974225,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_015_919",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.93045,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_919_015",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.555025,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_015_919",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.702175,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_367_371",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.48009999999999997,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_371_367",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5246999999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_367_371",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.61395,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_371_367",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.761825,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_367_371",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.9577,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_371_367",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.728575,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_367_371",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.2692,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_371_367",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.372575,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_847_906",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/847_906.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.81845,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_906_847",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/906_847.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.4808,
+        "correct": false,
+        "num_frames": 4
+      }
+    ],
+    "jpeg": [
+      {
+        "video_id": "youtube_000",
+        "relative_path": "original_sequences/youtube/c23/videos/000.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.447275,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_003",
+        "relative_path": "original_sequences/youtube/c23/videos/003.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.11617499999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_012",
+        "relative_path": "original_sequences/youtube/c23/videos/012.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.23224999999999998,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_015",
+        "relative_path": "original_sequences/youtube/c23/videos/015.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.29355,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_024",
+        "relative_path": "original_sequences/youtube/c23/videos/024.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.312825,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_026",
+        "relative_path": "original_sequences/youtube/c23/videos/026.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.132675,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_029",
+        "relative_path": "original_sequences/youtube/c23/videos/029.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.21307500000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_035",
+        "relative_path": "original_sequences/youtube/c23/videos/035.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5440499999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_036",
+        "relative_path": "original_sequences/youtube/c23/videos/036.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.15515,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_044",
+        "relative_path": "original_sequences/youtube/c23/videos/044.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.242625,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_047",
+        "relative_path": "original_sequences/youtube/c23/videos/047.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.2254,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_048",
+        "relative_path": "original_sequences/youtube/c23/videos/048.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.1313,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_073",
+        "relative_path": "original_sequences/youtube/c23/videos/073.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.07075,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_078",
+        "relative_path": "original_sequences/youtube/c23/videos/078.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.067075,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_102",
+        "relative_path": "original_sequences/youtube/c23/videos/102.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.40800000000000003,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_114",
+        "relative_path": "original_sequences/youtube/c23/videos/114.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.36200000000000004,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_128",
+        "relative_path": "original_sequences/youtube/c23/videos/128.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.280925,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_135",
+        "relative_path": "original_sequences/youtube/c23/videos/135.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.21739999999999998,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_138",
+        "relative_path": "original_sequences/youtube/c23/videos/138.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.01575,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_141",
+        "relative_path": "original_sequences/youtube/c23/videos/141.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.216225,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_142",
+        "relative_path": "original_sequences/youtube/c23/videos/142.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.043375000000000004,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_154",
+        "relative_path": "original_sequences/youtube/c23/videos/154.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.084125,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_158",
+        "relative_path": "original_sequences/youtube/c23/videos/158.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.172975,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_161",
+        "relative_path": "original_sequences/youtube/c23/videos/161.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.05455,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_169",
+        "relative_path": "original_sequences/youtube/c23/videos/169.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.09925,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_170",
+        "relative_path": "original_sequences/youtube/c23/videos/170.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.060250000000000005,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_176",
+        "relative_path": "original_sequences/youtube/c23/videos/176.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.08545,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_186",
+        "relative_path": "original_sequences/youtube/c23/videos/186.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.40780000000000005,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_190",
+        "relative_path": "original_sequences/youtube/c23/videos/190.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.306675,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_214",
+        "relative_path": "original_sequences/youtube/c23/videos/214.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.46765,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_219",
+        "relative_path": "original_sequences/youtube/c23/videos/219.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.19137500000000002,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_220",
+        "relative_path": "original_sequences/youtube/c23/videos/220.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.17315,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_227",
+        "relative_path": "original_sequences/youtube/c23/videos/227.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.16049999999999998,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_233",
+        "relative_path": "original_sequences/youtube/c23/videos/233.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.24965,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_249",
+        "relative_path": "original_sequences/youtube/c23/videos/249.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.079525,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_255",
+        "relative_path": "original_sequences/youtube/c23/videos/255.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.11762500000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_257",
+        "relative_path": "original_sequences/youtube/c23/videos/257.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.414325,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_278",
+        "relative_path": "original_sequences/youtube/c23/videos/278.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.22419999999999995,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_280",
+        "relative_path": "original_sequences/youtube/c23/videos/280.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.391025,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_288",
+        "relative_path": "original_sequences/youtube/c23/videos/288.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.18512499999999998,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_306",
+        "relative_path": "original_sequences/youtube/c23/videos/306.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.393225,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_308",
+        "relative_path": "original_sequences/youtube/c23/videos/308.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.14534999999999998,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_314",
+        "relative_path": "original_sequences/youtube/c23/videos/314.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.30155,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_319",
+        "relative_path": "original_sequences/youtube/c23/videos/319.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.2415,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_321",
+        "relative_path": "original_sequences/youtube/c23/videos/321.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.1375,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_347",
+        "relative_path": "original_sequences/youtube/c23/videos/347.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.290275,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_352",
+        "relative_path": "original_sequences/youtube/c23/videos/352.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.375275,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_358",
+        "relative_path": "original_sequences/youtube/c23/videos/358.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.088875,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_367",
+        "relative_path": "original_sequences/youtube/c23/videos/367.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.060200000000000004,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_371",
+        "relative_path": "original_sequences/youtube/c23/videos/371.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.10747499999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_953_974",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.130875,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_974_953",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7303999999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_953_974",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.271775,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_974_953",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.684175,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_953_974",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.54055,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_974_953",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.22687500000000002,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_953_974",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.264825,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_974_953",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.15115,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_012_026",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.34357499999999996,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_026_012",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.64775,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_012_026",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.317175,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_026_012",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.20540000000000003,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_012_026",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.722425,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_026_012",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.621575,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_012_026",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.36160000000000003,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_026_012",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.376,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_078_955",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.768575,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_955_078",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.3029,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_078_955",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.24445,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_955_078",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5770500000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_078_955",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.776575,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_955_078",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5626,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_078_955",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.09395,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_955_078",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.701975,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_623_630",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.559025,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_630_623",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.41612499999999997,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_623_630",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.27775,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_630_623",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.531775,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_623_630",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.40379999999999994,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_630_623",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.63105,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_623_630",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.142325,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_630_623",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.4634,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_919_015",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.502525,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_015_919",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.3472,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_919_015",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.57935,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_015_919",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.33319999999999994,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_919_015",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5556,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_015_919",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.50955,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_919_015",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.458975,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_015_919",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.452825,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_367_371",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.260875,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_371_367",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.2697,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_367_371",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.195225,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_371_367",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.283775,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_367_371",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5538500000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_371_367",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.2885,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_367_371",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.140825,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_371_367",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.365525,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_847_906",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/847_906.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.52725,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_906_847",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/906_847.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.68915,
+        "correct": true,
+        "num_frames": 4
+      }
+    ],
+    "blur": [
+      {
+        "video_id": "youtube_000",
+        "relative_path": "original_sequences/youtube/c23/videos/000.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7865249999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_003",
+        "relative_path": "original_sequences/youtube/c23/videos/003.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.55945,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_012",
+        "relative_path": "original_sequences/youtube/c23/videos/012.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.642625,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_015",
+        "relative_path": "original_sequences/youtube/c23/videos/015.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7114,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_024",
+        "relative_path": "original_sequences/youtube/c23/videos/024.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5585,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_026",
+        "relative_path": "original_sequences/youtube/c23/videos/026.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.63635,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_029",
+        "relative_path": "original_sequences/youtube/c23/videos/029.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.850225,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_035",
+        "relative_path": "original_sequences/youtube/c23/videos/035.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.815275,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_036",
+        "relative_path": "original_sequences/youtube/c23/videos/036.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.690825,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_044",
+        "relative_path": "original_sequences/youtube/c23/videos/044.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.35655000000000003,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_047",
+        "relative_path": "original_sequences/youtube/c23/videos/047.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.900725,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_048",
+        "relative_path": "original_sequences/youtube/c23/videos/048.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.77415,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_073",
+        "relative_path": "original_sequences/youtube/c23/videos/073.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.26854999999999996,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_078",
+        "relative_path": "original_sequences/youtube/c23/videos/078.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.14235,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_102",
+        "relative_path": "original_sequences/youtube/c23/videos/102.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7817999999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_114",
+        "relative_path": "original_sequences/youtube/c23/videos/114.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.688775,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_128",
+        "relative_path": "original_sequences/youtube/c23/videos/128.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6134999999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_135",
+        "relative_path": "original_sequences/youtube/c23/videos/135.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6222000000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_138",
+        "relative_path": "original_sequences/youtube/c23/videos/138.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7313999999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_141",
+        "relative_path": "original_sequences/youtube/c23/videos/141.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.720675,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_142",
+        "relative_path": "original_sequences/youtube/c23/videos/142.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.73475,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_154",
+        "relative_path": "original_sequences/youtube/c23/videos/154.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.10785000000000002,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_158",
+        "relative_path": "original_sequences/youtube/c23/videos/158.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5684,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_161",
+        "relative_path": "original_sequences/youtube/c23/videos/161.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7243250000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_169",
+        "relative_path": "original_sequences/youtube/c23/videos/169.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.669725,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_170",
+        "relative_path": "original_sequences/youtube/c23/videos/170.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.067075,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_176",
+        "relative_path": "original_sequences/youtube/c23/videos/176.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.075125,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_186",
+        "relative_path": "original_sequences/youtube/c23/videos/186.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.15225,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_190",
+        "relative_path": "original_sequences/youtube/c23/videos/190.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.47765,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_214",
+        "relative_path": "original_sequences/youtube/c23/videos/214.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.729425,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_219",
+        "relative_path": "original_sequences/youtube/c23/videos/219.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6496,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_220",
+        "relative_path": "original_sequences/youtube/c23/videos/220.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7168,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_227",
+        "relative_path": "original_sequences/youtube/c23/videos/227.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.748325,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_233",
+        "relative_path": "original_sequences/youtube/c23/videos/233.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7022499999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_249",
+        "relative_path": "original_sequences/youtube/c23/videos/249.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.47429999999999994,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_255",
+        "relative_path": "original_sequences/youtube/c23/videos/255.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.42685,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_257",
+        "relative_path": "original_sequences/youtube/c23/videos/257.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.792975,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_278",
+        "relative_path": "original_sequences/youtube/c23/videos/278.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6668,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_280",
+        "relative_path": "original_sequences/youtube/c23/videos/280.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.71355,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_288",
+        "relative_path": "original_sequences/youtube/c23/videos/288.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.68785,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_306",
+        "relative_path": "original_sequences/youtube/c23/videos/306.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7334,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_308",
+        "relative_path": "original_sequences/youtube/c23/videos/308.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.60615,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_314",
+        "relative_path": "original_sequences/youtube/c23/videos/314.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.633525,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_319",
+        "relative_path": "original_sequences/youtube/c23/videos/319.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6091500000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_321",
+        "relative_path": "original_sequences/youtube/c23/videos/321.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.693875,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_347",
+        "relative_path": "original_sequences/youtube/c23/videos/347.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.4997,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_352",
+        "relative_path": "original_sequences/youtube/c23/videos/352.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.754725,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_358",
+        "relative_path": "original_sequences/youtube/c23/videos/358.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.583125,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_367",
+        "relative_path": "original_sequences/youtube/c23/videos/367.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8728500000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_371",
+        "relative_path": "original_sequences/youtube/c23/videos/371.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7862499999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_953_974",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.84595,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_974_953",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8312999999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_953_974",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.714425,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_974_953",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.720675,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_953_974",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7679,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_974_953",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6108750000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_953_974",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.906475,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_974_953",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7797499999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_012_026",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.671725,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_026_012",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8052999999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_012_026",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7238,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_026_012",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.714375,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_012_026",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.74585,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_026_012",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8603500000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_012_026",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.735575,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_026_012",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_078_955",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.95075,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_955_078",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.683075,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_078_955",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.535425,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_955_078",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.787825,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_078_955",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.89635,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_955_078",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6712499999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_078_955",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.44500000000000006,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_955_078",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.789725,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_623_630",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.84775,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_630_623",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.859,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_623_630",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8452250000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_630_623",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.877675,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_623_630",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8728,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_630_623",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.881975,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_623_630",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.834325,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_630_623",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8916000000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_919_015",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7746500000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_015_919",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.719675,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_919_015",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.668525,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_015_919",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8758999999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_919_015",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7833249999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_015_919",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7991,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_919_015",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.62545,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_015_919",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.796975,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_367_371",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8219,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_371_367",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8301,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_367_371",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.906675,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_371_367",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.81905,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_367_371",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.95385,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_371_367",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.835575,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_367_371",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8947750000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_371_367",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.818275,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_847_906",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/847_906.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.88105,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_906_847",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/906_847.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7588250000000001,
+        "correct": true,
+        "num_frames": 4
+      }
+    ],
+    "resize": [
+      {
+        "video_id": "youtube_000",
+        "relative_path": "original_sequences/youtube/c23/videos/000.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.614725,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_003",
+        "relative_path": "original_sequences/youtube/c23/videos/003.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.345875,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_012",
+        "relative_path": "original_sequences/youtube/c23/videos/012.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5390250000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_015",
+        "relative_path": "original_sequences/youtube/c23/videos/015.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.61965,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_024",
+        "relative_path": "original_sequences/youtube/c23/videos/024.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5836,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_026",
+        "relative_path": "original_sequences/youtube/c23/videos/026.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6434,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_029",
+        "relative_path": "original_sequences/youtube/c23/videos/029.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6244500000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_035",
+        "relative_path": "original_sequences/youtube/c23/videos/035.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.605175,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_036",
+        "relative_path": "original_sequences/youtube/c23/videos/036.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.585125,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_044",
+        "relative_path": "original_sequences/youtube/c23/videos/044.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.691975,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_047",
+        "relative_path": "original_sequences/youtube/c23/videos/047.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6938000000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_048",
+        "relative_path": "original_sequences/youtube/c23/videos/048.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.497375,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_073",
+        "relative_path": "original_sequences/youtube/c23/videos/073.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.3609,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_078",
+        "relative_path": "original_sequences/youtube/c23/videos/078.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.317075,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_102",
+        "relative_path": "original_sequences/youtube/c23/videos/102.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.593425,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_114",
+        "relative_path": "original_sequences/youtube/c23/videos/114.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5129750000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_128",
+        "relative_path": "original_sequences/youtube/c23/videos/128.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.3312,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_135",
+        "relative_path": "original_sequences/youtube/c23/videos/135.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.625225,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_138",
+        "relative_path": "original_sequences/youtube/c23/videos/138.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.48005,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_141",
+        "relative_path": "original_sequences/youtube/c23/videos/141.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.532825,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_142",
+        "relative_path": "original_sequences/youtube/c23/videos/142.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.571075,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_154",
+        "relative_path": "original_sequences/youtube/c23/videos/154.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.203825,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_158",
+        "relative_path": "original_sequences/youtube/c23/videos/158.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5382,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_161",
+        "relative_path": "original_sequences/youtube/c23/videos/161.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.43922500000000003,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_169",
+        "relative_path": "original_sequences/youtube/c23/videos/169.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.61865,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_170",
+        "relative_path": "original_sequences/youtube/c23/videos/170.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.1303,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_176",
+        "relative_path": "original_sequences/youtube/c23/videos/176.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.087225,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_186",
+        "relative_path": "original_sequences/youtube/c23/videos/186.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.39415,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_190",
+        "relative_path": "original_sequences/youtube/c23/videos/190.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5727749999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_214",
+        "relative_path": "original_sequences/youtube/c23/videos/214.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.9623250000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_219",
+        "relative_path": "original_sequences/youtube/c23/videos/219.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.573325,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_220",
+        "relative_path": "original_sequences/youtube/c23/videos/220.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.657525,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_227",
+        "relative_path": "original_sequences/youtube/c23/videos/227.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6388750000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_233",
+        "relative_path": "original_sequences/youtube/c23/videos/233.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5524,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_249",
+        "relative_path": "original_sequences/youtube/c23/videos/249.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.340925,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_255",
+        "relative_path": "original_sequences/youtube/c23/videos/255.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.668975,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_257",
+        "relative_path": "original_sequences/youtube/c23/videos/257.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.718825,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_278",
+        "relative_path": "original_sequences/youtube/c23/videos/278.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.41722499999999996,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_280",
+        "relative_path": "original_sequences/youtube/c23/videos/280.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.702225,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_288",
+        "relative_path": "original_sequences/youtube/c23/videos/288.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5569,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_306",
+        "relative_path": "original_sequences/youtube/c23/videos/306.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6663250000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_308",
+        "relative_path": "original_sequences/youtube/c23/videos/308.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7671,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_314",
+        "relative_path": "original_sequences/youtube/c23/videos/314.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6901750000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_319",
+        "relative_path": "original_sequences/youtube/c23/videos/319.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.354775,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_321",
+        "relative_path": "original_sequences/youtube/c23/videos/321.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6126,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_347",
+        "relative_path": "original_sequences/youtube/c23/videos/347.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.471725,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_352",
+        "relative_path": "original_sequences/youtube/c23/videos/352.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.535475,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_358",
+        "relative_path": "original_sequences/youtube/c23/videos/358.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.46302499999999996,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_367",
+        "relative_path": "original_sequences/youtube/c23/videos/367.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6075999999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_371",
+        "relative_path": "original_sequences/youtube/c23/videos/371.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6336,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_953_974",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.49585,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_974_953",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6214999999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_953_974",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5743,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_974_953",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.430975,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_953_974",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.426825,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_974_953",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.44225000000000003,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_953_974",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.622025,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_974_953",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.52325,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_012_026",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.695275,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_026_012",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.718775,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_012_026",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.726525,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_026_012",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7079249999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_012_026",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.718325,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_026_012",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7313999999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_012_026",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.68265,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_026_012",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.672725,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_078_955",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.972775,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_955_078",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.938875,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_078_955",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.79815,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_955_078",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7841750000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_078_955",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.951125,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_955_078",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.8628500000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_078_955",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.554325,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_955_078",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7667,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_623_630",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.823625,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_630_623",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.772075,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_623_630",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.744875,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_630_623",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7838499999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_623_630",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.751525,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_630_623",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7839,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_623_630",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.742,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_630_623",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7581500000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_919_015",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.635725,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_015_919",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6512,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_919_015",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.55045,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_015_919",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.64745,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_919_015",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6369,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_015_919",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6740499999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_919_015",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.563375,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_015_919",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.683325,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_367_371",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.58315,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_371_367",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.768175,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_367_371",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6746249999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_371_367",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6832499999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_367_371",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.62215,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_371_367",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7134499999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_367_371",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.684325,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_371_367",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.7084999999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_847_906",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/847_906.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.9359,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_906_847",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/906_847.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.820775,
+        "correct": true,
+        "num_frames": 4
+      }
+    ],
+    "noise": [
+      {
+        "video_id": "youtube_000",
+        "relative_path": "original_sequences/youtube/c23/videos/000.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5726,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_003",
+        "relative_path": "original_sequences/youtube/c23/videos/003.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.587725,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_012",
+        "relative_path": "original_sequences/youtube/c23/videos/012.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.587925,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_015",
+        "relative_path": "original_sequences/youtube/c23/videos/015.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5957749999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_024",
+        "relative_path": "original_sequences/youtube/c23/videos/024.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5861999999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_026",
+        "relative_path": "original_sequences/youtube/c23/videos/026.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5635749999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_029",
+        "relative_path": "original_sequences/youtube/c23/videos/029.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.59515,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_035",
+        "relative_path": "original_sequences/youtube/c23/videos/035.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.57945,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_036",
+        "relative_path": "original_sequences/youtube/c23/videos/036.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5762,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_044",
+        "relative_path": "original_sequences/youtube/c23/videos/044.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.572425,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_047",
+        "relative_path": "original_sequences/youtube/c23/videos/047.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.55935,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_048",
+        "relative_path": "original_sequences/youtube/c23/videos/048.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6124999999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_073",
+        "relative_path": "original_sequences/youtube/c23/videos/073.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5927250000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_078",
+        "relative_path": "original_sequences/youtube/c23/videos/078.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5746249999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_102",
+        "relative_path": "original_sequences/youtube/c23/videos/102.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.57805,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_114",
+        "relative_path": "original_sequences/youtube/c23/videos/114.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5759000000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_128",
+        "relative_path": "original_sequences/youtube/c23/videos/128.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.558375,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_135",
+        "relative_path": "original_sequences/youtube/c23/videos/135.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6238750000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_138",
+        "relative_path": "original_sequences/youtube/c23/videos/138.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6315249999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_141",
+        "relative_path": "original_sequences/youtube/c23/videos/141.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.583925,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_142",
+        "relative_path": "original_sequences/youtube/c23/videos/142.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6214500000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_154",
+        "relative_path": "original_sequences/youtube/c23/videos/154.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.569125,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_158",
+        "relative_path": "original_sequences/youtube/c23/videos/158.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.4669,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_161",
+        "relative_path": "original_sequences/youtube/c23/videos/161.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5692499999999999,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_169",
+        "relative_path": "original_sequences/youtube/c23/videos/169.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.576375,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_170",
+        "relative_path": "original_sequences/youtube/c23/videos/170.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.53995,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_176",
+        "relative_path": "original_sequences/youtube/c23/videos/176.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5588500000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_186",
+        "relative_path": "original_sequences/youtube/c23/videos/186.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.566375,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_190",
+        "relative_path": "original_sequences/youtube/c23/videos/190.mp4",
+        "ground_truth": "real",
+        "predicted_label": "real",
+        "mean_fake_probability": 0.30135,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_214",
+        "relative_path": "original_sequences/youtube/c23/videos/214.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.57155,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_219",
+        "relative_path": "original_sequences/youtube/c23/videos/219.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5869,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_220",
+        "relative_path": "original_sequences/youtube/c23/videos/220.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.594175,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_227",
+        "relative_path": "original_sequences/youtube/c23/videos/227.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.576225,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_233",
+        "relative_path": "original_sequences/youtube/c23/videos/233.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.579375,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_249",
+        "relative_path": "original_sequences/youtube/c23/videos/249.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.58375,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_255",
+        "relative_path": "original_sequences/youtube/c23/videos/255.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5586,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_257",
+        "relative_path": "original_sequences/youtube/c23/videos/257.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.54245,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_278",
+        "relative_path": "original_sequences/youtube/c23/videos/278.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.557925,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_280",
+        "relative_path": "original_sequences/youtube/c23/videos/280.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.556275,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_288",
+        "relative_path": "original_sequences/youtube/c23/videos/288.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.575,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_306",
+        "relative_path": "original_sequences/youtube/c23/videos/306.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.569875,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_308",
+        "relative_path": "original_sequences/youtube/c23/videos/308.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.576675,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_314",
+        "relative_path": "original_sequences/youtube/c23/videos/314.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.584025,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_319",
+        "relative_path": "original_sequences/youtube/c23/videos/319.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.593575,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_321",
+        "relative_path": "original_sequences/youtube/c23/videos/321.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.580875,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_347",
+        "relative_path": "original_sequences/youtube/c23/videos/347.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.591675,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_352",
+        "relative_path": "original_sequences/youtube/c23/videos/352.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5767500000000001,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_358",
+        "relative_path": "original_sequences/youtube/c23/videos/358.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.574225,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_367",
+        "relative_path": "original_sequences/youtube/c23/videos/367.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.625775,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "youtube_371",
+        "relative_path": "original_sequences/youtube/c23/videos/371.mp4",
+        "ground_truth": "real",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5787,
+        "correct": false,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_953_974",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.586275,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_974_953",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.60235,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_953_974",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5966,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_974_953",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6054,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_953_974",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5859,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_974_953",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5792,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_953_974",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/953_974.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5866,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_974_953",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/974_953.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6036999999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_012_026",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.6043000000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_026_012",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5620499999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_012_026",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.593825,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_026_012",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5631999999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_012_026",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.60205,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_026_012",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5646,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_012_026",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/012_026.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5818749999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_026_012",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/026_012.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.563025,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_078_955",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.57365,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_955_078",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.597725,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_078_955",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.577875,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_955_078",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5913,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_078_955",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.573375,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_955_078",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.588275,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_078_955",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/078_955.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5748500000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_955_078",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/955_078.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5859,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_623_630",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5881749999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_630_623",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.56155,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_623_630",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5725,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_630_623",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.57255,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_623_630",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5792999999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_630_623",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.562,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_623_630",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/623_630.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.575875,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_630_623",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/630_623.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.566825,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_919_015",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.566125,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_015_919",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5844250000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_919_015",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5758249999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_015_919",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5807249999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_919_015",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.57885,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_015_919",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.58055,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_919_015",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/919_015.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.572125,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_015_919",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/015_919.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5851000000000001,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_367_371",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5836749999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_371_367",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.57135,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_367_371",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.623825,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Face2Face_371_367",
+        "relative_path": "manipulated_sequences/Face2Face/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.583125,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_367_371",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.61785,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "FaceSwap_371_367",
+        "relative_path": "manipulated_sequences/FaceSwap/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.592075,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_367_371",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/367_371.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.621475,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "NeuralTextures_371_367",
+        "relative_path": "manipulated_sequences/NeuralTextures/c23/videos/371_367.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.5830249999999999,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_847_906",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/847_906.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.576725,
+        "correct": true,
+        "num_frames": 4
+      },
+      {
+        "video_id": "Deepfakes_906_847",
+        "relative_path": "manipulated_sequences/Deepfakes/c23/videos/906_847.mp4",
+        "ground_truth": "fake",
+        "predicted_label": "fake",
+        "mean_fake_probability": 0.556075,
+        "correct": true,
+        "num_frames": 4
+      }
+    ]
+  }
+}

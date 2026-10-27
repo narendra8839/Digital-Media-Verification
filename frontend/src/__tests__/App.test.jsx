@@ -463,5 +463,37 @@ describe('Digital Media Verification Frontend Test Suite', () => {
     expect(screen.queryByText('Manipulated / Deepfake')).not.toBeInTheDocument();
     expect(screen.queryByText('Authentic / Real')).not.toBeInTheDocument();
   });
+
+  it('13. VisualResultView handles expired Grad-CAM artifact gracefully with an informative notice', () => {
+    const expiredVisual = {
+      prediction: 'fake',
+      confidence: 0.942,
+      probabilities: { real: 0.058, fake: 0.942 },
+      face_detected: true,
+      status: 'SUCCESS',
+      explanation: {
+        method: 'grad_cam',
+        saved_path: null,
+        overlay_url: '/artifacts/expired_gradcam_123.png',
+        disclaimer: 'Grad-CAM is a post-hoc explanatory signal.',
+        heatmap_shape: [7, 7]
+      },
+      uncertainty: null
+    };
+
+    render(<VisualResultView visual={expiredVisual} />);
+
+    // Initially image is rendered
+    const img = screen.getByAltText('Grad-CAM Overlay');
+    expect(img).toBeInTheDocument();
+
+    // Trigger onError (simulating 404 from expired artifact)
+    fireEvent.error(img);
+
+    // Verify expired artifact message appears
+    expect(screen.getByText('Explanation Overlay Expired')).toBeInTheDocument();
+    expect(screen.getByText(/The spatial Grad-CAM overlay for this analysis has reached its retention limit/i)).toBeInTheDocument();
+    expect(screen.queryByAltText('Grad-CAM Overlay')).not.toBeInTheDocument();
+  });
 });
 

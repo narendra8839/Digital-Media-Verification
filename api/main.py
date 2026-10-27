@@ -14,6 +14,7 @@ from fastapi.staticfiles import StaticFiles
 from api.routes.health import router as health_router
 from api.routes.verify import router as verify_router
 from api.dependencies.pipeline_dep import init_pipeline
+from api.utils.artifact_manager import ArtifactCleanupRunner
 
 # Configure application logging
 logging.basicConfig(
@@ -25,12 +26,23 @@ logger = logging.getLogger("dmv_api")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    """Lifespan manager pre-warming AI models at server startup to eliminate per-request cold starts."""
+    """Lifespan manager pre-warming AI models at server startup and managing artifact lifecycle retention."""
     logger.info("Application startup: Pre-warming MultimodalPipeline...")
     pipeline = init_pipeline()
     logger.info(f"Application startup: MultimodalPipeline ready on device '{pipeline.device}'.")
+
+    # Start artifact retention background cleanup runner (avoids duplicate loops on multiple calls)
+    cleanup_runner = getattr(app.state, "artifact_cleanup_runner", None)
+    if cleanup_runner is None or not cleanup_runner.is_running:
+        cleanup_runner = ArtifactCleanupRunner()
+        cleanup_runner.start()
+        app.state.artifact_cleanup_runner = cleanup_runner
+
     yield
+
     logger.info("Application shutdown: Cleaning up resources.")
+    if hasattr(app.state, "artifact_cleanup_runner") and app.state.artifact_cleanup_runner:
+        await app.state.artifact_cleanup_runner.stop()
 
 
 app = FastAPI(
@@ -112,8 +124,9 @@ app.include_router(health_router)
 app.include_router(verify_router)
 
 # Mount static artifacts directory for browser-accessible visual explanations (Grad-CAM)
-os.makedirs("artifacts", exist_ok=True)
-app.mount("/artifacts", StaticFiles(directory="artifacts"), name="artifacts")
+artifact_mount_dir = os.environ.get("DMV_ARTIFACT_DIR", "artifacts").strip() or "artifacts"
+os.makedirs(artifact_mount_dir, exist_ok=True)
+app.mount("/artifacts", StaticFiles(directory=artifact_mount_dir), name="artifacts")
 
 
 if __name__ == "__main__":

@@ -127,11 +127,12 @@ class VideoPipeline:
                 os.makedirs(output_dir, exist_ok=True)
                 rep_save_path = os.path.join(output_dir, f"{filename}_frame{rep_idx}_gradcam.png")
 
-            rep_gradcam = self.deepfake_detector.gradcam.explain(
-                image_crop=rep_crop,
-                output_path=rep_save_path,
-                label_mapping=self.deepfake_detector.label_mapping
-            )
+            with protect_active_artifact(rep_save_path):
+                rep_gradcam = self.deepfake_detector.gradcam.explain(
+                    image_crop=rep_crop,
+                    output_path=rep_save_path,
+                    label_mapping=self.deepfake_detector.label_mapping
+                )
 
             # MC Dropout on representative frame
             rep_uq = self.deepfake_detector.uncertainty_engine.process_and_evaluate(

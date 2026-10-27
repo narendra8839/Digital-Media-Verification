@@ -1,0 +1,407 @@
+{
+  "metadata": {
+    "baseline_checkpoint": "models/deepfake/checkpoint_full/best_model.pt",
+    "baseline_sha256": "5878ae38bf5239dd9889e010fafa1d8c7da4198ac260542dc96681ede1e63234",
+    "candidate_checkpoint": "models/deepfake/checkpoint_robust_v2a/best_model.pt",
+    "candidate_sha256": "96e178f3d755790eb66a15199d9cc3cfcae7ec1d925f9adfcd990f14e195b0f6",
+    "total_videos": 100,
+    "class_distribution": {
+      "real": 50,
+      "fake": 50
+    },
+    "frames_per_video": 4
+  },
+  "condition_comparisons": {
+    "original": {
+      "baseline": {
+        "accuracy": 0.81,
+        "balanced_accuracy": 0.81,
+        "macro_f1": 0.8098288459613652,
+        "real_recall": 0.78,
+        "fake_recall": 0.84,
+        "real_f1": 0.8041237113402062,
+        "fake_f1": 0.8155339805825242,
+        "real_as_fake_fp": 11,
+        "confusion_matrix": [
+          [
+            42,
+            8
+          ],
+          [
+            11,
+            39
+          ]
+        ]
+      },
+      "candidate": {
+        "accuracy": 0.86,
+        "balanced_accuracy": 0.86,
+        "macro_f1": 0.8590982286634461,
+        "real_recall": 0.94,
+        "fake_recall": 0.78,
+        "real_f1": 0.8703703703703703,
+        "fake_f1": 0.8478260869565217,
+        "real_as_fake_fp": 3,
+        "confusion_matrix": [
+          [
+            39,
+            11
+          ],
+          [
+            3,
+            47
+          ]
+        ]
+      },
+      "delta": {
+        "accuracy": 0.04999999999999993,
+        "balanced_accuracy": 0.04999999999999993,
+        "macro_f1": 0.04926938270208092,
+        "real_recall": 0.15999999999999992,
+        "fake_recall": -0.05999999999999994,
+        "real_as_fake_fp_reduction": 8
+      }
+    },
+    "jpeg": {
+      "baseline": {
+        "accuracy": 0.73,
+        "balanced_accuracy": 0.73,
+        "macro_f1": 0.7277951406391774,
+        "real_recall": 0.82,
+        "fake_recall": 0.64,
+        "real_f1": 0.7522935779816514,
+        "fake_f1": 0.7032967032967034,
+        "real_as_fake_fp": 9,
+        "confusion_matrix": [
+          [
+            32,
+            18
+          ],
+          [
+            9,
+            41
+          ]
+        ]
+      },
+      "candidate": {
+        "accuracy": 0.7,
+        "balanced_accuracy": 0.7,
+        "macro_f1": 0.6744791666666667,
+        "real_recall": 0.98,
+        "fake_recall": 0.42,
+        "real_f1": 0.765625,
+        "fake_f1": 0.5833333333333334,
+        "real_as_fake_fp": 1,
+        "confusion_matrix": [
+          [
+            21,
+            29
+          ],
+          [
+            1,
+            49
+          ]
+        ]
+      },
+      "delta": {
+        "accuracy": -0.030000000000000027,
+        "balanced_accuracy": -0.030000000000000027,
+        "macro_f1": -0.053315973972510644,
+        "real_recall": 0.16000000000000003,
+        "fake_recall": -0.22000000000000003,
+        "real_as_fake_fp_reduction": 8
+      }
+    },
+    "blur": {
+      "baseline": {
+        "accuracy": 0.56,
+        "balanced_accuracy": 0.56,
+        "macro_f1": 0.45436507936507936,
+        "real_recall": 0.12,
+        "fake_recall": 1.0,
+        "real_f1": 0.21428571428571427,
+        "fake_f1": 0.6944444444444444,
+        "real_as_fake_fp": 44,
+        "confusion_matrix": [
+          [
+            50,
+            0
+          ],
+          [
+            44,
+            6
+          ]
+        ]
+      },
+      "candidate": {
+        "accuracy": 0.6,
+        "balanced_accuracy": 0.6,
+        "macro_f1": 0.5324918186068257,
+        "real_recall": 0.22,
+        "fake_recall": 0.98,
+        "real_f1": 0.3548387096774194,
+        "fake_f1": 0.7101449275362319,
+        "real_as_fake_fp": 39,
+        "confusion_matrix": [
+          [
+            49,
+            1
+          ],
+          [
+            39,
+            11
+          ]
+        ]
+      },
+      "delta": {
+        "accuracy": 0.039999999999999925,
+        "balanced_accuracy": 0.039999999999999925,
+        "macro_f1": 0.07812673924174635,
+        "real_recall": 0.1,
+        "fake_recall": -0.020000000000000018,
+        "real_as_fake_fp_reduction": 5
+      }
+    },
+    "resize": {
+      "baseline": {
+        "accuracy": 0.56,
+        "balanced_accuracy": 0.56,
+        "macro_f1": 0.45436507936507936,
+        "real_recall": 0.12,
+        "fake_recall": 1.0,
+        "real_f1": 0.21428571428571427,
+        "fake_f1": 0.6944444444444444,
+        "real_as_fake_fp": 44,
+        "confusion_matrix": [
+          [
+            50,
+            0
+          ],
+          [
+            44,
+            6
+          ]
+        ]
+      },
+      "candidate": {
+        "accuracy": 0.62,
+        "balanced_accuracy": 0.62,
+        "macro_f1": 0.5824175824175825,
+        "real_recall": 0.32,
+        "fake_recall": 0.92,
+        "real_f1": 0.45714285714285713,
+        "fake_f1": 0.7076923076923077,
+        "real_as_fake_fp": 34,
+        "confusion_matrix": [
+          [
+            46,
+            4
+          ],
+          [
+            34,
+            16
+          ]
+        ]
+      },
+      "delta": {
+        "accuracy": 0.05999999999999994,
+        "balanced_accuracy": 0.05999999999999994,
+        "macro_f1": 0.1280525030525031,
+        "real_recall": 0.2,
+        "fake_recall": -0.07999999999999996,
+        "real_as_fake_fp_reduction": 10
+      }
+    },
+    "noise": {
+      "baseline": {
+        "accuracy": 0.67,
+        "balanced_accuracy": 0.6699999999999999,
+        "macro_f1": 0.6624040920716112,
+        "real_recall": 0.52,
+        "fake_recall": 0.82,
+        "real_f1": 0.611764705882353,
+        "fake_f1": 0.7130434782608696,
+        "real_as_fake_fp": 24,
+        "confusion_matrix": [
+          [
+            41,
+            9
+          ],
+          [
+            24,
+            26
+          ]
+        ]
+      },
+      "candidate": {
+        "accuracy": 0.52,
+        "balanced_accuracy": 0.52,
+        "macro_f1": 0.37629937629937626,
+        "real_recall": 0.04,
+        "fake_recall": 1.0,
+        "real_f1": 0.07692307692307693,
+        "fake_f1": 0.6756756756756757,
+        "real_as_fake_fp": 48,
+        "confusion_matrix": [
+          [
+            50,
+            0
+          ],
+          [
+            48,
+            2
+          ]
+        ]
+      },
+      "delta": {
+        "accuracy": -0.15000000000000002,
+        "balanced_accuracy": -0.1499999999999999,
+        "macro_f1": -0.28610471577223495,
+        "real_recall": -0.48000000000000004,
+        "fake_recall": 0.18000000000000005,
+        "real_as_fake_fp_reduction": -24
+      }
+    }
+  },
+  "pairwise_sample_analysis": {
+    "original": {
+      "total_paired_videos": 100,
+      "improved_count": 8,
+      "regressed_count": 3,
+      "net_gain": 5,
+      "improved_videos": [
+        "youtube_257",
+        "youtube_012",
+        "youtube_047",
+        "youtube_035",
+        "youtube_280",
+        "youtube_321",
+        "youtube_352",
+        "youtube_190"
+      ],
+      "regressed_videos": [
+        "NeuralTextures_371_367",
+        "Face2Face_078_955",
+        "Deepfakes_367_371"
+      ]
+    },
+    "jpeg": {
+      "total_paired_videos": 100,
+      "improved_count": 10,
+      "regressed_count": 13,
+      "net_gain": -3,
+      "improved_videos": [
+        "youtube_257",
+        "youtube_306",
+        "youtube_280",
+        "FaceSwap_953_974",
+        "youtube_352",
+        "FaceSwap_955_078",
+        "youtube_102",
+        "youtube_029",
+        "youtube_000",
+        "youtube_114"
+      ],
+      "regressed_videos": [
+        "NeuralTextures_630_623",
+        "NeuralTextures_371_367",
+        "Face2Face_623_630",
+        "Face2Face_012_026",
+        "Face2Face_371_367",
+        "Deepfakes_371_367",
+        "NeuralTextures_919_015",
+        "Deepfakes_367_371",
+        "NeuralTextures_012_026",
+        "FaceSwap_623_630",
+        "NeuralTextures_026_012",
+        "Face2Face_015_919",
+        "NeuralTextures_015_919"
+      ]
+    },
+    "blur": {
+      "total_paired_videos": 100,
+      "improved_count": 5,
+      "regressed_count": 1,
+      "net_gain": 4,
+      "improved_videos": [
+        "youtube_044",
+        "youtube_347",
+        "youtube_249",
+        "youtube_190",
+        "youtube_255"
+      ],
+      "regressed_videos": [
+        "NeuralTextures_078_955"
+      ]
+    },
+    "resize": {
+      "total_paired_videos": 100,
+      "improved_count": 10,
+      "regressed_count": 4,
+      "net_gain": 6,
+      "improved_videos": [
+        "youtube_138",
+        "youtube_161",
+        "youtube_186",
+        "youtube_278",
+        "youtube_358",
+        "youtube_347",
+        "youtube_078",
+        "youtube_048",
+        "youtube_249",
+        "youtube_319"
+      ],
+      "regressed_videos": [
+        "FaceSwap_974_953",
+        "Face2Face_974_953",
+        "Deepfakes_953_974",
+        "FaceSwap_953_974"
+      ]
+    },
+    "noise": {
+      "total_paired_videos": 100,
+      "improved_count": 10,
+      "regressed_count": 25,
+      "net_gain": -15,
+      "improved_videos": [
+        "Face2Face_078_955",
+        "NeuralTextures_367_371",
+        "Deepfakes_919_015",
+        "Face2Face_623_630",
+        "Face2Face_919_015",
+        "Deepfakes_371_367",
+        "NeuralTextures_919_015",
+        "FaceSwap_623_630",
+        "youtube_190",
+        "NeuralTextures_078_955"
+      ],
+      "regressed_videos": [
+        "youtube_257",
+        "youtube_024",
+        "youtube_138",
+        "youtube_176",
+        "youtube_288",
+        "youtube_161",
+        "youtube_186",
+        "youtube_278",
+        "youtube_044",
+        "youtube_170",
+        "youtube_128",
+        "youtube_214",
+        "youtube_135",
+        "youtube_078",
+        "youtube_169",
+        "youtube_321",
+        "youtube_048",
+        "youtube_367",
+        "youtube_141",
+        "youtube_154",
+        "youtube_142",
+        "youtube_000",
+        "youtube_227",
+        "youtube_255",
+        "youtube_319"
+      ]
+    }
+  }
+}

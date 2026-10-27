@@ -1,5 +1,4 @@
-"""Request schemas for verification endpoints."""
-
+from typing import Dict, Any, Optional
 from pydantic import BaseModel, Field, field_validator
 
 
@@ -20,3 +19,20 @@ class TextVerificationRequest(BaseModel):
         if not stripped:
             raise ValueError("Text content cannot be empty or only whitespace.")
         return stripped
+
+
+class ImageReportRequest(BaseModel):
+    """Payload for downloading an image analysis PDF report."""
+
+    result: Dict[str, Any] = Field(
+        ...,
+        description="Unified image analysis result payload previously returned by /verify/image."
+    )
+    filename: Optional[str] = Field(
+        default="image_analysis.jpg",
+        description="Original name of the analyzed image file."
+    )
+    image_preview: Optional[str] = Field(
+        default=None,
+        description="Optional base64 data URI of the analyzed image for thumbnail rendering."
+    )

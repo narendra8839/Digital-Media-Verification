@@ -27,6 +27,7 @@ Digital Media Verification (DMV) is an academic decision-support platform design
 - **Linguistic Attribution**: Highlights influential tokens and phrases driving NLP classifications.
 - **Uncertainty Quantification (UQ)**: Monte Carlo Dropout ($T=20$ stochastic passes) produces predictive variance and Shannon entropy.
 - **Governance & Human-in-the-Loop Policies**: Triages outputs into `CONFIDENT_PREDICTION`, `REVIEW_RECOMMENDED`, or `ANALYSIS_INCOMPLETE` fallback states.
+- **Downloadable Forensic Report**: Exports verified image analyses into professional, self-contained PDF reports incorporating original/Grad-CAM overlays, prediction statistics, UQ dispersion, OCR extractions, and responsible AI governance disclaimers without rerunning model inference.
 
 ---
 
@@ -158,44 +159,50 @@ For viva and presentation demonstrations, a set of video clips was curated to ob
 
 ---
 
+---
+
 ## Project Structure
 
 ```
 Digital-Media-Verification/
-├── api/                       # FastAPI application, routes, schemas, and dependencies
-│   ├── dependencies/          # Pipeline dependency singletons
-│   ├── routes/                # Verification and telemetry endpoints
-│   ├── schemas/               # Pydantic request and response schemas
-│   └── utils/                 # File and serialization utilities
+├── api/                       # FastAPI application, routes, schemas, and utils
+│   ├── routes/                # Verification, health, and PDF report endpoints
+│   ├── schemas/               # Strongly-typed Pydantic request/response schemas
+│   └── utils/                 # Artifact manager, report generator, and file helpers
 ├── config/                    # Configuration and threshold definitions
 ├── data/                      # Manifests and dataset split documentation
-│   ├── full_splits/           # Split manifests and summary data
-│   └── mvp/                   # MVP verification manifests
-├── detection/                 # Model detector wrappers
-├── docs/                      # Technical documentation and guides
-│   ├── ARCHITECTURE.md        # Detailed system architecture
+├── detection/                 # Model detector wrappers (Deepfake, NLP, Audio)
+├── docs/                      # Technical guides, setup, limitations, and viva guides
+│   ├── ARTIFACT_MANAGEMENT.md # Artifact retention lifecycle and safety guarantees
 │   ├── DEMO_GUIDE.md          # Step-by-step viva presentation guide
-│   ├── RESPONSIBLE_AI.md      # Ethics, limitations, and governance policy
+│   ├── PROJECT_LIMITATIONS.md # Known failure cases and boundary constraints
+│   ├── RESPONSIBLE_AI.md      # Ethics, governance, and disclaimer policies
 │   ├── SETUP.md               # Environment installation guide
-│   ├── TRAINING_AND_EVALUATION.md # Benchmark evaluation protocol
-│   └── research_history/      # Historical phase reports and audit documents
-├── evaluation/                # Evaluation, calibration, and metrics scripts
+│   └── research_history/      # Preserved historical phase reports and audit documents
 ├── explainability/            # Grad-CAM and token attribution implementations
 ├── extraction/                # Audio demuxing, Whisper ASR, EasyOCR, and text aggregation
 ├── frontend/                  # React + Vite analyst interface
-├── governance/                # Decision policies and audit logger
-├── models/                    # Model configurations, training routines, and README
+├── governance/                # Decision policies, human triage rules, and audit logger
+├── models/                    # Model architecture definitions and README
 │   └── README.md              # Checkpoint download and placement guide
 ├── pipeline/                  # Modular image, video, text, and multimodal pipelines
-├── preprocessing/             # Face detection, frame extraction, and normalization
+├── preprocessing/             # Face detection (MTCNN), frame extraction, normalization
 ├── reports/                   # Technical validation summaries and Grad-CAM figures
-├── scripts/                   # Evaluation runners, demo pack builders, and verification tools
-├── tests/                     # Unit and integration test suite
-├── uncertainty/               # Monte Carlo Dropout and variance calculation
-├── .gitignore                 # Git ignore specifications
-├── package.json               # Root frontend/monorepo tooling configuration (if used)
-├── README.md                  # Project overview and technical summary
-└── requirements.txt           # Python backend dependencies
+├── research/                  # Central scientific hub: paper-ready materials & reproducibility
+│   ├── README.md              # Master research index and scientific summary
+│   ├── architecture/          # End-to-end multimodal design & system specifications
+│   ├── methodology/           # Datasets, split audits, evaluation protocols, corruption sweeps
+│   ├── results/               # Benchmark summaries, authoritative V3 robustness report, raw data
+│   │   ├── tables/            # Publication-ready CSV and Markdown data tables
+│   │   └── data/              # Authoritative per-video evaluation outputs (JSON)
+│   ├── figures/               # Publication figures (Vector SVG and 300 DPI PNG)
+│   ├── reproducibility/       # Deterministic reproduction commands, environments, checkpoint manifest
+│   └── manuscript/            # Manuscript outline, formal figure captions, BibTeX references
+├── scripts/                   # Evaluation runners, figure generation, and verification tools
+├── tests/                     # Comprehensive test suites (121 passed, 1 skipped)
+├── uncertainty/               # Monte Carlo Dropout and Bayesian variance engine
+├── requirements.txt           # Python backend dependencies
+└── requirements-dev.txt       # Testing and development dependencies
 ```
 
 ---
@@ -204,29 +211,37 @@ Digital-Media-Verification/
 
 ### 1. Backend Setup
 ```bash
+# Clone the repository
+git clone https://github.com/narendra8839/Digital-Media-Verification.git
+cd Digital-Media-Verification
+
 # Create and activate virtual environment
 python3 -m venv venv
 source venv/bin/activate  # On Windows (PowerShell): .\venv\Scripts\Activate.ps1
 
-# Install core runtime dependencies
+# Install core runtime dependencies (includes reportlab for zero-inference PDF export)
 pip install -r requirements.txt
 
-# Install testing and development dependencies (optional)
+# Install testing and development dependencies
 pip install -r requirements-dev.txt
 ```
 
 ### 2. Model Checkpoints
-Large model binaries are distributed separately via project GitHub Releases ([`v1.0.0`](https://github.com/narendra8839/Digital-Media-Verification/releases/tag/v1.0.0), active once published). Refer to [`models/README.md`](models/README.md) for expected directory paths, SHA-256 checksums, and extraction instructions.
+- The production EfficientNet-B4 checkpoint is expected at `models/deepfake/checkpoint_full/best_model.pt`.
+- Verify cryptographic integrity via SHA-256 hash:
+  - Expected: `5878ae38bf5239dd9889e010fafa1d8c7da4198ac260542dc96681ede1e63234`.
+- Detailed checksums, architecture manifests, and external provisioning steps are documented in [`research/reproducibility/CHECKPOINT_MANIFEST.md`](research/reproducibility/CHECKPOINT_MANIFEST.md) and [`models/README.md`](models/README.md).
 
 ### 3. Frontend Setup
-> **Prerequisite:** **Node.js 22 LTS (version 22.12 or newer)** is recommended for compatibility with Vite 8 (Node.js 18 is not supported).
+> **Prerequisite:** **Node.js 18+ / 20+ / 22+ LTS** (compatible with Vite and frontend build dependencies).
 
 ```bash
 cd frontend
 npm install
+cd ..
 ```
 
-*(For detailed prerequisites, CUDA GPU setup, and configuration steps, see [`docs/SETUP.md`](docs/SETUP.md)).*
+*(For detailed prerequisites, CUDA acceleration, and environment variables, see [`docs/SETUP.md`](docs/SETUP.md) and [`research/reproducibility/ENVIRONMENT_AND_DEPENDENCIES.md`](research/reproducibility/ENVIRONMENT_AND_DEPENDENCIES.md)).*
 
 ---
 
@@ -237,9 +252,9 @@ npm install
 uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 - API Base URL: `http://localhost:8000`
-- Swagger Documentation: `http://localhost:8000/docs`
-- Health Liveness Endpoint: `http://localhost:8000/health`
-- Readiness Endpoint (Model Pre-warm): `http://localhost:8000/ready`
+- Interactive OpenAPI / Swagger Documentation: `http://localhost:8000/docs`
+- Health Liveness Probe: `http://localhost:8000/health`
+- Readiness Probe (Model Pre-warm): `http://localhost:8000/ready`
 
 ### 2. Start React Frontend
 ```bash
@@ -250,16 +265,16 @@ npm run dev
 
 ---
 
-## Running the Test Suite
+## Running the Verification Test Suites
 
 ```bash
-# Run backend test suite (59 tests)
+# Run full backend test suite (121 passed, 1 skipped)
 pytest tests/ -v
 
-# Run frontend unit tests (12 tests)
-cd frontend && npm test
+# Run frontend component and integration tests (19 passed)
+cd frontend && npm test -- --run
 
-# Verify production build bundle
+# Verify clean production build bundle
 cd frontend && npm run build
 ```
 
@@ -267,13 +282,24 @@ cd frontend && npm run build
 
 ## Limitations
 
-- **Cross-Generator Generalization**: Deepfake visual detectors trained on specific facial synthesis pipelines (FaceForensics++) may experience performance degradation against novel diffusion or generative video architectures.
-- **Audio-Visual Asynchrony**: The current visual pipeline does not perform dense cross-modal biometric synchronization (e.g., active lip-sync phoneme tracking).
-- **Rhetorical Subjectivity**: Multi-label propaganda classification involves linguistic nuance where short phrases out of context can be ambiguous.
-- **Inference Latency**: Comprehensive multimodal inference with Monte Carlo Dropout ($T=20$ passes) and keyframe extraction requires GPU acceleration for sub-10s video response times.
+- **Not an Infallible Forensic Engine:** Outputs represent probabilistic statistical likelihoods; the detector is designed as an assistive triage aid, not a source of legal proof.
+- **Robustness Under Extreme Degradation:** While clean accuracy reaches 88.00% on the FaceForensics++ C23 test split, heavy blurring or low-resolution downsampling ($0.25\times$) collapses real-class recall to 12.00%, as detailed in [`research/results/DEEPFAKE_ROBUSTNESS_V3_REPORT.md`](research/results/DEEPFAKE_ROBUSTNESS_V3_REPORT.md).
+- **Facial Crop Dependency:** Relies on MTCNN face detection; non-frontal profiles, heavy occlusions, or faces smaller than $60\times 60$ pixels trigger human review flags.
+- **Cross-Generator Generalization:** Detectors trained on GAN and face-swap manipulations may exhibit performance degradation against novel diffusion video architectures.
 
 ---
 
-## Research Notes and Reproducibility
+## Research Hub and Scientific Reproducibility
 
-Phase-by-phase implementation logs, baseline benchmarking records, optimization histories, and audit sign-offs are archived in [`docs/research_history/`](docs/research_history/).
+Comprehensive research artifacts, empirical results, and paper preparation materials are organized under the root [`research/`](research/) directory:
+
+| Research Directory | Contents & Documentation |
+| :--- | :--- |
+| **[`research/README.md`](research/README.md)** | Master scientific overview and navigation index |
+| **[`research/architecture/`](research/architecture/)** | [System Architecture](research/architecture/SYSTEM_ARCHITECTURE.md), [Service Design](research/architecture/SYSTEM_DESIGN.md), [Pipeline Design](research/architecture/MODEL_AND_PIPELINE_DESIGN.md) |
+| **[`research/methodology/`](research/methodology/)** | [Datasets & Splits](research/methodology/DATASETS_AND_SPLITS.md), [Evaluation Protocol](research/methodology/EVALUATION_PROTOCOL.md), [Robustness Experiments](research/methodology/ROBUSTNESS_EXPERIMENTS.md) |
+| **[`research/results/`](research/results/)** | [Model Evaluation Summary](research/results/MODEL_EVALUATION_SUMMARY.md), [V3 Robustness Report](research/results/DEEPFAKE_ROBUSTNESS_V3_REPORT.md), [V2 Report](research/results/DEEPFAKE_ROBUSTNESS_V2_REPORT.md), [Tables](research/results/tables/), [Data](research/results/data/) |
+| **[`research/figures/`](research/figures/)** | [Figure Index](research/figures/README.md), [Vector SVGs](research/figures/svg/), [300 DPI PNGs](research/figures/png/) |
+| **[`research/reproducibility/`](research/reproducibility/)** | [Reproducing Results](research/reproducibility/REPRODUCING_RESULTS.md), [Dependencies](research/reproducibility/ENVIRONMENT_AND_DEPENDENCIES.md), [Checkpoint Manifest](research/reproducibility/CHECKPOINT_MANIFEST.md) |
+| **[`research/manuscript/`](research/manuscript/)** | [Paper Outline](research/manuscript/PAPER_OUTLINE.md), [Figure Captions](research/manuscript/FIGURE_CAPTIONS.md), [BibTeX References](research/manuscript/REFERENCES.md) |
+| **[`docs/research_history/`](docs/research_history/)** | Preserved phase-by-phase implementation logs, baseline benchmarks, and audit sign-offs |

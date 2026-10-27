@@ -6,6 +6,7 @@ from PIL import Image
 import numpy as np
 import torch
 
+from api.utils.artifact_manager import protect_active_artifact
 from models.deepfake.predict import load_deepfake_model
 from preprocessing.face_detection import FaceDetector
 from explainability.gradcam import GradCAM
@@ -95,11 +96,12 @@ class DeepfakeDetector:
                     os.makedirs(output_dir, exist_ok=True)
                     import uuid
                     save_path = os.path.join(output_dir, f"gradcam_{uuid.uuid4().hex[:8]}.png")
-                explanation = self.gradcam.explain(
-                    image_crop=crop,
-                    output_path=save_path,
-                    label_mapping=self.label_mapping
-                )
+                with protect_active_artifact(save_path):
+                    explanation = self.gradcam.explain(
+                        image_crop=crop,
+                        output_path=save_path,
+                        label_mapping=self.label_mapping
+                    )
             except Exception as e:
                 import logging
                 logging.getLogger("dmv.deepfake").warning(f"Grad-CAM generation failed: {e}")
