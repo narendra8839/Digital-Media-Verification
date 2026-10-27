@@ -1,11 +1,14 @@
-"""Focused integration tests for Phase 6: Final Backend/Model Integration, XAI, UQ, Governance."""
-
+import sys
 import os
 import io
 import time
 import pytest
 from fastapi.testclient import TestClient
 from PIL import Image
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 
 from api.main import app
 from api.utils.device import get_optimal_device

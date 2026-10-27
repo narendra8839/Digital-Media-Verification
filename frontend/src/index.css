@@ -1,45 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* ============================================================
-   DESIGN SYSTEM - Academic / Research Prototype Theme
+   DESIGN SYSTEM - Academic Forensic Workstation Theme
+   Editorial Warm Cream Canvas, Near-Black Ink, Crisp Hairlines
    ============================================================ */
 :root {
-  /* Surfaces & Backgrounds (Light Neutral) */
-  --bg-base: #f8fafc;
+  /* Surfaces & Backgrounds (Warm Editorial Canvas) */
+  --bg-base: #f7f7f4;
   --bg-surface: #ffffff;
-  --bg-subtle: #f1f5f9;
-  --bg-hover: #e2e8f0;
+  --bg-subtle: #f1f0eb;
+  --bg-hover: #eae9e3;
   --bg-input: #ffffff;
 
-  /* Borders (Simple, 1px solid) */
-  --border-color: #e2e8f0;
-  --border-strong: #cbd5e1;
-  --border-focus: #2563eb;
+  /* Borders (Deliberate 1px hairlines) */
+  --border-color: #e6e5e0;
+  --border-strong: #cfcdc4;
+  --border-focus: #f54e00;
 
-  /* Typography Colors */
-  --text-main: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
+  /* Typography Colors (Near-Black Warm Ink) */
+  --text-main: #26251e;
+  --text-secondary: #5a5852;
+  --text-muted: #807d72;
   --text-inverse: #ffffff;
 
-  /* Primary Accent: Restrained Blue */
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --primary-bg: #eff6ff;
-  --primary-border: #bfdbfe;
+  /* Brand Accent: Restrained Editorial Voltage */
+  --primary: #f54e00;
+  --primary-hover: #d04200;
+  --primary-bg: #fff5f0;
+  --primary-border: #fed7aa;
 
-  /* Functional Status Colors */
-  --success: #15803d;
-  --success-bg: #f0fdf4;
-  --success-border: #bbf7d0;
+  /* Functional Status Colors (Restrained Editorial Tones) */
+  --success: #1f8a65;
+  --success-bg: #f0fbf6;
+  --success-border: #a7f3d0;
 
   --warning: #b45309;
   --warning-bg: #fffbeb;
   --warning-border: #fde68a;
 
-  --danger: #b91c1c;
-  --danger-bg: #fef2f2;
-  --danger-border: #fecaca;
+  --danger: #cf2d56;
+  --danger-bg: #fdf2f4;
+  --danger-border: #fecdd3;
 
   --info: #0369a1;
   --info-bg: #f0f9ff;
@@ -50,8 +51,8 @@
   --font-mono: 'JetBrains Mono', Consolas, 'SF Mono', monospace;
 
   /* Subtle academic card elevation */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 2px 0 rgba(38, 37, 30, 0.04);
+  --shadow-card: 0 1px 3px 0 rgba(38, 37, 30, 0.06);
 
   /* Border Radii */
   --radius-sm: 4px;
@@ -815,6 +816,58 @@ body {
   color: var(--text-secondary);
 }
 
+.dashboard-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.header-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.report-error-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  background-color: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+  border-radius: var(--radius-md);
+  color: var(--danger);
+  font-size: 13px;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.report-error-content {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-ghost:hover {
+  color: var(--text-main);
+  background: var(--bg-hover);
+}
+
 /* Clean Result Summary Top Card */
 .result-summary-card {
   display: flex;
@@ -1223,6 +1276,39 @@ body {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
+}
+
+.artifact-expired-notice {
+  padding: 20px 24px;
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.expired-notice-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.expired-notice-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #b45309;
+}
+
+.expired-notice-desc {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
 }
 
 .annotated-image-wrap {
@@ -1688,6 +1774,81 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+/* ============================================================
+   SYSTEM LIMITATIONS & METHODOLOGICAL BOUNDS
+   ============================================================ */
+.system-limitations-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.limitations-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.limitations-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.limitations-scope-tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+}
+
+.limitations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.limitation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  background: var(--bg-base);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+.limitation-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-secondary);
+}
+
+.limitation-text {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* Accessible focus outline */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 /* ============================================================

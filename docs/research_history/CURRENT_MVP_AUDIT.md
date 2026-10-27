@@ -443,15 +443,15 @@ Upload (UI)
 ```
 
 ### Exact Code & Files Involved
-- Route: [api/routes/verify.py:L88-114](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/api/routes/verify.py#L88-L114)
-- Upload Validation: [api/utils/file_utils.py:L38-90](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/api/utils/file_utils.py#L38-L90)
-- Ingestion Router: [pipeline/router.py:L17-94](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/pipeline/router.py#L17-L94)
-- Sub-Pipeline: [pipeline/image_pipeline.py:L30-149](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/pipeline/image_pipeline.py#L30-L149)
-- Face Detector: [preprocessing/face_detection.py:L9-44](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/preprocessing/face_detection.py#L9-L44)
-- Deepfake Detector: [detection/deepfake_detector.py:L33-108](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/detection/deepfake_detector.py#L33-L108)
-- OCR Engine: [extraction/ocr.py:L29-96](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/extraction/ocr.py#L29-L96)
-- Text Aggregator: [extraction/text_aggregator.py:L10-77](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/extraction/text_aggregator.py#L10-L77)
-- Frontend View: [frontend/src/components/VisualResultView.jsx](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/frontend/src/components/VisualResultView.jsx)
+- Route: [`api/routes/verify.py`](../../api/routes/verify.py)
+- Upload Validation: [`api/utils/file_utils.py`](../../api/utils/file_utils.py)
+- Ingestion Router: [`pipeline/router.py`](../../pipeline/router.py)
+- Sub-Pipeline: [`pipeline/image_pipeline.py`](../../pipeline/image_pipeline.py)
+- Face Detector: [`preprocessing/face_detection.py`](../../preprocessing/face_detection.py)
+- Deepfake Detector: [`detection/deepfake_detector.py`](../../detection/deepfake_detector.py)
+- OCR Engine: [`extraction/ocr.py`](../../extraction/ocr.py)
+- Text Aggregator: [`extraction/text_aggregator.py`](../../extraction/text_aggregator.py)
+- Frontend View: [`frontend/src/components/VisualResultView.jsx`](../../frontend/src/components/VisualResultView.jsx)
 
 ---
 
@@ -497,12 +497,12 @@ Upload (UI)
 ```
 
 ### Exact Code & Files Involved
-- Route & Async Worker: [api/routes/verify.py:L35-67, L121-177](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/api/routes/verify.py#L35-L67)
-- Sub-Pipeline: [pipeline/video_pipeline.py:L37-277](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/pipeline/video_pipeline.py#L37-L277)
-- Frame Sampler: [preprocessing/frame_sampling.py:L8-34](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/preprocessing/frame_sampling.py#L8-L34)
-- Audio Probe & Extractor: [extraction/audio_extraction.py:L15-82](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/extraction/audio_extraction.py#L15-L82)
-- Speech Recognizer: [extraction/asr.py:L23-95](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/extraction/asr.py#L23-L95)
-- Video Polling Hook: [frontend/src/hooks/useVerification.js:L59-94](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/frontend/src/hooks/useVerification.js#L59-L94)
+- Route & Async Worker: [`api/routes/verify.py`](../../api/routes/verify.py)
+- Sub-Pipeline: [`pipeline/video_pipeline.py`](../../pipeline/video_pipeline.py)
+- Frame Sampler: [`preprocessing/frame_sampling.py`](../../preprocessing/frame_sampling.py)
+- Audio Probe & Extractor: [`extraction/audio_extraction.py`](../../extraction/audio_extraction.py)
+- Speech Recognizer: [`extraction/asr.py`](../../extraction/asr.py)
+- Video Polling Hook: [`frontend/src/hooks/useVerification.js`](../../frontend/src/hooks/useVerification.js)
 
 ---
 
@@ -534,11 +534,11 @@ Direct Text / Claim Input
 ```
 
 ### Exact Code & Files Involved
-- Route: [api/routes/verify.py:L69-86](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/api/routes/verify.py#L69-L86)
-- Request Model: [api/schemas/requests.py:L6-18](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/api/schemas/requests.py#L6-L18)
-- Sub-Pipeline: [pipeline/text_pipeline.py:L22-137](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/pipeline/text_pipeline.py#L22-L137)
-- Token Attribution: [explainability/text_attention.py:L8-115](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/explainability/text_attention.py#L8-L115)
-- Frontend View: [frontend/src/components/NLPResultView.jsx](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/frontend/src/components/NLPResultView.jsx) and [TokenAttributionView.jsx](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/frontend/src/components/TokenAttributionView.jsx)
+- Route: [`api/routes/verify.py`](../../api/routes/verify.py)
+- Request Model: [`api/schemas/requests.py`](../../api/schemas/requests.py)
+- Sub-Pipeline: [`pipeline/text_pipeline.py`](../../pipeline/text_pipeline.py)
+- Token Attribution: [`explainability/text_attention.py`](../../explainability/text_attention.py)
+- Frontend View: [`frontend/src/components/NLPResultView.jsx`](../../frontend/src/components/NLPResultView.jsx) and [`TokenAttributionView.jsx`](../../frontend/src/components/TokenAttributionView.jsx)
 
 ---
 
@@ -1128,6 +1128,6 @@ A prioritized breakdown of system limitations and architectural gaps:
    A live demonstration begins by running Uvicorn on port 8000 and Vite on port 5173, after which the analyst accesses the dashboard in the browser, observes the live pulsing backend health indicator, and evaluates test assets from `tests/assets/`: verifying `face_image.jpg` to display deepfake probabilities and Grad-CAM saliency; uploading `no_face_image.jpg` to demonstrate responsible governance refusal via `ANALYSIS_INCOMPLETE`; inputting benchmark propaganda and hate speech text to showcase token-level attribution pills and entropy telemetry; and submitting `audio_video.mp4` in asynchronous mode to demonstrate non-blocking background video processing with speech transcription and multi-source provenance tracking.
 
 8. **Recommended Next Phase Roadmap**:
-   - **Phase 1 (Presentation & Hygiene)**: Use [docs/current_project_context_for_gemini.md](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/docs/current_project_context_for_gemini.md) to upgrade academic presentation slides, clearly highlighting the completed React+FastAPI architecture and candidly presenting the 50.00% deepfake generalization as scientific justification for human-in-the-loop uncertainty triage.
+   - **Phase 1 (Presentation & Hygiene)**: Use [`docs/research_history/current_project_context_for_gemini.md`](current_project_context_for_gemini.md) to upgrade academic presentation slides, clearly highlighting the completed React+FastAPI architecture and candidly presenting the 50.00% deepfake generalization as scientific justification for human-in-the-loop uncertainty triage.
    - **Phase 2 (UI Polish)**: Ensure Grad-CAM overlays return directly as base64 data URLs to guarantee immediate image rendering in web browsers.
    - **Phase 3 (Model Scaling)**: Train EfficientNet-B4 on larger slices of FaceForensics++ to improve generalization, and formalize uncertainty calibration curves.

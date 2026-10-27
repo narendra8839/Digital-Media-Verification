@@ -37,7 +37,6 @@ If **FFmpeg** is not installed:
 ```bash
 git clone https://github.com/narendra8839/Digital-Media-Verification.git
 cd Digital-Media-Verification
-git checkout swaraj
 ```
 
 ### B. Create and Activate Virtual Environment
@@ -56,6 +55,9 @@ python -m venv venv
 pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
 ```
+
+> **PDF Report Generation Dependency:**
+> The image analysis report export feature uses `reportlab>=4.0.0` (included in `requirements.txt`). It performs pure Python in-memory document compilation without requiring external binaries like wkhtmltopdf, LaTeX, or headless browsers.
 
 If you plan to run tests or perform development tasks, also install development dependencies:
 ```bash
@@ -89,9 +91,14 @@ python -c "import torch; print('CUDA Available:', torch.cuda.is_available(), '| 
 
 ## 3. Model Checkpoints Installation
 
-The repository tracks configurations, architectures, and tokenizer configurations. Due to Git file size limits, production model binaries are hosted on the GitHub Releases tab under release tag [`v1.0.0`](https://github.com/narendra8839/Digital-Media-Verification/releases/tag/v1.0.0).
+The repository tracks configurations, architectures, and tokenizer configurations. Due to Git file size limits, production model binaries will be published under release tag `v1.0.0` once finalized by the repository maintainer.
 
-> **Release Availability Notice:** The release URL (`https://github.com/narendra8839/Digital-Media-Verification/releases/tag/v1.0.0`) will only be accessible and downloadable after the GitHub release has actually been published by the repository maintainer. If setting up locally prior to release publication, obtain the three `.tar.gz` archives from local storage (e.g., `D:\DMV_Data\DMV_Model_Release\`) and proceed directly to Step 3.
+> [!WARNING]
+> **Release Availability Notice:** GitHub Release `v1.0.0` has **not yet been published** on GitHub (`https://github.com/narendra8839/Digital-Media-Verification/releases/tag/v1.0.0` currently returns HTTP 404). Do not attempt to download archives from this URL until published.
+>
+> **Actual Provisioning Process:**
+> - If setting up in an environment where models have not yet been extracted, obtain the three `.tar.gz` archives from local storage (e.g., `D:\DMV_Data\DMV_Model_Release\` or team backups) and place them in the workspace root.
+> - If working with an already initialized repository checkout, verify that `models/deepfake/checkpoint_full/best_model.pt` exists and matches the verified SHA-256 hash.
 
 > **Important:** The application includes weight-validation guards. If model weights are missing, the loaders will raise a clear `FileNotFoundError` and reject inference requests rather than producing invalid predictions from uninitialized weights.
 
@@ -103,10 +110,9 @@ The repository tracks configurations, architectures, and tokenizer configuration
 | **Hate Speech** (BERT 3-class) | `hate_speech_bert_checkpoint.tar.gz` | ~388 MB | `fd4988f1492d7a6a37fed8fa1891db17d31982fcf2252c92479d4d1b6b6fa822` | `models/hate_speech/` |
 | **Propaganda** (RoBERTa 14-class) | `propaganda_roberta_exp1_checkpoint.tar.gz` | ~409 MB | `f4cc85cafcfc16a9f6cb3ffb55e06bbc2f1bdc0cba516a4e3567964b630f3cb0` | `models/propaganda/optimization/` |
 
-### Download and Extraction Instructions
+### Extraction Instructions (from Local Storage or Published Release)
 
-1. Download the three `.tar.gz` archives from:
-   [`https://github.com/narendra8839/Digital-Media-Verification/releases/tag/v1.0.0`](https://github.com/narendra8839/Digital-Media-Verification/releases/tag/v1.0.0)
+1. Place the three `.tar.gz` archives into the repository root directory.
 
 2. (Optional but recommended) Verify archive checksums:
    - **Linux/macOS:**
@@ -197,15 +203,15 @@ Run the complete backend integration and unit test suite:
 ```bash
 pytest tests/ -v
 ```
-All tests should pass (including device selection, API contracts, XAI Grad-CAM, token attribution, UQ, multimodal routing, and checkpoint validation).
+All backend suites should pass (121 passed, 1 skipped across API contracts, report generation, artifact retention, explainability, uncertainty, multimodal pipelines, label mapping, and robustness suites).
 
 ### Frontend Test Suite (Vitest)
 From the `frontend/` directory:
 ```bash
 cd frontend
-npm test
+npm test -- --run
 ```
-All 12 component and integration tests should pass.
+All 19 component and integration tests across `App.test.jsx` and `ReportDownload.test.jsx` should pass.
 
 ### Production Build Verification
 Verify that the frontend builds cleanly for production:
@@ -239,3 +245,25 @@ npm run build
   export DMV_DEVICE=cpu  # Linux/macOS
   $env:DMV_DEVICE="cpu"  # Windows PowerShell
   ```
+
+---
+
+## 8. Artifact Retention & Storage Safety Configuration
+
+The backend manages spatial explainability files (e.g., Grad-CAM heatmaps) under the managed artifact directory (`artifacts/`). To prevent disk accumulation over continuous usage, an automated background cleanup worker prunes expired artifacts.
+
+### Configuration Environment Variables
+
+| Variable | Default | Purpose |
+| :--- | :--- | :--- |
+| `DMV_ARTIFACT_TTL_HOURS` | `24.0` | Maximum lifetime of generated explanation artifacts in hours before eligible for cleanup. |
+| `DMV_ARTIFACT_CLEANUP_INTERVAL_MINUTES` | `60.0` | Execution frequency of the background pruning worker in minutes. |
+| `DMV_ARTIFACT_DIR` | `artifacts` | Relative or absolute path to the managed artifact storage directory. |
+| `DMV_ARTIFACT_CLEANUP_ENABLED` | `1` (true) | Set to `0` or `false` to disable automatic background cleanup. |
+
+### Safety Guarantees
+- **Managed Targets Only:** Only explanation overlays matching application naming patterns (`gradcam_*.png`, `*_gradcam.png`) are eligible for deletion.
+- **Protected Files:** `.gitkeep`, `.gitignore`, `README.md`, `manifest.json`, models in `models/`, reports in `reports/`, and subdirectories are strictly protected from deletion.
+- **Active-Write Buffer:** Files modified within the last 120 seconds or registered in active inference pipelines are protected from premature pruning.
+- **Traversal & Symlink Defenses:** Resolves paths against the canonical root to prevent directory traversal escapes and ignores symlinks pointing outside the storage root.
+- **Graceful UI Handling:** If an artifact expires while viewed on the frontend, an informative expiration alert is displayed advising the user to rerun verification.

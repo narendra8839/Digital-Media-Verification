@@ -1,0 +1,447 @@
+{
+  "metadata": {
+    "baseline_checkpoint": "models/deepfake/checkpoint_full/best_model.pt",
+    "baseline_sha256": "5878ae38bf5239dd9889e010fafa1d8c7da4198ac260542dc96681ede1e63234",
+    "candidate_checkpoint": "models/deepfake/checkpoint_robust_candidate/best_model.pt",
+    "candidate_sha256": "c071ff9ac178e02a479d91acff5ac4566b06a5f042946b36308b75d02f441dd0",
+    "total_videos": 100,
+    "class_distribution": {
+      "real": 50,
+      "fake": 50
+    },
+    "frames_per_video": 4
+  },
+  "condition_comparisons": {
+    "original": {
+      "baseline": {
+        "accuracy": 0.81,
+        "balanced_accuracy": 0.81,
+        "macro_f1": 0.8098288459613652,
+        "real_recall": 0.78,
+        "fake_recall": 0.84,
+        "real_f1": 0.8041237113402062,
+        "fake_f1": 0.8155339805825242,
+        "real_as_fake_fp": 11,
+        "confusion_matrix": [
+          [
+            42,
+            8
+          ],
+          [
+            11,
+            39
+          ]
+        ]
+      },
+      "candidate": {
+        "accuracy": 0.76,
+        "balanced_accuracy": 0.76,
+        "macro_f1": 0.75,
+        "real_recall": 0.96,
+        "fake_recall": 0.56,
+        "real_f1": 0.8,
+        "fake_f1": 0.7,
+        "real_as_fake_fp": 2,
+        "confusion_matrix": [
+          [
+            28,
+            22
+          ],
+          [
+            2,
+            48
+          ]
+        ]
+      },
+      "delta": {
+        "accuracy": -0.050000000000000044,
+        "balanced_accuracy": -0.050000000000000044,
+        "macro_f1": -0.059828845961365174,
+        "real_recall": 0.17999999999999994,
+        "fake_recall": -0.2799999999999999,
+        "real_as_fake_fp_reduction": 9
+      }
+    },
+    "jpeg": {
+      "baseline": {
+        "accuracy": 0.73,
+        "balanced_accuracy": 0.73,
+        "macro_f1": 0.7277951406391774,
+        "real_recall": 0.82,
+        "fake_recall": 0.64,
+        "real_f1": 0.7522935779816514,
+        "fake_f1": 0.7032967032967034,
+        "real_as_fake_fp": 9,
+        "confusion_matrix": [
+          [
+            32,
+            18
+          ],
+          [
+            9,
+            41
+          ]
+        ]
+      },
+      "candidate": {
+        "accuracy": 0.57,
+        "balanced_accuracy": 0.57,
+        "macro_f1": 0.5017958521608157,
+        "real_recall": 0.94,
+        "fake_recall": 0.2,
+        "real_f1": 0.6861313868613139,
+        "fake_f1": 0.31746031746031744,
+        "real_as_fake_fp": 3,
+        "confusion_matrix": [
+          [
+            10,
+            40
+          ],
+          [
+            3,
+            47
+          ]
+        ]
+      },
+      "delta": {
+        "accuracy": -0.16000000000000003,
+        "balanced_accuracy": -0.16000000000000003,
+        "macro_f1": -0.2259992884783617,
+        "real_recall": 0.12,
+        "fake_recall": -0.44,
+        "real_as_fake_fp_reduction": 6
+      }
+    },
+    "blur": {
+      "baseline": {
+        "accuracy": 0.56,
+        "balanced_accuracy": 0.56,
+        "macro_f1": 0.45436507936507936,
+        "real_recall": 0.12,
+        "fake_recall": 1.0,
+        "real_f1": 0.21428571428571427,
+        "fake_f1": 0.6944444444444444,
+        "real_as_fake_fp": 44,
+        "confusion_matrix": [
+          [
+            50,
+            0
+          ],
+          [
+            44,
+            6
+          ]
+        ]
+      },
+      "candidate": {
+        "accuracy": 0.61,
+        "balanced_accuracy": 0.61,
+        "macro_f1": 0.5481404240528328,
+        "real_recall": 0.24,
+        "fake_recall": 0.98,
+        "real_f1": 0.38095238095238093,
+        "fake_f1": 0.7153284671532847,
+        "real_as_fake_fp": 38,
+        "confusion_matrix": [
+          [
+            49,
+            1
+          ],
+          [
+            38,
+            12
+          ]
+        ]
+      },
+      "delta": {
+        "accuracy": 0.04999999999999993,
+        "balanced_accuracy": 0.04999999999999993,
+        "macro_f1": 0.09377534468775345,
+        "real_recall": 0.12,
+        "fake_recall": -0.020000000000000018,
+        "real_as_fake_fp_reduction": 6
+      }
+    },
+    "resize": {
+      "baseline": {
+        "accuracy": 0.56,
+        "balanced_accuracy": 0.56,
+        "macro_f1": 0.45436507936507936,
+        "real_recall": 0.12,
+        "fake_recall": 1.0,
+        "real_f1": 0.21428571428571427,
+        "fake_f1": 0.6944444444444444,
+        "real_as_fake_fp": 44,
+        "confusion_matrix": [
+          [
+            50,
+            0
+          ],
+          [
+            44,
+            6
+          ]
+        ]
+      },
+      "candidate": {
+        "accuracy": 0.72,
+        "balanced_accuracy": 0.72,
+        "macro_f1": 0.7144022847817217,
+        "real_recall": 0.58,
+        "fake_recall": 0.86,
+        "real_f1": 0.6744186046511628,
+        "fake_f1": 0.7543859649122807,
+        "real_as_fake_fp": 21,
+        "confusion_matrix": [
+          [
+            43,
+            7
+          ],
+          [
+            21,
+            29
+          ]
+        ]
+      },
+      "delta": {
+        "accuracy": 0.15999999999999992,
+        "balanced_accuracy": 0.15999999999999992,
+        "macro_f1": 0.2600372054166424,
+        "real_recall": 0.45999999999999996,
+        "fake_recall": -0.14,
+        "real_as_fake_fp_reduction": 23
+      }
+    },
+    "noise": {
+      "baseline": {
+        "accuracy": 0.67,
+        "balanced_accuracy": 0.6699999999999999,
+        "macro_f1": 0.6624040920716112,
+        "real_recall": 0.52,
+        "fake_recall": 0.82,
+        "real_f1": 0.611764705882353,
+        "fake_f1": 0.7130434782608696,
+        "real_as_fake_fp": 24,
+        "confusion_matrix": [
+          [
+            41,
+            9
+          ],
+          [
+            24,
+            26
+          ]
+        ]
+      },
+      "candidate": {
+        "accuracy": 0.66,
+        "balanced_accuracy": 0.66,
+        "macro_f1": 0.6427070197562001,
+        "real_recall": 0.88,
+        "fake_recall": 0.44,
+        "real_f1": 0.7213114754098361,
+        "fake_f1": 0.5641025641025641,
+        "real_as_fake_fp": 6,
+        "confusion_matrix": [
+          [
+            22,
+            28
+          ],
+          [
+            6,
+            44
+          ]
+        ]
+      },
+      "delta": {
+        "accuracy": -0.010000000000000009,
+        "balanced_accuracy": -0.009999999999999898,
+        "macro_f1": -0.01969707231541107,
+        "real_recall": 0.36,
+        "fake_recall": -0.37999999999999995,
+        "real_as_fake_fp_reduction": 18
+      }
+    }
+  },
+  "pairwise_sample_analysis": {
+    "original": {
+      "total_paired_videos": 100,
+      "improved_count": 9,
+      "regressed_count": 14,
+      "net_gain": -5,
+      "improved_videos": [
+        "youtube_257",
+        "youtube_190",
+        "youtube_321",
+        "youtube_352",
+        "youtube_047",
+        "youtube_012",
+        "youtube_035",
+        "youtube_306",
+        "youtube_280"
+      ],
+      "regressed_videos": [
+        "NeuralTextures_371_367",
+        "Deepfakes_367_371",
+        "NeuralTextures_953_974",
+        "Face2Face_026_012",
+        "NeuralTextures_026_012",
+        "Face2Face_623_630",
+        "Face2Face_078_955",
+        "NeuralTextures_630_623",
+        "NeuralTextures_919_015",
+        "Face2Face_367_371",
+        "NeuralTextures_012_026",
+        "Deepfakes_371_367",
+        "Face2Face_012_026",
+        "Deepfakes_953_974"
+      ]
+    },
+    "jpeg": {
+      "total_paired_videos": 100,
+      "improved_count": 6,
+      "regressed_count": 22,
+      "net_gain": -16,
+      "improved_videos": [
+        "youtube_257",
+        "youtube_352",
+        "youtube_029",
+        "youtube_306",
+        "youtube_114",
+        "youtube_102"
+      ],
+      "regressed_videos": [
+        "NeuralTextures_371_367",
+        "Deepfakes_367_371",
+        "Face2Face_371_367",
+        "Deepfakes_847_906",
+        "NeuralTextures_026_012",
+        "Face2Face_015_919",
+        "Face2Face_623_630",
+        "NeuralTextures_630_623",
+        "FaceSwap_623_630",
+        "NeuralTextures_919_015",
+        "Deepfakes_919_015",
+        "FaceSwap_367_371",
+        "FaceSwap_919_015",
+        "Face2Face_974_953",
+        "Deepfakes_906_847",
+        "Deepfakes_026_012",
+        "NeuralTextures_012_026",
+        "Deepfakes_623_630",
+        "Face2Face_919_015",
+        "Deepfakes_371_367",
+        "Face2Face_630_623",
+        "Face2Face_012_026"
+      ]
+    },
+    "blur": {
+      "total_paired_videos": 100,
+      "improved_count": 6,
+      "regressed_count": 1,
+      "net_gain": 5,
+      "improved_videos": [
+        "youtube_308",
+        "youtube_190",
+        "youtube_135",
+        "youtube_249",
+        "youtube_255",
+        "youtube_044"
+      ],
+      "regressed_videos": [
+        "NeuralTextures_078_955"
+      ]
+    },
+    "resize": {
+      "total_paired_videos": 100,
+      "improved_count": 23,
+      "regressed_count": 7,
+      "net_gain": 16,
+      "improved_videos": [
+        "youtube_138",
+        "youtube_161",
+        "youtube_347",
+        "youtube_288",
+        "youtube_358",
+        "youtube_190",
+        "youtube_158",
+        "youtube_233",
+        "youtube_036",
+        "youtube_135",
+        "youtube_319",
+        "youtube_367",
+        "youtube_078",
+        "youtube_012",
+        "youtube_048",
+        "youtube_249",
+        "youtube_029",
+        "youtube_255",
+        "youtube_142",
+        "youtube_186",
+        "youtube_278",
+        "youtube_219",
+        "youtube_000"
+      ],
+      "regressed_videos": [
+        "FaceSwap_974_953",
+        "NeuralTextures_974_953",
+        "NeuralTextures_919_015",
+        "Deepfakes_919_015",
+        "FaceSwap_953_974",
+        "Face2Face_919_015",
+        "Deepfakes_953_974"
+      ]
+    },
+    "noise": {
+      "total_paired_videos": 100,
+      "improved_count": 20,
+      "regressed_count": 21,
+      "net_gain": -1,
+      "improved_videos": [
+        "youtube_308",
+        "youtube_347",
+        "youtube_358",
+        "youtube_190",
+        "youtube_026",
+        "youtube_233",
+        "youtube_015",
+        "youtube_073",
+        "youtube_003",
+        "youtube_352",
+        "youtube_012",
+        "youtube_249",
+        "youtube_029",
+        "youtube_035",
+        "youtube_114",
+        "youtube_280",
+        "youtube_102",
+        "Face2Face_919_015",
+        "youtube_371",
+        "youtube_219"
+      ],
+      "regressed_videos": [
+        "NeuralTextures_371_367",
+        "Deepfakes_367_371",
+        "FaceSwap_974_953",
+        "Face2Face_371_367",
+        "NeuralTextures_974_953",
+        "Deepfakes_015_919",
+        "NeuralTextures_953_974",
+        "Face2Face_026_012",
+        "NeuralTextures_026_012",
+        "Deepfakes_955_078",
+        "NeuralTextures_630_623",
+        "Face2Face_367_371",
+        "Deepfakes_630_623",
+        "FaceSwap_367_371",
+        "FaceSwap_955_078",
+        "FaceSwap_919_015",
+        "NeuralTextures_623_630",
+        "NeuralTextures_012_026",
+        "Face2Face_630_623",
+        "youtube_000",
+        "Deepfakes_953_974"
+      ]
+    }
+  }
+}

@@ -1,11 +1,69 @@
-import React, { useState } from 'react';
-import { Eye, UserX, Sliders, Info, Shield } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Eye, UserX, Sliders, Info, Shield, AlertTriangle, FileDown, Loader2, AlertCircle } from 'lucide-react';
 import { UncertaintyCard } from './UncertaintyCard';
 import { VISUAL_STATUS, formatConfidence } from '../types/schemas';
-import { API_BASE_URL } from '../services/api';
+import { API_BASE_URL, downloadImageReport, triggerBlobDownload } from '../services/api';
 
-export function VisualResultView({ visual, originalImageUrl = null }) {
+export function VisualResultView({
+  visual,
+  originalImageUrl = null,
+  onDownloadReport = null,
+  isDownloading: externalIsDownloading = false,
+  downloadError: externalDownloadError = null,
+  result = null,
+  filename = null
+}) {
   const [viewMode, setViewMode] = useState('overlay'); // 'overlay' | 'side-by-side'
+  const [overlayLoadFailed, setOverlayLoadFailed] = useState(false);
+  const [internalDownloading, setInternalDownloading] = useState(false);
+  const [internalError, setInternalError] = useState(null);
+
+  const isDownloading = onDownloadReport ? externalIsDownloading : internalDownloading;
+  const downloadError = onDownloadReport ? externalDownloadError : internalError;
+
+  const handleDownloadClick = async () => {
+    if (onDownloadReport) {
+      onDownloadReport();
+      return;
+    }
+    if (internalDownloading) return;
+    setInternalDownloading(true);
+    setInternalError(null);
+    try {
+      let previewData = null;
+      if (originalImageUrl) {
+        if (originalImageUrl.startsWith('data:')) {
+          previewData = originalImageUrl;
+        } else if (originalImageUrl.startsWith('blob:')) {
+          try {
+            const resp = await fetch(originalImageUrl);
+            const blob = await resp.blob();
+            previewData = await new Promise((resolve) => {
+              const reader = new FileReader();
+              reader.onloadend = () => resolve(reader.result);
+              reader.onerror = () => resolve(null);
+              reader.readAsDataURL(blob);
+            });
+          } catch {
+            previewData = null;
+          }
+        }
+      }
+      const activeFilename = filename || 'analyzed_image.png';
+      const payloadResult = result || { visual };
+      const { blob, filename: suggestedFilename } = await downloadImageReport(
+        payloadResult,
+        activeFilename,
+        previewData
+      );
+      const fallbackDate = new Date().toISOString().slice(0, 10);
+      triggerBlobDownload(blob, suggestedFilename || `dmv-image-report-${fallbackDate}.pdf`);
+    } catch (err) {
+      setInternalError(err.message || 'Failed to download report.');
+    } finally {
+      setInternalDownloading(false);
+    }
+  };
 
   if (!visual || visual.status === VISUAL_STATUS.NOT_APPLICABLE) {
     return null;
@@ -16,9 +74,33 @@ export function VisualResultView({ visual, originalImageUrl = null }) {
     return (
       <div className="result-card">
         <div className="card-header-clean">
-          <UserX size={20} className="text-warning" />
-          <h3 className="section-title">Facial Deepfake Analysis</h3>
-          <span className="status-badge badge-warning">NO_FACE_DETECTED</span>
+          <div className="flex-center gap-2">
+            <UserX size={20} className="text-warning" />
+            <h3 className="section-title">Facial Deepfake Analysis</h3>
+          </div>
+          <div className="header-actions-group">
+            <button
+              type="button"
+              className="btn btn-secondary btn-sm download-report-btn"
+              onClick={handleDownloadClick}
+              disabled={isDownloading}
+              aria-label="Download Report"
+              data-testid="visual-download-report-btn"
+            >
+              {isDownloading ? (
+                <>
+                  <Loader2 size={13} className="spin" />
+                  <span>Preparing Report...</span>
+                </>
+              ) : (
+                <>
+                  <FileDown size={13} />
+                  <span>Download Report</span>
+                </>
+              )}
+            </button>
+            <span className="status-badge badge-warning">NO_FACE_DETECTED</span>
+          </div>
         </div>
         <div className="no-face-alert">
           <p className="no-face-text">
@@ -28,6 +110,12 @@ export function VisualResultView({ visual, originalImageUrl = null }) {
             Decision support protocol: The system strictly refrains from guessing whether faceless media is authentic or manipulated.
           </span>
         </div>
+        {downloadError && !onDownloadReport && (
+          <div className="report-error-banner" role="alert">
+            <AlertCircle size={15} className="text-danger flex-shrink-0" />
+            <span className="report-error-content">{downloadError}</span>
+          </div>
+        )}
       </div>
     );
   }
@@ -41,15 +129,51 @@ export function VisualResultView({ visual, originalImageUrl = null }) {
     : null;
   const disclaimer = explanation?.disclaimer || "Grad-CAM is a post-hoc explanatory signal and should not be interpreted as causal proof.";
 
+  useEffect(() => {
+    setOverlayLoadFailed(false);
+  }, [overlayUrl]);
+
   return (
     <div className="result-card">
       <div className="card-header-clean">
-        <Eye size={20} className="text-primary" />
-        <h3 className="section-title">Visual Deepfake Detection & Saliency (EfficientNet-B4)</h3>
-        <span className={`status-badge ${isFake ? 'badge-danger' : 'badge-success'}`}>
-          PREDICTED: {visual.prediction ? visual.prediction.toUpperCase() : 'UNKNOWN'}
-        </span>
+        <div className="flex-center gap-2">
+          <Eye size={20} className="text-primary" />
+          <h3 className="section-title">Visual Deepfake Detection & Saliency (EfficientNet-B4)</h3>
+        </div>
+        <div className="header-actions-group">
+          <button
+            type="button"
+            className="btn btn-secondary btn-sm download-report-btn"
+            onClick={handleDownloadClick}
+            disabled={isDownloading}
+            aria-label="Download Report"
+            data-testid="visual-download-report-btn"
+          >
+            {isDownloading ? (
+              <>
+                <Loader2 size={13} className="spin" />
+                <span>Preparing Report...</span>
+              </>
+            ) : (
+              <>
+                <FileDown size={13} />
+                <span>Download Report</span>
+              </>
+            )}
+          </button>
+          <span className={`status-badge ${isFake ? 'badge-danger' : 'badge-success'}`}>
+            PREDICTED: {visual.prediction ? visual.prediction.toUpperCase() : 'UNKNOWN'}
+          </span>
+        </div>
       </div>
+
+      {downloadError && !onDownloadReport && (
+        <div className="report-error-banner" role="alert" style={{ margin: '10px 0' }}>
+          <AlertCircle size={15} className="text-danger flex-shrink-0" />
+          <span className="report-error-content">{downloadError}</span>
+        </div>
+      )}
+
 
       <div className="prediction-summary-row">
         <div className="summary-stat-box">
@@ -113,8 +237,23 @@ export function VisualResultView({ visual, originalImageUrl = null }) {
               </div>
               <div className="image-panel">
                 <span className="panel-tag">Grad-CAM Heatmap Overlay</span>
-                {overlayUrl ? (
-                  <img src={overlayUrl} alt="Grad-CAM Overlay" className="panel-img" />
+                {overlayUrl && !overlayLoadFailed ? (
+                  <img
+                    src={overlayUrl}
+                    alt="Grad-CAM Overlay"
+                    className="panel-img"
+                    onError={() => setOverlayLoadFailed(true)}
+                  />
+                ) : overlayLoadFailed ? (
+                  <div className="artifact-expired-notice" role="alert">
+                    <div className="expired-notice-header">
+                      <AlertTriangle size={15} className="text-warning flex-shrink-0" />
+                      <span className="expired-notice-title">Overlay Expired</span>
+                    </div>
+                    <p className="expired-notice-desc">
+                      The spatial Grad-CAM artifact has expired (24h retention) or is no longer available on the server. Rerun verification to regenerate.
+                    </p>
+                  </div>
                 ) : (
                   <div className="heatmap-fallback-box">
                     <span className="text-muted">Heatmap dimensions: {explanation?.heatmap_shape?.join(' × ') || '7 × 7'}</span>
@@ -124,8 +263,23 @@ export function VisualResultView({ visual, originalImageUrl = null }) {
             </div>
           ) : (
             <div className="single-overlay-wrap">
-              {overlayUrl ? (
-                <img src={overlayUrl} alt="Grad-CAM Overlay" className="gradcam-img" />
+              {overlayUrl && !overlayLoadFailed ? (
+                <img
+                  src={overlayUrl}
+                  alt="Grad-CAM Overlay"
+                  className="gradcam-img"
+                  onError={() => setOverlayLoadFailed(true)}
+                />
+              ) : overlayLoadFailed ? (
+                <div className="artifact-expired-notice" role="alert">
+                  <div className="expired-notice-header">
+                    <AlertTriangle size={16} className="text-warning flex-shrink-0" />
+                    <span className="expired-notice-title">Explanation Overlay Expired</span>
+                  </div>
+                  <p className="expired-notice-desc">
+                    The spatial Grad-CAM overlay for this analysis has reached its retention limit (24 hours) or is no longer available on the server. Please rerun verification to regenerate spatial explainability overlays.
+                  </p>
+                </div>
               ) : originalImageUrl ? (
                 <div className="annotated-image-wrap">
                   <img src={originalImageUrl} alt="Input media crop" className="gradcam-img" />

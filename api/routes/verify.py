@@ -13,14 +13,16 @@ from fastapi import (
     File,
     Form,
     HTTPException,
-    BackgroundTasks
+    BackgroundTasks,
+    Response
 )
 
-from api.schemas.requests import TextVerificationRequest
+from api.schemas.requests import TextVerificationRequest, ImageReportRequest
 from api.schemas.responses import AsyncJobResponse, JobStatusResponse
 from api.dependencies.pipeline_dep import get_pipeline
 from api.utils import file_utils
 from api.utils.serialization import sanitize_for_json
+from api.utils.report_generator import generate_image_analysis_pdf, generate_download_filename
 from pipeline.multimodal_pipeline import MultimodalPipeline
 
 logger = logging.getLogger("dmv_api.verify")
@@ -112,6 +114,36 @@ async def verify_image(
         raise HTTPException(status_code=500, detail=f"Internal error during image verification: {str(exc)}")
     finally:
         file_utils.cleanup_temp_file(temp_path)
+
+
+@router.post(
+    "/image/report",
+    summary="Download Image Analysis Report",
+    description="Generate a downloadable PDF report for a completed image verification result without re-running model inference."
+)
+async def download_image_report(payload: ImageReportRequest) -> Response:
+    """Generate in-memory PDF report from existing image analysis result."""
+    logger.info(f"Generating PDF report for image: {payload.filename}")
+    try:
+        artifact_dir = os.environ.get("DMV_ARTIFACT_DIR", "artifacts").strip() or "artifacts"
+        pdf_bytes = generate_image_analysis_pdf(
+            result=payload.result,
+            filename=payload.filename,
+            image_preview=payload.image_preview,
+            artifact_dir=artifact_dir,
+        )
+        safe_dl_filename = generate_download_filename(payload.filename)
+        return Response(
+            content=pdf_bytes,
+            media_type="application/pdf",
+            headers={
+                "Content-Disposition": f'attachment; filename="{safe_dl_filename}"',
+                "Content-Type": "application/pdf",
+            }
+        )
+    except Exception as exc:
+        logger.error(f"Failed to generate image analysis report: {str(exc)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Failed to generate report: {str(exc)}")
 
 
 @router.post(

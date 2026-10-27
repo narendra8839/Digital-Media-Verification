@@ -135,4 +135,75 @@ export async function verifyMultimodal({ file = null, text = null } = {}) {
   return handleResponse(res);
 }
 
+/**
+ * Request PDF report generation for an analyzed image.
+ * Uses already produced result data; does NOT trigger model inference.
+ * Returns { blob, filename } where filename is parsed from Content-Disposition if available.
+ */
+export async function downloadImageReport(result, filename = 'analyzed-image.png', imagePreview = null) {
+  const res = await fetch(`${API_BASE_URL}/verify/image/report`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/pdf, application/json',
+    },
+    body: JSON.stringify({
+      result,
+      filename,
+      image_preview: imagePreview,
+    }),
+  });
+
+  if (!res.ok) {
+    let errorDetail = `Failed to generate report (status ${res.status})`;
+    try {
+      const errJson = await res.json();
+      if (errJson.detail) {
+        errorDetail = typeof errJson.detail === 'string' ? errJson.detail : JSON.stringify(errJson.detail);
+      } else if (errJson.error) {
+        errorDetail = errJson.error;
+      }
+    } catch {
+      // Non-JSON response
+    }
+    const error = new Error(errorDetail);
+    error.status = res.status;
+    throw error;
+  }
+
+  // Extract content-disposition filename if present
+  let downloadFilename = null;
+  const disposition = res.headers.get('content-disposition');
+  if (disposition && disposition.includes('filename=')) {
+    const match = disposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+    if (match && match[1]) {
+      downloadFilename = match[1].replace(/['"]/g, '').trim();
+    }
+  }
+
+  const blob = await res.blob();
+  return { blob, filename: downloadFilename };
+}
+
+/**
+ * Triggers a browser download of a given Blob.
+ */
+export function triggerBlobDownload(blob, defaultFilename = 'dmv-image-report.pdf') {
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.style.display = 'none';
+  a.href = url;
+  a.download = defaultFilename;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => {
+    try {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch {
+      // Cleanup fallback
+    }
+  }, 200);
+}
+
 export { API_BASE_URL };

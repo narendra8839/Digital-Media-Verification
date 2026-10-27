@@ -1,0 +1,847 @@
+{
+  "metadata": {
+    "evaluation_timestamp": "2026-10-27T09:54:48.116052",
+    "baseline_checkpoint": "models/deepfake/checkpoint_full/best_model.pt",
+    "baseline_sha256": "5878ae38bf5239dd9889e010fafa1d8c7da4198ac260542dc96681ede1e63234",
+    "baseline_fake_class_idx": 1,
+    "candidate_checkpoint": "models/deepfake/checkpoint_robust_v3a/best_model.pt",
+    "candidate_sha256": "5f8057f3d54759c2c71163e6d4c60cf6bf303dae611739491e02e1ae8452c41d",
+    "candidate_fake_class_idx": 0,
+    "test_manifest": "data/full_splits/deepfake_test.json",
+    "test_manifest_sha256": "a9124b1792433725d5f54d074cd0136a9a4a528db092f15080a673588a135d41",
+    "total_videos_evaluated": 100,
+    "class_distribution": {
+      "real": 50,
+      "fake": 50
+    },
+    "offset_real": 0,
+    "offset_fake": 0,
+    "evaluated_video_ids": [
+      "youtube_000",
+      "youtube_003",
+      "youtube_012",
+      "youtube_015",
+      "youtube_024",
+      "youtube_026",
+      "youtube_029",
+      "youtube_035",
+      "youtube_036",
+      "youtube_044",
+      "youtube_047",
+      "youtube_048",
+      "youtube_073",
+      "youtube_078",
+      "youtube_102",
+      "youtube_114",
+      "youtube_128",
+      "youtube_135",
+      "youtube_138",
+      "youtube_141",
+      "youtube_142",
+      "youtube_154",
+      "youtube_158",
+      "youtube_161",
+      "youtube_169",
+      "youtube_170",
+      "youtube_176",
+      "youtube_186",
+      "youtube_190",
+      "youtube_214",
+      "youtube_219",
+      "youtube_220",
+      "youtube_227",
+      "youtube_233",
+      "youtube_249",
+      "youtube_255",
+      "youtube_257",
+      "youtube_278",
+      "youtube_280",
+      "youtube_288",
+      "youtube_306",
+      "youtube_308",
+      "youtube_314",
+      "youtube_319",
+      "youtube_321",
+      "youtube_347",
+      "youtube_352",
+      "youtube_358",
+      "youtube_367",
+      "youtube_371",
+      "Deepfakes_953_974",
+      "Deepfakes_974_953",
+      "Face2Face_953_974",
+      "Face2Face_974_953",
+      "FaceSwap_953_974",
+      "FaceSwap_974_953",
+      "NeuralTextures_953_974",
+      "NeuralTextures_974_953",
+      "Deepfakes_012_026",
+      "Deepfakes_026_012",
+      "Face2Face_012_026",
+      "Face2Face_026_012",
+      "FaceSwap_012_026",
+      "FaceSwap_026_012",
+      "NeuralTextures_012_026",
+      "NeuralTextures_026_012",
+      "Deepfakes_078_955",
+      "Deepfakes_955_078",
+      "Face2Face_078_955",
+      "Face2Face_955_078",
+      "FaceSwap_078_955",
+      "FaceSwap_955_078",
+      "NeuralTextures_078_955",
+      "NeuralTextures_955_078",
+      "Deepfakes_623_630",
+      "Deepfakes_630_623",
+      "Face2Face_623_630",
+      "Face2Face_630_623",
+      "FaceSwap_623_630",
+      "FaceSwap_630_623",
+      "NeuralTextures_623_630",
+      "NeuralTextures_630_623",
+      "Deepfakes_919_015",
+      "Deepfakes_015_919",
+      "Face2Face_919_015",
+      "Face2Face_015_919",
+      "FaceSwap_919_015",
+      "FaceSwap_015_919",
+      "NeuralTextures_919_015",
+      "NeuralTextures_015_919",
+      "Deepfakes_367_371",
+      "Deepfakes_371_367",
+      "Face2Face_367_371",
+      "Face2Face_371_367",
+      "FaceSwap_367_371",
+      "FaceSwap_371_367",
+      "NeuralTextures_367_371",
+      "NeuralTextures_371_367",
+      "Deepfakes_847_906",
+      "Deepfakes_906_847"
+    ],
+    "sample_alignment_verified": true
+  },
+  "baseline": {
+    "blur_1": {
+      "description": "radius=1 (mild)",
+      "sample_count": 100,
+      "accuracy": 0.7,
+      "balanced_accuracy": 0.7,
+      "macro_f1": 0.6816638370118846,
+      "per_class": {
+        "real": {
+          "precision": 0.8846153846153846,
+          "recall": 0.46,
+          "f1": 0.6052631578947368
+        },
+        "fake": {
+          "precision": 0.6351351351351351,
+          "recall": 0.94,
+          "f1": 0.7580645161290323
+        }
+      },
+      "confusion_matrix": [
+        [
+          47,
+          3
+        ],
+        [
+          27,
+          23
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "blur_2": {
+      "description": "radius=2 (moderate)",
+      "sample_count": 100,
+      "accuracy": 0.56,
+      "balanced_accuracy": 0.56,
+      "macro_f1": 0.45436507936507936,
+      "per_class": {
+        "real": {
+          "precision": 1.0,
+          "recall": 0.12,
+          "f1": 0.21428571428571427
+        },
+        "fake": {
+          "precision": 0.5319148936170213,
+          "recall": 1.0,
+          "f1": 0.6944444444444444
+        }
+      },
+      "confusion_matrix": [
+        [
+          50,
+          0
+        ],
+        [
+          44,
+          6
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "blur_3": {
+      "description": "radius=3 (severe)",
+      "sample_count": 100,
+      "accuracy": 0.53,
+      "balanced_accuracy": 0.53,
+      "macro_f1": 0.39673982800667434,
+      "per_class": {
+        "real": {
+          "precision": 1.0,
+          "recall": 0.06,
+          "f1": 0.11320754716981132
+        },
+        "fake": {
+          "precision": 0.5154639175257731,
+          "recall": 1.0,
+          "f1": 0.6802721088435374
+        }
+      },
+      "confusion_matrix": [
+        [
+          50,
+          0
+        ],
+        [
+          47,
+          3
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "resize_2": {
+      "description": "2x downscale (mild)",
+      "sample_count": 100,
+      "accuracy": 0.61,
+      "balanced_accuracy": 0.61,
+      "macro_f1": 0.5400400990682863,
+      "per_class": {
+        "real": {
+          "precision": 1.0,
+          "recall": 0.22,
+          "f1": 0.36065573770491804
+        },
+        "fake": {
+          "precision": 0.5617977528089888,
+          "recall": 1.0,
+          "f1": 0.7194244604316546
+        }
+      },
+      "confusion_matrix": [
+        [
+          50,
+          0
+        ],
+        [
+          39,
+          11
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "resize_4": {
+      "description": "4x downscale (moderate)",
+      "sample_count": 100,
+      "accuracy": 0.56,
+      "balanced_accuracy": 0.56,
+      "macro_f1": 0.45436507936507936,
+      "per_class": {
+        "real": {
+          "precision": 1.0,
+          "recall": 0.12,
+          "f1": 0.21428571428571427
+        },
+        "fake": {
+          "precision": 0.5319148936170213,
+          "recall": 1.0,
+          "f1": 0.6944444444444444
+        }
+      },
+      "confusion_matrix": [
+        [
+          50,
+          0
+        ],
+        [
+          44,
+          6
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "resize_8": {
+      "description": "8x downscale (severe)",
+      "sample_count": 100,
+      "accuracy": 0.52,
+      "balanced_accuracy": 0.52,
+      "macro_f1": 0.39117199391172,
+      "per_class": {
+        "real": {
+          "precision": 0.75,
+          "recall": 0.06,
+          "f1": 0.1111111111111111
+        },
+        "fake": {
+          "precision": 0.5104166666666666,
+          "recall": 0.98,
+          "f1": 0.6712328767123288
+        }
+      },
+      "confusion_matrix": [
+        [
+          49,
+          1
+        ],
+        [
+          47,
+          3
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "jpeg_70": {
+      "description": "Q=70 (mild)",
+      "sample_count": 100,
+      "accuracy": 0.75,
+      "balanced_accuracy": 0.75,
+      "macro_f1": 0.7497747973175859,
+      "per_class": {
+        "real": {
+          "precision": 0.7659574468085106,
+          "recall": 0.72,
+          "f1": 0.7422680412371134
+        },
+        "fake": {
+          "precision": 0.7358490566037735,
+          "recall": 0.78,
+          "f1": 0.7572815533980582
+        }
+      },
+      "confusion_matrix": [
+        [
+          39,
+          11
+        ],
+        [
+          14,
+          36
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "jpeg_50": {
+      "description": "Q=50 (moderate)",
+      "sample_count": 100,
+      "accuracy": 0.73,
+      "balanced_accuracy": 0.73,
+      "macro_f1": 0.72997299729973,
+      "per_class": {
+        "real": {
+          "precision": 0.7254901960784313,
+          "recall": 0.74,
+          "f1": 0.7326732673267327
+        },
+        "fake": {
+          "precision": 0.7346938775510204,
+          "recall": 0.72,
+          "f1": 0.7272727272727273
+        }
+      },
+      "confusion_matrix": [
+        [
+          36,
+          14
+        ],
+        [
+          13,
+          37
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "jpeg_30": {
+      "description": "Q=30 (severe)",
+      "sample_count": 100,
+      "accuracy": 0.73,
+      "balanced_accuracy": 0.73,
+      "macro_f1": 0.7277951406391774,
+      "per_class": {
+        "real": {
+          "precision": 0.6949152542372882,
+          "recall": 0.82,
+          "f1": 0.7522935779816514
+        },
+        "fake": {
+          "precision": 0.7804878048780488,
+          "recall": 0.64,
+          "f1": 0.7032967032967034
+        }
+      },
+      "confusion_matrix": [
+        [
+          32,
+          18
+        ],
+        [
+          9,
+          41
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "noise_5": {
+      "description": "sigma=5 (mild)",
+      "sample_count": 100,
+      "accuracy": 0.74,
+      "balanced_accuracy": 0.74,
+      "macro_f1": 0.7395833333333333,
+      "per_class": {
+        "real": {
+          "precision": 0.7222222222222222,
+          "recall": 0.78,
+          "f1": 0.75
+        },
+        "fake": {
+          "precision": 0.7608695652173914,
+          "recall": 0.7,
+          "f1": 0.7291666666666666
+        }
+      },
+      "confusion_matrix": [
+        [
+          35,
+          15
+        ],
+        [
+          11,
+          39
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "noise_10": {
+      "description": "sigma=10 (moderate)",
+      "sample_count": 100,
+      "accuracy": 0.67,
+      "balanced_accuracy": 0.6699999999999999,
+      "macro_f1": 0.6673051718923279,
+      "per_class": {
+        "real": {
+          "precision": 0.6440677966101694,
+          "recall": 0.76,
+          "f1": 0.6972477064220184
+        },
+        "fake": {
+          "precision": 0.7073170731707317,
+          "recall": 0.58,
+          "f1": 0.6373626373626373
+        }
+      },
+      "confusion_matrix": [
+        [
+          29,
+          21
+        ],
+        [
+          12,
+          38
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "noise_15": {
+      "description": "sigma=15 (severe)",
+      "sample_count": 100,
+      "accuracy": 0.67,
+      "balanced_accuracy": 0.6699999999999999,
+      "macro_f1": 0.6624040920716112,
+      "per_class": {
+        "real": {
+          "precision": 0.7428571428571429,
+          "recall": 0.52,
+          "f1": 0.611764705882353
+        },
+        "fake": {
+          "precision": 0.6307692307692307,
+          "recall": 0.82,
+          "f1": 0.7130434782608696
+        }
+      },
+      "confusion_matrix": [
+        [
+          41,
+          9
+        ],
+        [
+          24,
+          26
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    }
+  },
+  "candidate": {
+    "blur_1": {
+      "description": "radius=1 (mild)",
+      "sample_count": 100,
+      "accuracy": 0.79,
+      "balanced_accuracy": 0.79,
+      "macro_f1": 0.7821350762527233,
+      "per_class": {
+        "real": {
+          "precision": 0.967741935483871,
+          "recall": 0.6,
+          "f1": 0.7407407407407407
+        },
+        "fake": {
+          "precision": 0.7101449275362319,
+          "recall": 0.98,
+          "f1": 0.8235294117647058
+        }
+      },
+      "confusion_matrix": [
+        [
+          49,
+          1
+        ],
+        [
+          20,
+          30
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "blur_2": {
+      "description": "radius=2 (moderate)",
+      "sample_count": 100,
+      "accuracy": 0.63,
+      "balanced_accuracy": 0.63,
+      "macro_f1": 0.5783475783475784,
+      "per_class": {
+        "real": {
+          "precision": 0.9333333333333333,
+          "recall": 0.28,
+          "f1": 0.4307692307692308
+        },
+        "fake": {
+          "precision": 0.5764705882352941,
+          "recall": 0.98,
+          "f1": 0.725925925925926
+        }
+      },
+      "confusion_matrix": [
+        [
+          49,
+          1
+        ],
+        [
+          36,
+          14
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "blur_3": {
+      "description": "radius=3 (severe)",
+      "sample_count": 100,
+      "accuracy": 0.45,
+      "balanced_accuracy": 0.45,
+      "macro_f1": 0.44862155388471175,
+      "per_class": {
+        "real": {
+          "precision": 0.45454545454545453,
+          "recall": 0.5,
+          "f1": 0.47619047619047616
+        },
+        "fake": {
+          "precision": 0.4444444444444444,
+          "recall": 0.4,
+          "f1": 0.42105263157894735
+        }
+      },
+      "confusion_matrix": [
+        [
+          20,
+          30
+        ],
+        [
+          25,
+          25
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "resize_2": {
+      "description": "2x downscale (mild)",
+      "sample_count": 100,
+      "accuracy": 0.67,
+      "balanced_accuracy": 0.67,
+      "macro_f1": 0.6296711929076422,
+      "per_class": {
+        "real": {
+          "precision": 1.0,
+          "recall": 0.34,
+          "f1": 0.5074626865671642
+        },
+        "fake": {
+          "precision": 0.6024096385542169,
+          "recall": 1.0,
+          "f1": 0.7518796992481203
+        }
+      },
+      "confusion_matrix": [
+        [
+          50,
+          0
+        ],
+        [
+          33,
+          17
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "resize_4": {
+      "description": "4x downscale (moderate)",
+      "sample_count": 100,
+      "accuracy": 0.58,
+      "balanced_accuracy": 0.5800000000000001,
+      "macro_f1": 0.5798319327731092,
+      "per_class": {
+        "real": {
+          "precision": 0.5769230769230769,
+          "recall": 0.6,
+          "f1": 0.5882352941176471
+        },
+        "fake": {
+          "precision": 0.5833333333333334,
+          "recall": 0.56,
+          "f1": 0.5714285714285714
+        }
+      },
+      "confusion_matrix": [
+        [
+          28,
+          22
+        ],
+        [
+          20,
+          30
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "resize_8": {
+      "description": "8x downscale (severe)",
+      "sample_count": 100,
+      "accuracy": 0.51,
+      "balanced_accuracy": 0.51,
+      "macro_f1": 0.43227899432278993,
+      "per_class": {
+        "real": {
+          "precision": 0.5057471264367817,
+          "recall": 0.88,
+          "f1": 0.6423357664233577
+        },
+        "fake": {
+          "precision": 0.5384615384615384,
+          "recall": 0.14,
+          "f1": 0.2222222222222222
+        }
+      },
+      "confusion_matrix": [
+        [
+          7,
+          43
+        ],
+        [
+          6,
+          44
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "jpeg_70": {
+      "description": "Q=70 (mild)",
+      "sample_count": 100,
+      "accuracy": 0.8,
+      "balanced_accuracy": 0.8,
+      "macro_f1": 0.8,
+      "per_class": {
+        "real": {
+          "precision": 0.8,
+          "recall": 0.8,
+          "f1": 0.8
+        },
+        "fake": {
+          "precision": 0.8,
+          "recall": 0.8,
+          "f1": 0.8
+        }
+      },
+      "confusion_matrix": [
+        [
+          40,
+          10
+        ],
+        [
+          10,
+          40
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "jpeg_50": {
+      "description": "Q=50 (moderate)",
+      "sample_count": 100,
+      "accuracy": 0.73,
+      "balanced_accuracy": 0.73,
+      "macro_f1": 0.7266929851199515,
+      "per_class": {
+        "real": {
+          "precision": 0.6885245901639344,
+          "recall": 0.84,
+          "f1": 0.7567567567567568
+        },
+        "fake": {
+          "precision": 0.7948717948717948,
+          "recall": 0.62,
+          "f1": 0.6966292134831461
+        }
+      },
+      "confusion_matrix": [
+        [
+          31,
+          19
+        ],
+        [
+          8,
+          42
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "jpeg_30": {
+      "description": "Q=30 (severe)",
+      "sample_count": 100,
+      "accuracy": 0.68,
+      "balanced_accuracy": 0.6799999999999999,
+      "macro_f1": 0.6567996567996568,
+      "per_class": {
+        "real": {
+          "precision": 0.618421052631579,
+          "recall": 0.94,
+          "f1": 0.746031746031746
+        },
+        "fake": {
+          "precision": 0.875,
+          "recall": 0.42,
+          "f1": 0.5675675675675675
+        }
+      },
+      "confusion_matrix": [
+        [
+          21,
+          29
+        ],
+        [
+          3,
+          47
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "noise_5": {
+      "description": "sigma=5 (mild)",
+      "sample_count": 100,
+      "accuracy": 0.75,
+      "balanced_accuracy": 0.75,
+      "macro_f1": 0.7406369955389562,
+      "per_class": {
+        "real": {
+          "precision": 0.6811594202898551,
+          "recall": 0.94,
+          "f1": 0.7899159663865546
+        },
+        "fake": {
+          "precision": 0.9032258064516129,
+          "recall": 0.56,
+          "f1": 0.691358024691358
+        }
+      },
+      "confusion_matrix": [
+        [
+          28,
+          22
+        ],
+        [
+          3,
+          47
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "noise_10": {
+      "description": "sigma=10 (moderate)",
+      "sample_count": 100,
+      "accuracy": 0.72,
+      "balanced_accuracy": 0.72,
+      "macro_f1": 0.7106242248863166,
+      "per_class": {
+        "real": {
+          "precision": 0.6617647058823529,
+          "recall": 0.9,
+          "f1": 0.7627118644067796
+        },
+        "fake": {
+          "precision": 0.84375,
+          "recall": 0.54,
+          "f1": 0.6585365853658537
+        }
+      },
+      "confusion_matrix": [
+        [
+          27,
+          23
+        ],
+        [
+          5,
+          45
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    },
+    "noise_15": {
+      "description": "sigma=15 (severe)",
+      "sample_count": 100,
+      "accuracy": 0.72,
+      "balanced_accuracy": 0.72,
+      "macro_f1": 0.7083333333333334,
+      "per_class": {
+        "real": {
+          "precision": 0.6571428571428571,
+          "recall": 0.92,
+          "f1": 0.7666666666666667
+        },
+        "fake": {
+          "precision": 0.8666666666666667,
+          "recall": 0.52,
+          "f1": 0.65
+        }
+      },
+      "confusion_matrix": [
+        [
+          26,
+          24
+        ],
+        [
+          4,
+          46
+        ]
+      ],
+      "confusion_matrix_doc": "Rows: True [Fake, Real]; Columns: Pred [Fake, Real]"
+    }
+  }
+}

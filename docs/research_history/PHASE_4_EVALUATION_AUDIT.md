@@ -27,7 +27,7 @@
 ### 2.1. Deepfake Test Set: Complete Re-Evaluation
 - **Initial Discrepancy**: Slicing `data[:100]` evaluated only the first 100 entries of `deepfake_test.json`. Because Real videos precede Fake videos in the manifest, this subset contained 100 Real videos and 0 Fake videos.
 - **Resolution Executed**:
-  - Script: [`scripts/phase4_evaluate.py`](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/scripts/phase4_evaluate.py) was updated to process all entries in `data/full_splits/deepfake_test.json`.
+  - Script: [`scripts/phase4_evaluate.py`](../../scripts/phase4_evaluate.py) was updated to process all entries in `data/full_splits/deepfake_test.json`.
   - Checkpoint: `models/deepfake/checkpoint_full/best_model.pt` (no retraining).
   - Hardware: NVIDIA RTX 4050 Laptop GPU (CUDA).
   - Evaluated: **700 / 700 videos** (140 Real, 560 Fake).
@@ -52,7 +52,7 @@
 ### 2.2. Deepfake Robustness: Balanced Re-Evaluation
 - **Initial Discrepancy**: Evaluated only `data[:20]` (20 Real, 0 Fake) with 2 frames/video, giving an anomalous baseline accuracy of 0.6500.
 - **Resolution Executed**:
-  - Script: [`scripts/phase4_robustness.py`](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/scripts/phase4_robustness.py) was rewritten to select a deterministic, balanced subset: the first 50 Real videos + the first 50 Fake videos from `deepfake_test.json` ($N=100$ videos).
+  - Script: [`scripts/phase4_robustness.py`](../../scripts/phase4_robustness.py) was rewritten to select a deterministic, balanced subset: the first 50 Real videos + the first 50 Fake videos from `deepfake_test.json` ($N=100$ videos).
   - Sampling Depth: **4 frames per video** across all conditions.
   - Video Provenance: Videos are decoded once per trial, applying degradation conditions to the **exact same frames**.
 - **Verified Balanced Robustness Table ($N=100$)**:

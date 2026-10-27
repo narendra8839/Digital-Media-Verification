@@ -10,7 +10,7 @@
 
 Before beginning the demonstration, ensure that:
 1. The virtual environment is active.
-2. The working directory is set to the repository root on branch `swaraj`.
+2. The working directory is set to the repository root.
 3. Pre-prepared evaluation assets in `tests/assets/` are ready:
    - `tests/assets/face_image.jpg` (Image with detectable facial landmarks)
    - `tests/assets/no_face_image.jpg` (Image without human faces / scenery)
@@ -82,9 +82,23 @@ npm run dev
   - Read the core ethical principle aloud:
     > *"This system provides decision support and does not establish objective truth or automatically take punitive action."*
 
+### Step 10: Download Image Analysis PDF Report
+- Direct attention to the **Download Report** button located in the dashboard action bar and in the Visual Deepfake Detection card header.
+- Click **Download Report**:
+  - Point out the responsive state transition: the button displays an animated spinner and reads *"Preparing Report..."* while the document compiles.
+  - Explain the architecture: the report is generated entirely in-memory from the already produced verification results. **Model inference is not rerun**, preserving server capacity and computational determinism.
+- Open the downloaded PDF (`dmv-image-report-<filename>-YYYY-MM-DD.pdf`) and walk the examiner through the report sections:
+  1. **Header & Metadata:** Project title, UTC timestamp, sanitized input filename, modality, and end-to-end execution latency.
+  2. **Executive Summary & Human Oversight:** Primary assessment, aggregate confidence, and review status (`REVIEW_RECOMMENDED` or `CONFIDENT_PREDICTION`).
+  3. **Visual Media & Saliency:** Original input thumbnail side-by-side with the Grad-CAM convolutional saliency overlay map (`features[-1]`).
+  4. **Deepfake Model Prediction:** Classification (`Fake` vs `Real`), raw softmax class probabilities, and prediction confidence.
+  5. **Uncertainty Quantification:** $T = 20$ Monte Carlo Dropout metrics ($\sigma^2$, $\sigma$, Shannon entropy $H$), elevation flag, and justification.
+  6. **Extracted Text & NLP Analysis:** OCR-extracted text segments (if detected on the image) and corresponding propaganda rhetoric / hate speech predictions.
+  7. **Governance & Responsible AI:** Operational recommendations, human oversight warnings, and the mandatory ethical limitations statement.
+
 ---
 
-### Step 10: Demonstrate Text Verification
+### Step 11: Demonstrate Text Verification
 - Click **Verify Another Media** to return to the workspace.
 - Switch to the **Text Verification** tab.
 - Click the demo sample chip: **Propaganda Rhetoric**.
@@ -92,7 +106,7 @@ npm run dev
   > *"The mainstream fake news media will never tell you the truth about this dangerous deep-state conspiracy."*
 - Click **Verify Text**.
 
-### Step 11: Demonstrate Token-Level Feature Attribution
+### Step 12: Demonstrate Token-Level Feature Attribution
 - Point out the **Propaganda Technique Detection** card (RoBERTa-base, SemEval-2020 14-class benchmark):
   - Displays predicted technique (e.g., `Loaded_Language`).
 - Inspect the **Attributed Sequence** visualization:
@@ -104,7 +118,7 @@ npm run dev
 
 ---
 
-### Step 12: Demonstrate Video Verification (Multimodal Pipeline)
+### Step 13: Demonstrate Video Verification (Multimodal Pipeline)
 - Click **Verify Another Media**.
 - Select the **Video Verification** tab.
 - Select `tests/assets/audio_video.mp4`.
@@ -113,27 +127,27 @@ npm run dev
 - Click **Verify Video**.
 - Show the animated processing spinner with job ID tracking (`QUEUED` $\rightarrow$ `PROCESSING` $\rightarrow$ `COMPLETED`).
 
-### Step 13: Show Optical Character Recognition (OCR)
+### Step 14: Show Optical Character Recognition (OCR)
 - Scroll down to the **Extracted Text Provenance** section.
 - Identify the **SOURCE: OCR** panel (EasyOCR CRAFT detector).
 - Show detected on-screen text segments with frame timestamps and recognition confidence scores.
 
-### Step 14: Show Speech Recognition (ASR)
+### Step 15: Show Speech Recognition (ASR)
 - In the adjacent panel, identify **SOURCE: ASR** (OpenAI Whisper-base).
 - Show the extracted audio transcription with source attribution to the 16 kHz audio waveform.
 - Point out the clear visual separation between OCR and ASR, preventing provenance confusion.
 
-### Step 15: Show Downstream Multimodal NLP Outputs
+### Step 16: Show Downstream Multimodal NLP Outputs
 - Show how aggregated OCR and ASR text was forwarded to the RoBERTa and BERT classifiers.
 - Show joint predictions for rhetorical techniques and toxicity.
 
-### Step 16: Demonstrate Safe Faceless Handling (Governance Consistency)
+### Step 17: Demonstrate Safe Faceless Handling (Governance Consistency)
 - Run a quick test with `tests/assets/no_face_image.jpg`:
   - Show that visual status displays `NO_FACE_DETECTED`.
   - Point out that the governance panel displays `ANALYSIS_INCOMPLETE` instead of falsely reporting `CONFIDENT_PREDICTION`.
   - Explain this key Responsible AI design decision: the system refuses to guess real/fake when facial landmarks are absent.
 
-### Step 17: Inspect Audit & Reproducibility Details
+### Step 18: Inspect Audit & Reproducibility Details
 - Click the collapsible **Reproducibility & Audit Trail** accordion at the bottom of the dashboard:
   - Timestamp (UTC)
   - Modality & filename

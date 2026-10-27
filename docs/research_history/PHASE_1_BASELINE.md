@@ -37,8 +37,8 @@
   - Retained all legacy scaffold files safely without deletion.
 
 ## Environment
-- **Python Version:** 3.14.2 (`C:\Program Files\Python314\python.exe`)
-- **PyTorch Version:** 2.14.0+cpu (`C:\Users\Swaraj Shedge\AppData\Roaming\Python\Python314\site-packages`)
+- **Python Version:** 3.14.2 (`python.exe`)
+- **PyTorch Version:** 2.14.0+cpu (`%APPDATA%\Python\Python314\site-packages`)
 - **CUDA Availability in PyTorch:** `False` (`torch.cuda.is_available() == False`)
 - **CUDA Version in PyTorch:** `None`
 - **GPU Count in PyTorch:** `0`
