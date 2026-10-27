@@ -14,6 +14,8 @@ The production checkpoint evaluated across the full benchmark and deployed in th
 
 > [!IMPORTANT]
 > The production checkpoint has remained strictly byte-for-byte unchanged across all research audits and optimization phases. No checkpoint replacement or fine-tuning was performed.
+>
+> **Release Availability Notice:** GitHub Release `v1.0.0` is currently pending maintainer publication and is not downloadable via GitHub URL. Checkpoint binaries are provisioned directly from local/staging archive storage or verified locally against the SHA-256 hashes below.
 
 ### Associated NLP & Auxiliary Models
 - **Propaganda Detector**: Fine-tuned RoBERTa-base (`roberta-base`) on SemEval-2020 Task 11 (14-technique multi-label span classifier). Checkpoint directory: `models/propaganda/checkpoint/` or dynamically provisioned via Hugging Face Hub cache.

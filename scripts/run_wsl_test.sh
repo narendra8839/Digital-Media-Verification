@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-cd "/mnt/c/Users/Swaraj Shedge/Desktop/College/TY/ERA/Digital Media Verification/Digital-Media-Verification"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$SCRIPT_DIR"
 ~/venvs/dmv-gpu/bin/python scripts/test_wsl_gpu_inference.py

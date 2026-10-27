@@ -98,16 +98,22 @@ cd ..
 
 ## 4. Regenerating Publication Figures
 
-To regenerate all publication-quality vector (`svg/`) and raster (`png/`) figures from raw evaluation tables:
+To regenerate all publication-quality vector (`svg/`) and raster (`png/`) figures and export structured data tables:
 
 ```bash
 python scripts/generate_research_figures.py
 ```
 
-- **Input:** `research/results/tables/research_figures_data.csv`
-- **Outputs:**
-  - `research/figures/png/fig_[a-f]_*.png` (300 DPI)
-  - `research/figures/svg/fig_[a-f]_*.svg` (Scalable vector graphics)
+- **Grounding / Data Source:** Embedded verified empirical benchmark metrics and distortion matrices (from `phase4_results.json`, `baseline_robustness.json`, `docs/research_history/PHASE_4_EVALUATION.md`, and `docs/research_history/PHASE_5_MODEL_OPTIMIZATION.md`).
+- **Outputs Generated:**
+  - **Canonical Research Artifacts:**
+    - `research/figures/png/fig_[a-f]_*.png` (300 DPI rasters for manuscript drafts)
+    - `research/figures/svg/fig_[a-f]_*.svg` (Scalable vector graphics)
+    - `research/results/tables/research_figures_data.csv` (Raw tabular data)
+    - `research/results/tables/research_figures_data.md` (Structured markdown documentation)
+  - **Engineering Compatibility Artifacts:**
+    - `reports/figures/fig_[a-f]_*.{png,svg}` (Flat directory for engineering reports)
+    - `reports/research_figures_data.{csv,md}`
 
 ---
 

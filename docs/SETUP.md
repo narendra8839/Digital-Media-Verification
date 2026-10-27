@@ -91,9 +91,14 @@ python -c "import torch; print('CUDA Available:', torch.cuda.is_available(), '| 
 
 ## 3. Model Checkpoints Installation
 
-The repository tracks configurations, architectures, and tokenizer configurations. Due to Git file size limits, production model binaries are hosted on the GitHub Releases tab under release tag [`v1.0.0`](https://github.com/narendra8839/Digital-Media-Verification/releases/tag/v1.0.0).
+The repository tracks configurations, architectures, and tokenizer configurations. Due to Git file size limits, production model binaries will be published under release tag `v1.0.0` once finalized by the repository maintainer.
 
-> **Release Availability Notice:** The release URL (`https://github.com/narendra8839/Digital-Media-Verification/releases/tag/v1.0.0`) will only be accessible and downloadable after the GitHub release has actually been published by the repository maintainer. If setting up locally prior to release publication, obtain the three `.tar.gz` archives from local storage (e.g., `D:\DMV_Data\DMV_Model_Release\`) and proceed directly to Step 3.
+> [!WARNING]
+> **Release Availability Notice:** GitHub Release `v1.0.0` has **not yet been published** on GitHub (`https://github.com/narendra8839/Digital-Media-Verification/releases/tag/v1.0.0` currently returns HTTP 404). Do not attempt to download archives from this URL until published.
+>
+> **Actual Provisioning Process:**
+> - If setting up in an environment where models have not yet been extracted, obtain the three `.tar.gz` archives from local storage (e.g., `D:\DMV_Data\DMV_Model_Release\` or team backups) and place them in the workspace root.
+> - If working with an already initialized repository checkout, verify that `models/deepfake/checkpoint_full/best_model.pt` exists and matches the verified SHA-256 hash.
 
 > **Important:** The application includes weight-validation guards. If model weights are missing, the loaders will raise a clear `FileNotFoundError` and reject inference requests rather than producing invalid predictions from uninitialized weights.
 
@@ -105,10 +110,9 @@ The repository tracks configurations, architectures, and tokenizer configuration
 | **Hate Speech** (BERT 3-class) | `hate_speech_bert_checkpoint.tar.gz` | ~388 MB | `fd4988f1492d7a6a37fed8fa1891db17d31982fcf2252c92479d4d1b6b6fa822` | `models/hate_speech/` |
 | **Propaganda** (RoBERTa 14-class) | `propaganda_roberta_exp1_checkpoint.tar.gz` | ~409 MB | `f4cc85cafcfc16a9f6cb3ffb55e06bbc2f1bdc0cba516a4e3567964b630f3cb0` | `models/propaganda/optimization/` |
 
-### Download and Extraction Instructions
+### Extraction Instructions (from Local Storage or Published Release)
 
-1. Download the three `.tar.gz` archives from:
-   [`https://github.com/narendra8839/Digital-Media-Verification/releases/tag/v1.0.0`](https://github.com/narendra8839/Digital-Media-Verification/releases/tag/v1.0.0)
+1. Place the three `.tar.gz` archives into the repository root directory.
 
 2. (Optional but recommended) Verify archive checksums:
    - **Linux/macOS:**

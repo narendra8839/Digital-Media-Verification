@@ -10,6 +10,7 @@ This directory contains publication-quality plots and vector graphics generated 
 6. **`fig_f_dataset_distributions.{png,svg}`**: Ground-truth class distributions across evaluated benchmark splits.
 
 ### Provenance and Reproducibility
-- Data source: `reports/research_figures_data.csv`
-- Documentation: `reports/research_figures_data.md`
+- Data source: Embedded empirical benchmark evaluations in `scripts/generate_research_figures.py`
+- Canonical tables: `research/results/tables/research_figures_data.{csv,md}`
+- Engineering reports copy: `reports/research_figures_data.{csv,md}`
 - Script: `scripts/generate_research_figures.py`

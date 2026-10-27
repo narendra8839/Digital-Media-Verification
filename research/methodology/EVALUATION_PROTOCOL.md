@@ -62,4 +62,4 @@ To quantify epistemic model uncertainty under distribution shifts:
 - **Number of Stochastic Passes:** $T = 10$.
 - **Predictive Variance:**
   $$\sigma^2 = \frac{1}{T-1} \sum_{t=1}^{T} \big(p_t(\text{Fake}) - \bar{p}(\text{Fake})\big)^2$$
-- **Operational Threshold:** $\sigma^2 > 0.08$ flags the media for mandatory human review.
+- **Operational Threshold:** $\sigma^2 \ge 0.02$ (or predictive entropy $H \ge 0.85$ bits) flags the media for mandatory human review (`REVIEW_RECOMMENDED`).

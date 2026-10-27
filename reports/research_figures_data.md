@@ -1,6 +1,6 @@
 # Research Figures Data and Provenance Guide
 
-This document accompanies `reports/research_figures_data.csv` and provides complete provenance, source file traceability, reproduction commands, and structured tables ready for GPT/Python plotting.
+This document accompanies `research_figures_data.csv` (available canonically at `research/results/tables/research_figures_data.csv` and in `reports/`) and provides complete provenance, source file traceability, reproduction commands, and structured tables ready for manuscript and Python plotting.
 
 ---
 
@@ -87,4 +87,4 @@ To re-execute and generate all figures, run:
 ```bash
 python scripts/generate_research_figures.py
 ```
-Outputs are written to `reports/figures/*.png` (300 DPI) and `reports/figures/*.svg`.
+Outputs are written canonically to `research/figures/png/` (300 DPI rasters) and `research/figures/svg/` (vector graphics), with synchronized engineering copies in `reports/figures/`.

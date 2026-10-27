@@ -41,7 +41,7 @@ If non-numeric or non-positive values are passed (e.g., `DMV_ARTIFACT_TTL_HOURS=
 
 ## 3. Storage Safety & Security Guarantees
 
-The cleanup implementation in [`api/utils/artifact_manager.py`](file:///api/utils/artifact_manager.py) enforces strict filesystem safety constraints:
+The cleanup implementation in [`api/utils/artifact_manager.py`](../api/utils/artifact_manager.py) enforces strict filesystem safety constraints:
 
 1. **Managed Artifact Matching:**
    - Deletion targets only application-owned files matching:

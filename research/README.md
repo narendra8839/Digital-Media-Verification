@@ -48,7 +48,7 @@ research/
 │
 └── manuscript/                        # Academic paper submission materials
     ├── PAPER_OUTLINE.md               # Detailed academic manuscript outline and section plan
-    ├── FIGURE_CAPTIONS.md             # Formal, peer-reviewed captions for Figures 1–6 and Tables 1–5
+    ├── FIGURE_CAPTIONS.md             # Formal, publication-ready manuscript captions for Figures 1–6 and Tables 1–5
     └── REFERENCES.md                  # Genuine BibTeX records for models, datasets, and methods
 ```
 
@@ -68,16 +68,16 @@ research/
    - Candidate V3-A’s 70.0% benchmark accuracy (NumPy `RandomState` MT19937) and 72.0% severity sweep accuracy (NumPy `default_rng` PCG64) under Gaussian noise ($\sigma=15$) both evaluate the identical 100-video development subset and identical model weights. The 2-video discrepancy is due strictly to stochastic noise realizations on borderline fake samples; both pass the $\ge 65\%$ gate.
 4. **Assistive Nature & Governance:**
    - The system is designed as an assistive forensic triage tool, not an infallible legal truth engine.
-   - An automated human-in-the-loop gate is triggered whenever predictive variance $\sigma^2 > 0.08$ or cross-modal conflicts arise.
+   - An automated human-in-the-loop gate (`REVIEW_RECOMMENDED`) is triggered whenever predictive variance $\sigma^2 \ge 0.02$, entropy $H \ge 0.85$ bits, or cross-modal conflicts arise.
 
 ---
 
 ## 3. Quick Links to Historical Audits
 
 Prior phase-by-phase implementation and training milestones are preserved in the repository’s historical documentation:
-- [docs/research_history/CURRENT_MVP_AUDIT.md](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/docs/research_history/CURRENT_MVP_AUDIT.md)
-- [docs/research_history/PHASE_4_EVALUATION.md](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/docs/research_history/PHASE_4_EVALUATION.md)
-- [docs/research_history/PHASE_5_MODEL_OPTIMIZATION.md](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/docs/research_history/PHASE_5_MODEL_OPTIMIZATION.md)
-- [docs/research_history/PHASE_6_INTEGRATION.md](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/docs/research_history/PHASE_6_INTEGRATION.md)
-- [docs/PROJECT_LIMITATIONS.md](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/docs/PROJECT_LIMITATIONS.md)
-- [docs/ARTIFACT_MANAGEMENT.md](file:///c:/Users/Swaraj%20Shedge/Desktop/College/TY/ERA/Digital%20Media%20Verification/Digital-Media-Verification/docs/ARTIFACT_MANAGEMENT.md)
+- [`docs/research_history/CURRENT_MVP_AUDIT.md`](../docs/research_history/CURRENT_MVP_AUDIT.md)
+- [`docs/research_history/PHASE_4_EVALUATION.md`](../docs/research_history/PHASE_4_EVALUATION.md)
+- [`docs/research_history/PHASE_5_MODEL_OPTIMIZATION.md`](../docs/research_history/PHASE_5_MODEL_OPTIMIZATION.md)
+- [`docs/research_history/PHASE_6_INTEGRATION.md`](../docs/research_history/PHASE_6_INTEGRATION.md)
+- [`docs/PROJECT_LIMITATIONS.md`](../docs/PROJECT_LIMITATIONS.md)
+- [`docs/ARTIFACT_MANAGEMENT.md`](../docs/ARTIFACT_MANAGEMENT.md)

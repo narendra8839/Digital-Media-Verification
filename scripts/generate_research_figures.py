@@ -1,15 +1,15 @@
 """Generate publication-quality research and presentation figures from verified project evaluation data.
 
 Outputs:
-- reports/figures/fig_a_benchmark_metrics.{png,svg}
-- reports/figures/fig_b_deepfake_robustness.{png,svg}
-- reports/figures/fig_c_deepfake_confusion_matrix.{png,svg}
-- reports/figures/fig_d_deepfake_class_metrics.{png,svg}
-- reports/figures/fig_e_propaganda_optimization.{png,svg}
-- reports/figures/fig_f_dataset_distributions.{png,svg}
-- reports/research_figures_data.csv
-- reports/research_figures_data.md
-- reports/figures/README.md
+- Canonical Research Artifacts:
+  - research/figures/png/fig_[a-f]_*.png (300 DPI rasters)
+  - research/figures/svg/fig_[a-f]_*.svg (Scalable vector graphics)
+  - research/results/tables/research_figures_data.csv (Canonical tabular data)
+  - research/results/tables/research_figures_data.md (Markdown tables)
+- Engineering Compatibility Artifacts:
+  - reports/figures/fig_[a-f]_*.{png,svg}
+  - reports/research_figures_data.{csv,md}
+  - reports/figures/README.md
 
 All figures are grounded exclusively in genuine project evaluation outputs:
 - phase4_results.json
@@ -33,7 +33,15 @@ import numpy as np
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 REPORTS_DIR = os.path.join(PROJECT_ROOT, "reports")
 FIGURES_DIR = os.path.join(REPORTS_DIR, "figures")
+RESEARCH_DIR = os.path.join(PROJECT_ROOT, "research")
+RESEARCH_FIGURES_PNG = os.path.join(RESEARCH_DIR, "figures", "png")
+RESEARCH_FIGURES_SVG = os.path.join(RESEARCH_DIR, "figures", "svg")
+RESEARCH_TABLES_DIR = os.path.join(RESEARCH_DIR, "results", "tables")
+
 os.makedirs(FIGURES_DIR, exist_ok=True)
+os.makedirs(RESEARCH_FIGURES_PNG, exist_ok=True)
+os.makedirs(RESEARCH_FIGURES_SVG, exist_ok=True)
+os.makedirs(RESEARCH_TABLES_DIR, exist_ok=True)
 
 # Publication styling tokens
 COLOR_PRIMARY = "#1e3a8a"       # Deep Navy
@@ -136,19 +144,33 @@ def safe_savefig(png_path=None, svg_path=None, fig=None, dpi=300, **kwargs):
     Safely export figure to PNG and/or SVG formats with atomic replacement and validation.
 
     Preserves existing files if export or replacement fails, validates non-empty output,
-    and cleans up temporary files on failure.
+    and simultaneously synchronizes both canonical research/figures/ and reports/figures/.
     """
     saver = fig.savefig if fig is not None else plt.savefig
     exported = []
 
     try:
         if png_path:
+            # 1. Primary destination (reports/figures/ or custom)
             _atomic_export_figure(png_path, lambda tmp: saver(tmp, dpi=dpi, format="png", **kwargs))
             exported.append(png_path)
+            # 2. Canonical research raster directory (research/figures/png/)
+            canonical_png = os.path.join(RESEARCH_FIGURES_PNG, os.path.basename(png_path))
+            if os.path.abspath(canonical_png) != os.path.abspath(png_path):
+                import shutil
+                shutil.copyfile(png_path, canonical_png)
+                exported.append(canonical_png)
 
         if svg_path:
+            # 1. Primary destination (reports/figures/ or custom)
             _atomic_export_figure(svg_path, lambda tmp: saver(tmp, format="svg", **kwargs))
             exported.append(svg_path)
+            # 2. Canonical research vector directory (research/figures/svg/)
+            canonical_svg = os.path.join(RESEARCH_FIGURES_SVG, os.path.basename(svg_path))
+            if os.path.abspath(canonical_svg) != os.path.abspath(svg_path):
+                import shutil
+                shutil.copyfile(svg_path, canonical_svg)
+                exported.append(canonical_svg)
 
         print(f"Generated: {' & '.join(exported)}")
     finally:
@@ -582,6 +604,8 @@ def export_research_data_csv_and_md():
     """Export structured, source-traceable tabular data for research transparency and plotting."""
     csv_path = os.path.join(REPORTS_DIR, "research_figures_data.csv")
     md_path = os.path.join(REPORTS_DIR, "research_figures_data.md")
+    research_csv_path = os.path.join(RESEARCH_TABLES_DIR, "research_figures_data.csv")
+    research_md_path = os.path.join(RESEARCH_TABLES_DIR, "research_figures_data.md")
     readme_path = os.path.join(FIGURES_DIR, "README.md")
 
     rows = [
@@ -944,23 +968,24 @@ def export_research_data_csv_and_md():
         }
     ]
 
-    # Write CSV
+    # Write CSV to canonical research destination and reports compatibility destination
     fieldnames = [
         "figure_id", "task", "model", "dataset", "split_type",
         "sample_count", "class_or_condition", "metric", "value",
         "source_file", "source_type", "notes"
     ]
-    with open(csv_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        for r in rows:
-            writer.writerow(r)
-    print(f"Generated: {csv_path} ({len(rows)} rows)")
+    for target_csv in [research_csv_path, csv_path]:
+        with open(target_csv, "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            for r in rows:
+                writer.writerow(r)
+        print(f"Generated: {target_csv} ({len(rows)} rows)")
 
     # Write Markdown data guide for GPT plotting
     md_content = """# Research Figures Data and Provenance Guide
 
-This document accompanies `reports/research_figures_data.csv` and provides complete provenance, source file traceability, reproduction commands, and structured tables ready for GPT/Python plotting.
+This document accompanies `research_figures_data.csv` (available canonically at `research/results/tables/research_figures_data.csv` and in `reports/`) and provides complete provenance, source file traceability, reproduction commands, and structured tables ready for manuscript and Python plotting.
 
 ---
 
@@ -1047,11 +1072,12 @@ To re-execute and generate all figures, run:
 ```bash
 python scripts/generate_research_figures.py
 ```
-Outputs are written to `reports/figures/*.png` (300 DPI) and `reports/figures/*.svg`.
+Outputs are written canonically to `research/figures/png/` (300 DPI rasters) and `research/figures/svg/` (vector graphics), with synchronized engineering copies in `reports/figures/`.
 """
-    with open(md_path, "w", encoding="utf-8") as f:
-        f.write(md_content)
-    print(f"Generated: {md_path}")
+    for target_md in [research_md_path, md_path]:
+        with open(target_md, "w", encoding="utf-8") as f:
+            f.write(md_content)
+        print(f"Generated: {target_md}")
 
     # Write reports/figures/README.md
     fig_readme_content = """# Research Figures Directory
@@ -1066,8 +1092,9 @@ This directory contains publication-quality plots and vector graphics generated 
 6. **`fig_f_dataset_distributions.{png,svg}`**: Ground-truth class distributions across evaluated benchmark splits.
 
 ### Provenance and Reproducibility
-- Data source: `reports/research_figures_data.csv`
-- Documentation: `reports/research_figures_data.md`
+- Data source: Embedded empirical benchmark evaluations in `scripts/generate_research_figures.py`
+- Canonical tables: `research/results/tables/research_figures_data.{csv,md}`
+- Engineering reports copy: `reports/research_figures_data.{csv,md}`
 - Script: `scripts/generate_research_figures.py`
 """
     with open(readme_path, "w", encoding="utf-8") as f:

@@ -40,12 +40,20 @@ research/figures/
 
 ---
 
-## 3. Reproduction Instructions
+## 3. Reproduction and Synchronization Instructions
 
-To regenerate all figures from source data:
+To regenerate all figures and data tables from verified evaluation datasets:
 
 ```bash
 python scripts/generate_research_figures.py
 ```
 
-The script parses `research/results/tables/research_figures_data.csv` and outputs matching PNG and SVG files. Matplotlib styling uses custom typography and high-contrast color palettes suitable for peer-reviewed IEEE/ACM manuscript submissions.
+The generator script `scripts/generate_research_figures.py` embeds the verified empirical evaluation data structures (grounded in `phase4_results.json`, `baseline_robustness.json`, and audited historical reports), renders high-resolution plots, and exports both the canonical research figures (`research/figures/{png,svg}`) and canonical research data tables (`research/results/tables/research_figures_data.{csv,md}`). Matplotlib styling uses publication-grade typography and high-contrast color palettes suitable for formal IEEE/ACM manuscript submissions.
+
+---
+
+## 4. Relationship Between `research/figures/` and `reports/figures/`
+
+- **`research/figures/` (Canonical)**: Canonical research publication repository, cleanly partitioned into raster `png/` (300 DPI for paper drafts/LaTeX) and vector `svg/` (resolution-independent graphics).
+- **`reports/figures/` (Engineering Compatibility)**: Retained as a flat engineering directory for local development inspection and compatibility with engineering markdown reports.
+- **Lockstep Synchronization**: `scripts/generate_research_figures.py` exports to both locations simultaneously using atomic file replacement, guaranteeing that canonical research assets and engineering reports cannot silently become inconsistent.

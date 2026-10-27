@@ -73,9 +73,19 @@ models/
 
 ## 3. Obtaining Model Weights
 
-### From GitHub Releases
+### Checkpoint Provisioning Notice
 
-Production model weights are distributed as downloadable `.tar.gz` release assets under release tag [`v1.0.0`](https://github.com/narendra8839/Digital-Media-Verification/releases/tag/v1.0.0) (active once published by the maintainer):
+> [!WARNING]
+> **GitHub Release `v1.0.0` Status:** The planned GitHub Release tag `v1.0.0` has **not yet been published** on GitHub and is currently unavailable for direct public download. Do not attempt to download archives from the GitHub web release page until published by the maintainer.
+>
+> **Actual Provisioning Process:**
+> - **Local Storage / Team Transfer:** Authorized developers and evaluators should obtain the three `.tar.gz` archive files directly from local storage/backups (e.g., `D:\DMV_Data\DMV_Model_Release\` or local staging) and extract them into their designated paths below.
+> - **Direct Verification:** If working with an already initialized repository checkout, verify that `models/deepfake/checkpoint_full/best_model.pt` exists and matches the verified SHA-256 hash.
+> - **Training from Scratch:** If pre-trained weights are unavailable, models can be trained locally using the scripts in Section 4.
+
+### Release Checkpoint Archives Specification
+
+Once published, production model weights will be packaged as `.tar.gz` archives with the following checksums and directory destinations:
 
 | Archive File | Size (Bytes / MB) | SHA-256 Checksum | Target Extraction Path |
 | :--- | :--- | :--- | :--- |
@@ -83,10 +93,9 @@ Production model weights are distributed as downloadable `.tar.gz` release asset
 | `hate_speech_bert_checkpoint.tar.gz` | 407,151,028 (~388.29 MB) | `fd4988f1492d7a6a37fed8fa1891db17d31982fcf2252c92479d4d1b6b6fa822` | `models/hate_speech/` |
 | `propaganda_roberta_exp1_checkpoint.tar.gz` | 428,494,811 (~408.64 MB) | `f4cc85cafcfc16a9f6cb3ffb55e06bbc2f1bdc0cba516a4e3567964b630f3cb0` | `models/propaganda/optimization/` |
 
-To install:
-1. Navigate to the project's **Releases** tab on GitHub: [`https://github.com/narendra8839/Digital-Media-Verification/releases`](https://github.com/narendra8839/Digital-Media-Verification/releases).
-2. Download the three checkpoint archives.
-3. Extract each archive into its designated location:
+### Extraction Instructions (from Local Archive or Release)
+
+Place the archives in your workspace root, then extract each into its designated location:
    ```bash
    # Deepfake detector (creates models/deepfake/checkpoint_full/best_model.pt)
    tar -xzf deepfake_efficientnet_b4_checkpoint.tar.gz -C models/deepfake/

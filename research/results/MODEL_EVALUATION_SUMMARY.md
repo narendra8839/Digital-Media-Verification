@@ -34,7 +34,7 @@ The test partition contains 140 Real videos and 560 Manipulated (Fake) videos, r
 ### Analysis of Imbalance Impact
 - **High Fake Precision (96.30%):** Out of 514 videos flagged as fake, 495 are verified fakes. When the system raises a high-confidence fake alert, it is correct in $>96\%$ of cases.
 - **Moderate Real Precision (65.05%):** Due to the $4:1$ negative-to-positive ratio in the evaluation set, even a low false negative rate (65 missed fakes out of 560) creates a substantial proportion of false classifications among predictions classified as Real.
-- **Operational Recommendation:** Predictions marked as "Real" with moderate uncertainty ($>0.08$) must be triaged for secondary human inspection.
+- **Operational Recommendation:** Predictions marked as "Real" with elevated uncertainty ($\sigma^2 \ge 0.02$) must be triaged for secondary human inspection (`REVIEW_RECOMMENDED`).
 
 ---
 

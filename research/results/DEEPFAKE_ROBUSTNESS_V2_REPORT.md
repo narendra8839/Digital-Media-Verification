@@ -48,7 +48,7 @@ A forensic examination of the conversation transcript log (`transcript_full.json
 
 ## 3. Git & Worktree Isolation Integrity
 
-- **Main Repository:** `c:\Users\Swaraj Shedge\Desktop\College\TY\ERA\Digital Media Verification\Digital-Media-Verification`
+- **Main Repository:** Digital-Media-Verification (Root Worktree)
   - Active Branch: `feat/gradcam-artifact-retention`
   - Status: All existing uncommitted changes in `api/`, `pipeline/`, `frontend/`, `docs/`, and `tests/test_artifact_retention.py` were preserved untouched.
 - **Dedicated Worktree:** `.worktrees/robustness`
