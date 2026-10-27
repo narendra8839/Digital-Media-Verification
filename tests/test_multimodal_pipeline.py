@@ -18,6 +18,7 @@ import sys
 import pytest
 import numpy as np
 from PIL import Image
+from unittest.mock import patch
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if PROJECT_ROOT not in sys.path:
@@ -208,3 +209,64 @@ class TestMultimodalPipelineEndToEnd:
         assert "input" in res
         assert "governance" in res
         assert "audit" in res
+
+    # Regression: Video verification with detected face, output_dir, and Grad-CAM retention
+    def test_video_verification_with_detected_face_and_gradcam_retention(self, shared_pipeline, tmp_path):
+        """Verify that video with detected face generates Grad-CAM under protect_active_artifact and returns valid governance."""
+        face_img_path = os.path.join(PROJECT_ROOT, "tests", "assets", "face_image.jpg")
+        assert os.path.exists(face_img_path)
+        face_crop = Image.open(face_img_path).convert("RGB").resize((224, 224))
+
+        video_path = os.path.join(PROJECT_ROOT, "tests", "assets", "silent_video.mp4")
+        assert os.path.exists(video_path)
+
+        out_dir = str(tmp_path / "artifacts")
+        os.makedirs(out_dir, exist_ok=True)
+
+        with patch.object(shared_pipeline.video_pipeline.face_detector, "detect_and_crop", return_value=(face_crop, True)):
+            res = shared_pipeline.verify(video_path, sample_fps=1.0, max_frames=2, output_dir=out_dir)
+
+        assert res["input"]["input_type"] == "video"
+        assert res["visual"]["status"] == "SUCCESS"
+        assert res["visual"]["prediction"] in ("real", "fake")
+        assert isinstance(res["visual"]["confidence"], float)
+        assert 0.0 <= res["visual"]["confidence"] <= 1.0
+        assert res["visual"]["frames_analyzed"] > 0
+
+        # Representative frame explanation (Grad-CAM)
+        rep_frame = res["visual"]["representative_frame"]
+        assert rep_frame is not None
+        assert "frame_index" in rep_frame
+        assert "timestamp" in rep_frame
+        assert "explanation" in rep_frame
+        rep_expl = rep_frame["explanation"]
+        assert rep_expl is not None
+        assert "overlay_path" in rep_expl
+        assert rep_expl["overlay_path"] is not None
+        assert os.path.exists(rep_expl["overlay_path"])
+
+        # Governance status must be valid prediction, NOT COMPONENT_FAILURE
+        gov = res["governance"]
+        assert gov["decision_status"] in ("CONFIDENT_PREDICTION", "REVIEW_RECOMMENDED")
+        assert gov["decision_status"] != "COMPONENT_FAILURE"
+        assert gov["review_trigger_component"] != "video" or gov["decision_status"] == "REVIEW_RECOMMENDED"
+
+    # Regression: Genuine video processing failure produces honest COMPONENT_FAILURE and server-side logs
+    def test_video_verification_genuine_failure_produces_honest_error_and_logs(self, shared_pipeline, caplog):
+        """Verify that an unhandled error during video processing produces COMPONENT_FAILURE and logs."""
+        import logging
+        video_path = os.path.join(PROJECT_ROOT, "tests", "assets", "silent_video.mp4")
+
+        with caplog.at_level(logging.ERROR, logger="dmv.pipeline.multimodal"):
+            with patch.object(shared_pipeline.video_pipeline, "process_video", side_effect=RuntimeError("Simulated video decoder crash")):
+                res = shared_pipeline.verify(video_path, sample_fps=1.0, max_frames=2)
+
+        # Honest failure container
+        assert res["governance"]["decision_status"] == "COMPONENT_FAILURE"
+        assert res["governance"]["review_required"] is True
+        assert res["governance"]["review_trigger_component"] == "video"
+        assert "Simulated video decoder crash" in res["governance"]["error"]
+        assert any("Simulated video decoder crash" in err for err in res["audit"]["errors"])
+
+        # Useful server-side logs recorded
+        assert any("Simulated video decoder crash" in record.message for record in caplog.records if record.levelname == "ERROR")

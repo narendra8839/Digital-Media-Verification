@@ -244,6 +244,40 @@ class TestPhase6VideoAndAsyncJobs:
         status_data = poll_res.json()
         assert status_data["status"] in ("QUEUED", "PROCESSING", "COMPLETED")
 
+    def test_video_sync_verification_with_face_detection_and_gradcam(self):
+        """Synchronous video verification with face detection produces prediction, confidence, and Grad-CAM."""
+        from unittest.mock import patch
+        from api.dependencies import get_pipeline
+        pipeline = get_pipeline()
+
+        silent_vid = os.path.join(ASSETS_DIR, "silent_video.mp4")
+        face_img = os.path.join(ASSETS_DIR, "face_image.jpg")
+        face_crop = Image.open(face_img).convert("RGB").resize((224, 224))
+
+        with patch.object(pipeline.video_pipeline.face_detector, "detect_and_crop", return_value=(face_crop, True)):
+            with open(silent_vid, "rb") as f:
+                response = client.post(
+                    "/verify/video",
+                    files={"file": ("silent_video.mp4", f, "video/mp4")},
+                    data={"async_mode": "false", "sample_fps": "1.0", "max_frames": "2"}
+                )
+
+        assert response.status_code == 200
+        data = response.json()
+        assert data["visual"]["status"] == "SUCCESS"
+        assert data["visual"]["prediction"] in ("real", "fake")
+        assert isinstance(data["visual"]["confidence"], float)
+        assert data["visual"]["confidence"] > 0.0
+
+        rep = data["visual"]["representative_frame"]
+        assert rep is not None
+        assert rep["explanation"] is not None
+        assert "overlay_url" in rep["explanation"]
+        assert "disclaimer" in rep["explanation"]
+
+        assert data["governance"]["decision_status"] in ("CONFIDENT_PREDICTION", "REVIEW_RECOMMENDED")
+        assert data["governance"]["decision_status"] != "COMPONENT_FAILURE"
+
 
 class TestPhase6Multimodal:
     """Verify multimodal endpoint combining media and textual channels."""
